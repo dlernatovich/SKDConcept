@@ -1,0 +1,44 @@
+apply plugin: 'com.android.library'
+
+repositories {
+    maven {
+        url "https://dl.bintray.com/darknessbeast/baseproject-artlite"
+    }
+    maven {
+        url "https://dl.bintray.com/darknessbeast/adapteredrecyclerview-artlite"
+    }
+}
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        minSdkVersion 17
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.artlite:baseproject:1.0'
+    compile 'com.artlite:adapteredrecyclerview:1.0'
+    compile('com.magnet.max.android:magnet-max-android-sdk:3.1.x-SNAPSHOT@aar') {
+        transitive = true
+    }
+    testCompile 'junit:junit:4.12'
+}

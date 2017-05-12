@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.artlite.bslibrary.ui.fonted.BSEditText
+        android:id="@+id/edit_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="User name"
+        android:lines="1"
+        android:text="hanju.kim@magnet.com"
+        android:textSize="@dimen/text_18" />
+
+    <com.artlite.bslibrary.ui.fonted.BSEditText
+        android:id="@+id/edit_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:text="12345a"
+        android:textSize="@dimen/text_18" />
+
+    <com.artlite.bslibrary.ui.fonted.BSButton
+        android:id="@+id/button_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:textSize="@dimen/text_16"
+        android:textStyle="bold" />
+
+</LinearLayout>
