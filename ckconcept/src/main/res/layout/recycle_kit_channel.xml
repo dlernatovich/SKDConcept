@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/content"
+    android:orientation="horizontal">
+
+    <ImageView
+        style="@style/styleFillImageCenter"
+        android:layout_width="@dimen/dimen_50"
+        android:layout_height="@dimen/dimen_50"
+        android:layout_gravity="center_vertical"
+        android:src="@mipmap/ic_no_menu" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <com.artlite.bslibrary.ui.fonted.BSTextView
+            android:id="@+id/label_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="Channel Header"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_18"
+            android:textStyle="bold" />
+
+        <com.artlite.bslibrary.ui.fonted.BSTextView
+            android:id="@+id/label_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="This is sparta for the channel for the instance of the some data"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/text_16" />
+    </LinearLayout>
+
+
+</LinearLayout>

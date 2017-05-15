@@ -3,7 +3,7 @@ package com.artlite.ckconcept.callbacks;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
+import com.artlite.adapteredrecyclerview.models.BaseObject;
 
 import java.util.List;
 
@@ -16,7 +16,10 @@ public interface OnKitActionCallback {
      * Method which provide the action when data is received
      *
      * @param context instance of {@link Context}
+     * @param offset  {@link Integer} value of the offset
+     * @param items   {@link List} of the {@link BaseObject}
      */
     void onDataReceived(@NonNull final Context context,
-                        @NonNull final List<BaseRecyclerItem> items);
+                        int offset,
+                        @NonNull final List<BaseObject> items);
 }

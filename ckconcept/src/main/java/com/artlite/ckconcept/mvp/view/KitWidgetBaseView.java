@@ -5,11 +5,18 @@ import android.support.annotation.NonNull;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.artlite.adapteredrecyclerview.callbacks.OnAdapteredPagingCallback;
+import com.artlite.adapteredrecyclerview.callbacks.OnAdapteredRefreshCallback;
 import com.artlite.adapteredrecyclerview.core.AdapteredView;
+import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
+import com.artlite.bslibrary.managers.BSThreadManager;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.callbacks.OnKitActionCallback;
+import com.artlite.ckconcept.managers.KitWidgetManager;
+import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
+import com.artlite.ckconcept.ui.views.KitCreateWidgetView;
 
 import java.util.List;
 
@@ -18,7 +25,8 @@ import java.util.List;
  */
 
 public abstract class KitWidgetBaseView extends BSView implements KitWidgetContract.View,
-        OnKitActionCallback {
+        OnKitActionCallback, KitCreateWidgetView.OnMenuClickListener {
+
     /**
      * Constructor which provide the create {@link BSView} from
      *
@@ -54,8 +62,19 @@ public abstract class KitWidgetBaseView extends BSView implements KitWidgetContr
      */
     @Override
     protected void onCreateView() {
-        getAdapteredView().showRefresh();
-        getPresenter().getServerData(getContext(), this);
+        showProgress();
+        BSThreadManager.main(new BSThreadManager.OnThreadCallback() {
+            @Override
+            public void onExecute() {
+                getAdapteredView().init(getLayoutManager(getContext()),
+                        KitWidgetBaseView.this, refreshCallback, pagingCallback);
+                getAdapteredView().setIsNeedResfresh(isNeedSwipeRefresh());
+                getPresenter().getServerData(getContext(), 0, KitWidgetBaseView.this);
+                if (getCreateButtonId() != null) {
+                    findViewById(getCreateButtonId()).setOnClickListener(createWidgetCallback);
+                }
+            }
+        });
     }
 
     /**
@@ -64,10 +83,22 @@ public abstract class KitWidgetBaseView extends BSView implements KitWidgetContr
      * @param items {@link List} of the {@link BaseRecyclerItem}
      */
     @Override
-    public void setItems(@NonNull List<BaseRecyclerItem> items) {
+    public void setItems(@NonNull List<BaseObject> items) {
         final AdapteredView view = getAdapteredView();
         if (view != null) {
             view.set(items);
+        }
+    }
+
+    /**
+     * Method which provide the adding of the {@link List} of the {@link BaseRecyclerItem}
+     *
+     * @param items {@link List} of the {@link BaseRecyclerItem}
+     */
+    public void addItems(@NonNull List<BaseObject> items) {
+        final AdapteredView view = getAdapteredView();
+        if (view != null) {
+            view.add(items);
         }
     }
 
@@ -97,11 +128,83 @@ public abstract class KitWidgetBaseView extends BSView implements KitWidgetContr
      * Method which provide the action when data is received
      *
      * @param context instance of {@link Context}
-     * @param items
+     * @param items   {@link List} of the {@link BaseRecyclerItem}
      */
     @Override
-    public void onDataReceived(@NonNull Context context, @NonNull List<BaseRecyclerItem> items) {
-        getAdapteredView().hideRefresh();
-        setItems(items);
+    public void onDataReceived(@NonNull Context context,
+                               int offset,
+                               @NonNull List<BaseObject> items) {
+        hideProgress();
+        if (offset == 0) {
+            setItems(items);
+        } else {
+            addItems(items);
+        }
     }
+
+    //==============================================================================================
+    //                                      ADAPTERED CALLBACK
+    //==============================================================================================
+
+    /**
+     * Instance of the {@link OnAdapteredRefreshCallback}
+     */
+    private final OnAdapteredRefreshCallback refreshCallback =
+            new OnAdapteredRefreshCallback() {
+
+                /**
+                 * Method which provide the swipe down to refresh listening
+                 */
+                @Override
+                public void onRefreshData() {
+                    final KitWidgetContract.Presenter presenter = getPresenter();
+                    if (presenter != null) {
+                        presenter.getServerData(getContext(), 0, KitWidgetBaseView.this);
+                    }
+                }
+            };
+
+    /**
+     * Instance of {@link OnAdapteredPagingCallback}
+     */
+    private final OnAdapteredPagingCallback pagingCallback =
+            new OnAdapteredPagingCallback() {
+
+                /**
+                 * Method which provide the notifying about end of list
+                 *
+                 * @param listSize list size
+                 */
+                @Override
+                public void onNextPage(int listSize) {
+                    final KitWidgetContract.Presenter presenter = getPresenter();
+                    if (presenter != null) {
+                        presenter.getServerData(getContext(), listSize, KitWidgetBaseView.this);
+                    }
+                }
+            };
+
+    /**
+     * Callback which provide the add on click functional to button for create widget
+     */
+    private final OnClickListener createWidgetCallback = new OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            final KitCreateWidgetView createWidgetView = new KitCreateWidgetView(getContext(),
+                    KitWidgetBaseView.this);
+            final List<KitMenuModel> objects = KitWidgetManager.getCreateMenus(getCurrentClass());
+            final Integer dropdownId = getViewDropdown();
+            createWidgetView.setObjects(objects);
+            if (!objects.isEmpty()) {
+                if (dropdownId != null) {
+                    final View dropdown = findViewById(dropdownId);
+                    if (dropdown != null) {
+                        createWidgetView.showAsDropdown(dropdown);
+                        return;
+                    }
+                }
+                createWidgetView.showAsDialog();
+            }
+        }
+    };
 }

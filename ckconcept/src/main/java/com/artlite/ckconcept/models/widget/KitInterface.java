@@ -4,7 +4,7 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
+import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.adapteredrecyclerview.ui.views.AdapteredRecyclerView;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
@@ -39,7 +39,7 @@ interface KitInterface<T> {
      */
     @LayoutRes
     @Nullable
-    Integer getLayoutDislay();
+    Integer getLayoutDisplay();
 
     /**
      * Method which provide the getting of the layout for the {@link View} with displaying of the
@@ -91,7 +91,7 @@ interface KitInterface<T> {
      * @return instance of the {@link BSView}
      */
     @Nullable
-    BaseRecyclerItem getViewList();
+    BaseObject getViewList();
 
     /**
      * Method which provide the checking if widget need to have of the create view
@@ -103,6 +103,11 @@ interface KitInterface<T> {
     //==============================================================================================
     //                                     APPLY
     //==============================================================================================
+
+    /**
+     * Method which provide the applying of the widget from the instance of inner {@link Object}
+     */
+    void apply();
 
     /**
      * Method which provide applying of the content from {@link Object}
@@ -129,6 +134,14 @@ interface KitInterface<T> {
      * @return checking result
      */
     boolean isNeedMenuHeader();
+
+    /**
+     * Method which provide the getting of the instance of {@link Object}
+     *
+     * @return instance of {@link Object}
+     */
+    @Nullable
+    T getObject();
 
 
 }

@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
+import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.bslibrary.helpers.validation.BSValidationHelper;
 import com.artlite.bslibrary.managers.BSBaseManager;
 import com.artlite.bslibrary.managers.BSEventManager;
@@ -13,9 +13,10 @@ import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.callbacks.OnKitCreatorCallback;
 import com.artlite.ckconcept.callbacks.OnKitEventCallback;
 import com.artlite.ckconcept.helpers.KitNameHelper;
-import com.artlite.ckconcept.models.widget.KitWidgetModel;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
+import com.artlite.ckconcept.models.widget.KitWidgetModel;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -95,6 +96,7 @@ public final class KitWidgetManager extends BSBaseManager {
                                    @Nullable final OnKitCreatorCallback creator) {
         if (BSValidationHelper.validateNull(type, creator, instance)) {
             boolean result = instance.getTypedMap().put(type, creator) != null;
+            registerMenus(type, creator);
             return result;
         }
         return false;
@@ -115,16 +117,19 @@ public final class KitWidgetManager extends BSBaseManager {
     /**
      * Method which provide the menus registering
      *
-     * @param type {@link String} value of the type
+     * @param type    {@link String} value of the type
+     * @param creator instance of the {@link OnKitCreatorCallback}
      */
-    protected static void registerMenus(@Nullable final String type) {
-        final OnKitCreatorCallback creator = getCreator(type);
-        if (creator != null) {
-            final KitWidgetModel widget = creator.create(null);
+    protected static void registerMenus(@Nullable final String type,
+                                        @Nullable final OnKitCreatorCallback creator) {
+        if (BSValidationHelper.validateEmpty(type, creator)) {
+            final KitWidgetModel widget = creator.create(type);
             if (widget != null) {
                 final List<KitMenuModel> items = widget.getMenuHeaders();
-                for (KitMenuModel item : items) {
-                    addMenu(item);
+                if (items != null) {
+                    for (KitMenuModel item : items) {
+                        addMenu(item);
+                    }
                 }
             }
         }
@@ -329,8 +334,8 @@ public final class KitWidgetManager extends BSBaseManager {
      * @return instance of the {@link BSView}
      */
     @Nullable
-    public static BaseRecyclerItem getViewList(@Nullable final Class type,
-                                               @Nullable final Object object) {
+    public static BaseObject getViewList(@Nullable final Class type,
+                                         @Nullable final Object object) {
         return getViewList(KitNameHelper.getClassType(type), object);
     }
 
@@ -342,8 +347,8 @@ public final class KitWidgetManager extends BSBaseManager {
      * @return instance of the {@link BSView}
      */
     @Nullable
-    public static BaseRecyclerItem getViewList(@Nullable final String type,
-                                               @Nullable final Object object) {
+    public static BaseObject getViewList(@Nullable final String type,
+                                         @Nullable final Object object) {
         final OnKitCreatorCallback creator = getCreator(type);
         if (BSValidationHelper.validateNull(creator)) {
             final KitWidgetModel widget = creator.create(object);
@@ -382,6 +387,36 @@ public final class KitWidgetManager extends BSBaseManager {
             menuHeaders = new HashMap<>();
         }
         return menuHeaders;
+    }
+
+    /**
+     * Method which provide the getting of the {@link List} of the {@link KitMenuModel}
+     *
+     * @param aClass instance of {@link Class}
+     * @return {@link List} of the {@link KitMenuModel}
+     */
+    @NonNull
+    public static List<KitMenuModel> getCreateMenus(@Nullable final Class aClass) {
+        if (BSValidationHelper.validateEmpty(aClass)) {
+            return getCreateMenus(aClass.getSimpleName());
+        }
+        return new ArrayList<>();
+    }
+
+    /**
+     * Method which provide the getting of the {@link List} of the {@link KitMenuModel}
+     *
+     * @param type instance of {@link String} type
+     * @return {@link List} of the {@link KitMenuModel}
+     */
+    @NonNull
+    public static List<KitMenuModel> getCreateMenus(@Nullable final String type) {
+        if (BSValidationHelper.validateEmpty(type, instance)) {
+            if (instance.getMenuHeaders().containsKey(type)) {
+                return new ArrayList<>(instance.getMenuHeaders().get(type));
+            }
+        }
+        return new ArrayList<>();
     }
 
 }

@@ -4,6 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.artlite.adapteredrecyclerview.core.AdapteredView;
+import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
 import com.artlite.ckconcept.helpers.KitNameHelper;
 import com.artlite.ckconcept.managers.KitWidgetManager;
@@ -60,7 +61,7 @@ public abstract class KitWidgetBasePresenter implements KitWidgetContract.Presen
      * @return instance of the {@link BaseRecyclerItem}
      */
     @Nullable
-    public BaseRecyclerItem getObject(@Nullable final String type, @Nullable final Object object) {
+    public BaseObject getObject(@Nullable final String type, @Nullable final Object object) {
         return KitWidgetManager.getViewList(type, object);
     }
 
