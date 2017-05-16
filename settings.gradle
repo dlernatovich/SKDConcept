@@ -1,1 +1,1 @@
-include ':app', ':ckconcept'
+include ':app', ':ckconcept', ':ckwidgets'

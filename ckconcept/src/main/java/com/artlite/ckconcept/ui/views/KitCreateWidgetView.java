@@ -161,7 +161,9 @@ public final class KitCreateWidgetView extends BSView {
                 @Override
                 public void onItemClick(int index, @NonNull KitMenuModel object) {
                     if (listener != null) {
-                        listener.onMenuItemClick(object);
+                        if (!listener.onShowCreateView(object)) {
+                            listener.onMenuItemClick(object);
+                        }
                         dismiss();
                     }
                 }
@@ -190,7 +192,9 @@ public final class KitCreateWidgetView extends BSView {
                                              @NonNull KitMenuModel object) {
                     if (recycleEvent.equals(K_EVENT_CLICK)) {
                         if (listener != null) {
-                            listener.onMenuItemClick(object);
+                            if (!listener.onShowCreateView(object)) {
+                                listener.onMenuItemClick(object);
+                            }
                             dismiss();
                         }
                     }
@@ -201,6 +205,14 @@ public final class KitCreateWidgetView extends BSView {
      * Listener which provide the action when user press one of the list item
      */
     public interface OnMenuClickListener {
+
+        /**
+         * Method which provide the action when menu item was press
+         *
+         * @param object instance of the {@link KitMenuModel}
+         */
+        boolean onShowCreateView(@NonNull KitMenuModel object);
+
         /**
          * Method which provide the action when menu item was press
          *

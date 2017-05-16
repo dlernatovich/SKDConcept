@@ -14,12 +14,14 @@ import com.artlite.adapteredrecyclerview.anotations.FindViewBy;
 import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
 import com.artlite.ckconcept.R;
+import com.artlite.ckconcept.helpers.KitNameHelper;
 
 /**
  * Class which provide the container for the menu item
  */
 
 public final class KitMenuModel extends BaseObject {
+
     /**
      * {@link String} value of the text
      */
@@ -34,6 +36,11 @@ public final class KitMenuModel extends BaseObject {
      * {@link String} value of the caller class name
      */
     private final String callerClassName;
+
+    /**
+     * {@link String} value of type
+     */
+    private final String type;
 
     /**
      * {@link Boolean} value which provide to define if menu is need to show
@@ -63,8 +70,26 @@ public final class KitMenuModel extends BaseObject {
     public KitMenuModel(@Nullable final String text,
                         @DrawableRes final int icon,
                         @NonNull final Class owner,
-                        @NonNull final Class caller) {
-        this(text, icon, owner.getSimpleName(), caller.getSimpleName());
+                        @NonNull final Class caller,
+                        @NonNull final Class type) {
+        this(text, icon, owner.getSimpleName(), caller.getSimpleName(),
+                KitNameHelper.getClassType(type));
+    }
+
+    /**
+     * Constructor which provide to create the {@link KitMenuModel} from
+     *
+     * @param text   {@link String} value of the text
+     * @param owner  instance of {@link Class}
+     * @param caller instance of {@link Class}
+     */
+    public KitMenuModel(@Nullable final String text,
+                        @DrawableRes final int icon,
+                        @NonNull final Class owner,
+                        @NonNull final Class caller,
+                        @NonNull final String type) {
+        this(text, icon, owner.getSimpleName(), caller.getSimpleName(),
+                type);
     }
 
     /**
@@ -77,13 +102,15 @@ public final class KitMenuModel extends BaseObject {
     public KitMenuModel(@Nullable final String text,
                         @DrawableRes final int icon,
                         @NonNull final String owner,
-                        @NonNull final String caller) {
+                        @NonNull final String caller,
+                        @NonNull final String type) {
         this.text = text;
         this.ownerClass = (owner == null) ? "" : owner;
         this.callerClassName = (caller == null) ? "" : caller;
         this.isNeedShow = (text != null);
         this.icon = icon;
         this.layoutRes = R.layout.reycle_ck_menu_item;
+        this.type = type;
     }
 
     /**
@@ -98,6 +125,7 @@ public final class KitMenuModel extends BaseObject {
         this.callerClassName = source.readString();
         this.isNeedShow = (source.readInt() == 1);
         this.icon = source.readInt();
+        this.type = source.readString();
     }
 
     /**
@@ -128,6 +156,16 @@ public final class KitMenuModel extends BaseObject {
     @NonNull
     public String getCallerClass() {
         return callerClassName;
+    }
+
+    /**
+     * Method which provide the getting of the {@link String} value of type
+     *
+     * @return {@link String} value of type
+     */
+    @NonNull
+    public String getType() {
+        return type;
     }
 
     /**
@@ -191,6 +229,7 @@ public final class KitMenuModel extends BaseObject {
         parcel.writeString(callerClassName);
         parcel.writeInt((isNeedShow == true) ? 1 : 0);
         parcel.writeInt(icon);
+        parcel.writeString(type);
     }
 
     /**

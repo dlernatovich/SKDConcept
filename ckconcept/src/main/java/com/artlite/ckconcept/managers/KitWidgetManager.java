@@ -11,7 +11,6 @@ import com.artlite.bslibrary.managers.BSBaseManager;
 import com.artlite.bslibrary.managers.BSEventManager;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.callbacks.OnKitCreatorCallback;
-import com.artlite.ckconcept.callbacks.OnKitEventCallback;
 import com.artlite.ckconcept.helpers.KitNameHelper;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.models.widget.KitWidgetModel;
@@ -202,13 +201,16 @@ public final class KitWidgetManager extends BSBaseManager {
      * @return instance of the {@link BSView}
      */
     @Nullable
-    public static void showViewCreate(@Nullable final String type,
-                                      @Nullable final Object object,
-                                      @Nullable final OnKitEventCallback callback) {
-        final BSView view = getViewCreate(type, object);
+    public static boolean showViewCreate(@Nullable final Context context,
+                                         @Nullable final String type,
+                                         @Nullable final Object object,
+                                         @Nullable final BSView.OnDialogCallback callback) {
+        final BSView view = getViewCreate(context, type, object);
         if (view != null) {
             view.showAsDialog(callback);
+            return true;
         }
+        return false;
     }
 
     /**
@@ -219,10 +221,11 @@ public final class KitWidgetManager extends BSBaseManager {
      * @return instance of the {@link BSView}
      */
     @Nullable
-    public static void showViewCreate(@Nullable final Class type,
-                                      @Nullable final Object object,
-                                      @Nullable final OnKitEventCallback callback) {
-        showViewCreate(KitNameHelper.getClassType(type), object, callback);
+    public static boolean showViewCreate(@Nullable final Context context,
+                                         @Nullable final Class type,
+                                         @Nullable final Object object,
+                                         @Nullable final BSView.OnDialogCallback callback) {
+        return showViewCreate(context, KitNameHelper.getClassType(type), object, callback);
     }
 
     /**
@@ -233,8 +236,10 @@ public final class KitWidgetManager extends BSBaseManager {
      * @return instance of the {@link BSView}
      */
     @Nullable
-    public static BSView getViewCreate(@Nullable final Class type, @Nullable final Object object) {
-        return getViewCreate(KitNameHelper.getClassType(type), object);
+    public static BSView getViewCreate(@Nullable final Context context,
+                                       @Nullable final Class type,
+                                       @Nullable final Object object) {
+        return getViewCreate(context, KitNameHelper.getClassType(type), object);
     }
 
     /**
@@ -245,12 +250,14 @@ public final class KitWidgetManager extends BSBaseManager {
      * @return instance of the {@link BSView}
      */
     @Nullable
-    public static BSView getViewCreate(@Nullable final String type, @Nullable final Object object) {
+    public static BSView getViewCreate(@Nullable final Context context,
+                                       @Nullable final String type,
+                                       @Nullable final Object object) {
         final OnKitCreatorCallback creator = getCreator(type);
-        if (BSValidationHelper.validateNull(creator)) {
+        if (BSValidationHelper.validateNull(creator, context)) {
             final KitWidgetModel widget = creator.create(object);
             if ((widget != null) && (widget.isNeedCreateView())) {
-                return widget.getViewCreate();
+                return widget.getViewCreate(context);
             }
         }
         return null;
@@ -268,13 +275,16 @@ public final class KitWidgetManager extends BSBaseManager {
      * @return instance of the {@link BSView}
      */
     @Nullable
-    public static void showViewDetails(@Nullable final String type,
-                                       @Nullable final Object object,
-                                       @Nullable final OnKitEventCallback callback) {
-        final BSView view = getViewDetails(type, object);
+    public static boolean showViewDetails(@Nullable final Context context,
+                                          @Nullable final String type,
+                                          @Nullable final Object object,
+                                          @Nullable final BSView.OnDialogCallback callback) {
+        final BSView view = getViewDetails(context, type, object);
         if (view != null) {
             view.showAsDialog(callback);
+            return true;
         }
+        return false;
     }
 
     /**
@@ -285,10 +295,11 @@ public final class KitWidgetManager extends BSBaseManager {
      * @return instance of the {@link BSView}
      */
     @Nullable
-    public static void showViewDetails(@Nullable final Class type,
-                                       @Nullable final Object object,
-                                       @Nullable final OnKitEventCallback callback) {
-        showViewDetails(KitNameHelper.getClassType(type), object, callback);
+    public static boolean showViewDetails(@Nullable final Context context,
+                                          @Nullable final Class type,
+                                          @Nullable final Object object,
+                                          @Nullable final BSView.OnDialogCallback callback) {
+        return showViewDetails(context, KitNameHelper.getClassType(type), object, callback);
     }
 
     /**
@@ -299,8 +310,10 @@ public final class KitWidgetManager extends BSBaseManager {
      * @return instance of the {@link BSView}
      */
     @Nullable
-    public static BSView getViewDetails(@Nullable final Class type, @Nullable final Object object) {
-        return getViewDetails(KitNameHelper.getClassType(type), object);
+    public static BSView getViewDetails(@Nullable final Context context,
+                                        @Nullable final Class type,
+                                        @Nullable final Object object) {
+        return getViewDetails(context, KitNameHelper.getClassType(type), object);
     }
 
     /**
@@ -311,12 +324,14 @@ public final class KitWidgetManager extends BSBaseManager {
      * @return instance of the {@link BSView}
      */
     @Nullable
-    public static BSView getViewDetails(@Nullable final String type, @Nullable final Object object) {
+    public static BSView getViewDetails(@Nullable final Context context,
+                                        @Nullable final String type,
+                                        @Nullable final Object object) {
         final OnKitCreatorCallback creator = getCreator(type);
-        if (BSValidationHelper.validateNull(creator)) {
+        if (BSValidationHelper.validateNull(creator, context)) {
             final KitWidgetModel widget = creator.create(object);
             if ((widget != null) && (widget.isNeedDetailsView())) {
-                return widget.getViewDetails();
+                return widget.getViewDetails(context);
             }
         }
         return null;

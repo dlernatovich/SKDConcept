@@ -11,7 +11,9 @@ import com.artlite.adapteredrecyclerview.callbacks.OnAdapteredBaseCallback;
 import com.artlite.adapteredrecyclerview.core.AdapteredView;
 import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
+import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.callbacks.OnKitActionCallback;
+import com.artlite.ckconcept.callbacks.OnKitEventCallback;
 
 import java.util.List;
 
@@ -117,11 +119,30 @@ public interface KitWidgetContract {
 
         /**
          * Method which provide the getting of the {@link Integer} value for dropdown {@link View}
+         *
          * @return
          */
         @Nullable
         Integer getViewDropdown();
 
+        /**
+         * Method which provide the action when {@link BSView.Event} received
+         *
+         * @param context instance of {@link Context}
+         * @param view    instance of the {@link BSView}
+         * @param event   instance of the {@link BSView.Event}
+         */
+        void onCreateEventReceived(@NonNull final Context context,
+                                   @NonNull final BSView view,
+                                   @NonNull final BSView.Event event);
+
+        /**
+         * Method which provide the getting of the instance of the {@link OnKitEventCallback}
+         *
+         * @return instance of the {@link OnKitEventCallback}
+         */
+        @Nullable
+        BSView.OnDialogCallback getEventCallback();
     }
 
     interface Presenter {

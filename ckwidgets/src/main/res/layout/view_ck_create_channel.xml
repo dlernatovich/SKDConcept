@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_round"
+    android:orientation="vertical">
+
+    <com.artlite.bslibrary.ui.fonted.BSEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Channel name"
+        android:textSize="@dimen/text_18" />
+
+    <com.artlite.bslibrary.ui.fonted.BSEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Channel description"
+        android:textSize="@dimen/text_18" />
+
+    <Button
+        android:id="@+id/button_create"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:text="Create"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="@dimen/text_16" />
+
+</LinearLayout>

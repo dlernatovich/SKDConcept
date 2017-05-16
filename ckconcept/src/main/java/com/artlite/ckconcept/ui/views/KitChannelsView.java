@@ -16,6 +16,8 @@ import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.bslibrary.helpers.log.BSLogHelper;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.R;
+import com.artlite.ckconcept.constants.KitWidgetType;
+import com.artlite.ckconcept.managers.KitWidgetManager;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
 import com.artlite.ckconcept.mvp.presenters.KitChannelPresenter;
@@ -26,6 +28,12 @@ import com.artlite.ckconcept.mvp.view.KitWidgetBaseView;
  */
 
 public class KitChannelsView extends KitWidgetBaseView {
+
+    /**
+     * Instance of the {@link BSView.Event}
+     */
+    public static final BSView.Event K_EVENT_CREATE_CHANNEL
+            = new BSView.Event("KitChannelsView:CREATE_CHANNEL");
 
     /**
      * Instance of the {@link KitChannelPresenter}
@@ -184,6 +192,23 @@ public class KitChannelsView extends KitWidgetBaseView {
     }
 
     /**
+     * Method which provide the action when {@link Event} received
+     *
+     * @param context instance of {@link Context}
+     * @param view    instance of the {@link BSView}
+     * @param event   instance of the {@link Event}
+     */
+    @Override
+    public void onCreateEventReceived(@NonNull Context context,
+                                      @NonNull BSView view,
+                                      @NonNull Event event) {
+        BSLogHelper.log(this, "void onCreateEventReceived(@NonNull Context context,\n" +
+                        "                                      @NonNull BSView view,\n" +
+                        "                                      @NonNull Event event)",
+                null, event);
+    }
+
+    /**
      * Method which provide the action when user press on the channel object
      *
      * @param index  current index
@@ -191,6 +216,8 @@ public class KitChannelsView extends KitWidgetBaseView {
      */
     @Override
     public void onItemClick(int index, @NonNull BaseObject object) {
+        KitWidgetManager.showViewDetails(getContext(), KitWidgetType.CHANNEL.getValue(),
+                object, null);
         BSLogHelper.log(this, "onItemClick(int index, @NonNull BaseObject object)",
                 null, object);
     }

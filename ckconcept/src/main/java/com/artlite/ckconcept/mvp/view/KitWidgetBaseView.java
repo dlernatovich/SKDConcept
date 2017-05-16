@@ -2,6 +2,7 @@ package com.artlite.ckconcept.mvp.view;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -13,6 +14,8 @@ import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
 import com.artlite.bslibrary.managers.BSThreadManager;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.callbacks.OnKitActionCallback;
+import com.artlite.ckconcept.callbacks.OnKitEventCallback;
+import com.artlite.ckconcept.constants.KitWidgetType;
 import com.artlite.ckconcept.managers.KitWidgetManager;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
@@ -142,6 +145,28 @@ public abstract class KitWidgetBaseView extends BSView implements KitWidgetContr
         }
     }
 
+    /**
+     * Method which provide the action when menu item was press
+     *
+     * @param object instance of the {@link KitMenuModel}
+     */
+    @Override
+    public boolean onShowCreateView(@NonNull KitMenuModel object) {
+        return KitWidgetManager.showViewCreate(getContext(),
+                object.getType(), null, getEventCallback());
+    }
+
+    /**
+     * Method which provide the getting of the instance of the {@link OnKitEventCallback}
+     *
+     * @return instance of the {@link OnKitEventCallback}
+     */
+    @Nullable
+    @Override
+    public BSView.OnDialogCallback getEventCallback() {
+        return eventCallback;
+    }
+
     //==============================================================================================
     //                                      ADAPTERED CALLBACK
     //==============================================================================================
@@ -205,6 +230,22 @@ public abstract class KitWidgetBaseView extends BSView implements KitWidgetContr
                 }
                 createWidgetView.showAsDialog();
             }
+        }
+    };
+
+    //==============================================================================================
+    //                                      CALLBACKS
+    //==============================================================================================
+
+    /**
+     * Instance of the {@link OnKitEventCallback}
+     */
+    private final OnKitEventCallback eventCallback = new OnKitEventCallback() {
+        @Override
+        public void onEventReceived(@NonNull Context context,
+                                    @NonNull BSView view,
+                                    @NonNull Event event) {
+            onCreateEventReceived(context, view, event);
         }
     };
 }
