@@ -1,15 +1,14 @@
 package com.artlite.ckconcept.models.widget;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.view.View;
 
-import com.artlite.adapteredrecyclerview.models.BaseObject;
-import com.artlite.adapteredrecyclerview.ui.views.AdapteredRecyclerView;
 import com.artlite.bslibrary.ui.view.BSView;
+import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
+import com.artlite.ckconcept.ui.abs.KitBaseCreateView;
+import com.artlite.ckconcept.ui.abs.KitBaseDetailsView;
 
 import java.util.List;
 
@@ -18,40 +17,6 @@ import java.util.List;
  */
 
 interface KitInterface<T> {
-
-    //==============================================================================================
-    //                                    LAYOUT XML
-    //==============================================================================================
-
-    /**
-     * Method which provide the getting of the layout for the {@link View} with create
-     * widget functional
-     *
-     * @return {@link Integer} value of the layout ID
-     */
-    @LayoutRes
-    @Nullable
-    Integer getLayoutCreate();
-
-    /**
-     * Method which provide the getting of the layout for the {@link View} with displaying of the
-     * widget
-     *
-     * @return {@link Integer} value of the layout ID
-     */
-    @LayoutRes
-    @Nullable
-    Integer getLayoutDisplay();
-
-    /**
-     * Method which provide the getting of the layout for the {@link View} with displaying of the
-     * widget in the {@link AdapteredRecyclerView}
-     *
-     * @return {@link Integer} value of the layout ID
-     */
-    @LayoutRes
-    @Nullable
-    Integer getLayoutList();
 
     //==============================================================================================
     //                                     VIEWS
@@ -64,7 +29,7 @@ interface KitInterface<T> {
      * @return instance of the {@link BSView}
      */
     @Nullable
-    BSView getViewCreate(@NonNull Context context);
+    KitBaseCreateView getViewCreate(@NonNull Context context);
 
     /**
      * Method which provide the checking if widget need to have of the create view
@@ -80,7 +45,7 @@ interface KitInterface<T> {
      * @return instance of the {@link BSView}
      */
     @Nullable
-    BSView getViewDetails(@NonNull Context context);
+    KitBaseDetailsView getViewDetails(@NonNull Context context, @Nullable final Object object);
 
     /**
      * Method which provide the checking if widget need to have of the details view
@@ -95,7 +60,7 @@ interface KitInterface<T> {
      * @return instance of the {@link BSView}
      */
     @Nullable
-    BaseObject getViewList();
+    KitBaseListObject getViewList();
 
     /**
      * Method which provide the checking if widget need to have of the create view

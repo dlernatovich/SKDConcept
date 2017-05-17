@@ -5,10 +5,10 @@ import android.support.annotation.Nullable;
 import com.artlite.ckconcept.models.widget.KitWidgetModel;
 
 /**
- * Interface which provide the creator callback for the {@link KitWidgetModel}
+ * Interface which provide the factory callback for the {@link KitWidgetModel}
  */
 
-public interface OnKitCreatorCallback<T> {
+public interface OnKitCreatorFactory<T> {
 
     /**
      * Method which provide the create {@link KitWidgetModel} from

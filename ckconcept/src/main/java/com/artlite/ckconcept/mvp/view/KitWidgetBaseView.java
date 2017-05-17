@@ -11,11 +11,9 @@ import com.artlite.adapteredrecyclerview.callbacks.OnAdapteredRefreshCallback;
 import com.artlite.adapteredrecyclerview.core.AdapteredView;
 import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
-import com.artlite.bslibrary.managers.BSThreadManager;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.callbacks.OnKitActionCallback;
 import com.artlite.ckconcept.callbacks.OnKitEventCallback;
-import com.artlite.ckconcept.constants.KitWidgetType;
 import com.artlite.ckconcept.managers.KitWidgetManager;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
@@ -66,18 +64,13 @@ public abstract class KitWidgetBaseView extends BSView implements KitWidgetContr
     @Override
     protected void onCreateView() {
         showProgress();
-        BSThreadManager.main(new BSThreadManager.OnThreadCallback() {
-            @Override
-            public void onExecute() {
-                getAdapteredView().init(getLayoutManager(getContext()),
-                        KitWidgetBaseView.this, refreshCallback, pagingCallback);
-                getAdapteredView().setIsNeedResfresh(isNeedSwipeRefresh());
-                getPresenter().getServerData(getContext(), 0, KitWidgetBaseView.this);
-                if (getCreateButtonId() != null) {
-                    findViewById(getCreateButtonId()).setOnClickListener(createWidgetCallback);
-                }
-            }
-        });
+        getAdapteredView().init(getLayoutManager(getContext()),
+                KitWidgetBaseView.this, refreshCallback, pagingCallback);
+        getAdapteredView().setIsNeedResfresh(isNeedSwipeRefresh());
+        getPresenter().getServerData(getContext(), 0, KitWidgetBaseView.this);
+        if (getCreateButtonId() != null) {
+            findViewById(getCreateButtonId()).setOnClickListener(createWidgetCallback);
+        }
     }
 
     /**

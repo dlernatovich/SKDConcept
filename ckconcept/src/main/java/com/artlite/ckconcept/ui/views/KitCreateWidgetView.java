@@ -11,7 +11,6 @@ import com.artlite.adapteredrecyclerview.callbacks.OnAdapteredBaseCallback;
 import com.artlite.adapteredrecyclerview.core.AdapteredView;
 import com.artlite.adapteredrecyclerview.events.RecycleEvent;
 import com.artlite.bslibrary.annotations.FindLibraryViewBy;
-import com.artlite.bslibrary.managers.BSThreadManager;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.R;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
@@ -77,12 +76,7 @@ public final class KitCreateWidgetView extends BSView {
     @Override
     protected void onCreateView() {
         setOnClickListeners(R.id.button_cancel);
-        BSThreadManager.main(new BSThreadManager.OnThreadCallback() {
-            @Override
-            public void onExecute() {
-                recycleView.init(new GridLayoutManager(getContext(), 1), listCallback);
-            }
-        });
+        recycleView.init(new GridLayoutManager(getContext(), 1), listCallback);
     }
 
     /**

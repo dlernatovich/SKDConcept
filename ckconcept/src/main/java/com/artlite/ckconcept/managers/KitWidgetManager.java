@@ -10,7 +10,7 @@ import com.artlite.bslibrary.helpers.validation.BSValidationHelper;
 import com.artlite.bslibrary.managers.BSBaseManager;
 import com.artlite.bslibrary.managers.BSEventManager;
 import com.artlite.bslibrary.ui.view.BSView;
-import com.artlite.ckconcept.callbacks.OnKitCreatorCallback;
+import com.artlite.ckconcept.callbacks.OnKitCreatorFactory;
 import com.artlite.ckconcept.helpers.KitNameHelper;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.models.widget.KitWidgetModel;
@@ -36,7 +36,7 @@ public final class KitWidgetManager extends BSBaseManager {
     /**
      * Instance of {@link Map}
      */
-    private Map<String, OnKitCreatorCallback> typedMap;
+    private Map<String, OnKitCreatorFactory> typedMap;
 
     /**
      * Instance of the {@link Map}
@@ -85,14 +85,14 @@ public final class KitWidgetManager extends BSBaseManager {
     //==============================================================================================
 
     /**
-     * Method which provide the register of the {@link OnKitCreatorCallback} by type
+     * Method which provide the register of the {@link OnKitCreatorFactory} by type
      *
      * @param type    {@link String} value of the type
-     * @param creator instance of the {@link OnKitCreatorCallback}
+     * @param creator instance of the {@link OnKitCreatorFactory}
      * @return registering result
      */
     public static boolean register(@Nullable final String type,
-                                   @Nullable final OnKitCreatorCallback creator) {
+                                   @Nullable final OnKitCreatorFactory creator) {
         if (BSValidationHelper.validateNull(type, creator, instance)) {
             boolean result = instance.getTypedMap().put(type, creator) != null;
             registerMenus(type, creator);
@@ -102,14 +102,14 @@ public final class KitWidgetManager extends BSBaseManager {
     }
 
     /**
-     * Method which provide the register of the {@link OnKitCreatorCallback} by type
+     * Method which provide the register of the {@link OnKitCreatorFactory} by type
      *
      * @param type    {@link String} value of the type
-     * @param creator instance of the {@link OnKitCreatorCallback}
+     * @param creator instance of the {@link OnKitCreatorFactory}
      * @return registering result
      */
     public static boolean register(@Nullable final Class type,
-                                   @Nullable final OnKitCreatorCallback creator) {
+                                   @Nullable final OnKitCreatorFactory creator) {
         return register(KitNameHelper.getClassType(type), creator);
     }
 
@@ -117,10 +117,10 @@ public final class KitWidgetManager extends BSBaseManager {
      * Method which provide the menus registering
      *
      * @param type    {@link String} value of the type
-     * @param creator instance of the {@link OnKitCreatorCallback}
+     * @param creator instance of the {@link OnKitCreatorFactory}
      */
     protected static void registerMenus(@Nullable final String type,
-                                        @Nullable final OnKitCreatorCallback creator) {
+                                        @Nullable final OnKitCreatorFactory creator) {
         if (BSValidationHelper.validateEmpty(type, creator)) {
             final KitWidgetModel widget = creator.create(type);
             if (widget != null) {
@@ -163,24 +163,24 @@ public final class KitWidgetManager extends BSBaseManager {
     //==============================================================================================
 
     /**
-     * Method which provide the getting of the registered {@link OnKitCreatorCallback}
+     * Method which provide the getting of the registered {@link OnKitCreatorFactory}
      *
      * @param type instance of {@link Class}
-     * @return instance of the {@link OnKitCreatorCallback}
+     * @return instance of the {@link OnKitCreatorFactory}
      */
     @Nullable
-    protected static OnKitCreatorCallback getCreator(@Nullable final Class type) {
+    protected static OnKitCreatorFactory getCreator(@Nullable final Class type) {
         return getCreator(KitNameHelper.getClassType(type));
     }
 
     /**
-     * Method which provide the getting of the registered {@link OnKitCreatorCallback}
+     * Method which provide the getting of the registered {@link OnKitCreatorFactory}
      *
      * @param type {@link String} value of type
-     * @return instance of the {@link OnKitCreatorCallback}
+     * @return instance of the {@link OnKitCreatorFactory}
      */
     @Nullable
-    protected static OnKitCreatorCallback getCreator(@Nullable final String type) {
+    protected static OnKitCreatorFactory getCreator(@Nullable final String type) {
         if (BSValidationHelper.validateNull(type, instance)) {
             if (instance.getTypedMap().containsKey(type)) {
                 return instance.getTypedMap().get(type);
@@ -253,7 +253,7 @@ public final class KitWidgetManager extends BSBaseManager {
     public static BSView getViewCreate(@Nullable final Context context,
                                        @Nullable final String type,
                                        @Nullable final Object object) {
-        final OnKitCreatorCallback creator = getCreator(type);
+        final OnKitCreatorFactory creator = getCreator(type);
         if (BSValidationHelper.validateNull(creator, context)) {
             final KitWidgetModel widget = creator.create(object);
             if ((widget != null) && (widget.isNeedCreateView())) {
@@ -327,11 +327,11 @@ public final class KitWidgetManager extends BSBaseManager {
     public static BSView getViewDetails(@Nullable final Context context,
                                         @Nullable final String type,
                                         @Nullable final Object object) {
-        final OnKitCreatorCallback creator = getCreator(type);
+        final OnKitCreatorFactory creator = getCreator(type);
         if (BSValidationHelper.validateNull(creator, context)) {
             final KitWidgetModel widget = creator.create(object);
             if ((widget != null) && (widget.isNeedDetailsView())) {
-                return widget.getViewDetails(context);
+                return widget.getViewDetails(context, object);
             }
         }
         return null;
@@ -364,7 +364,7 @@ public final class KitWidgetManager extends BSBaseManager {
     @Nullable
     public static BaseObject getViewList(@Nullable final String type,
                                          @Nullable final Object object) {
-        final OnKitCreatorCallback creator = getCreator(type);
+        final OnKitCreatorFactory creator = getCreator(type);
         if (BSValidationHelper.validateNull(creator)) {
             final KitWidgetModel widget = creator.create(object);
             if ((widget != null) && (widget.isNeedListView())) {
@@ -384,7 +384,7 @@ public final class KitWidgetManager extends BSBaseManager {
      * @return instance of the typed {@link Map}
      */
     @NonNull
-    protected Map<String, OnKitCreatorCallback> getTypedMap() {
+    protected Map<String, OnKitCreatorFactory> getTypedMap() {
         if (typedMap == null) {
             typedMap = new HashMap<>();
         }

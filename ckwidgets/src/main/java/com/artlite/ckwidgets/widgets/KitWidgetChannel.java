@@ -3,14 +3,14 @@ package com.artlite.ckwidgets.widgets;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.view.View;
 
-import com.artlite.adapteredrecyclerview.models.BaseObject;
-import com.artlite.adapteredrecyclerview.ui.views.AdapteredRecyclerView;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.constants.KitWidgetType;
+import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.models.widget.KitWidgetModel;
+import com.artlite.ckconcept.ui.abs.KitBaseCreateView;
+import com.artlite.ckconcept.ui.abs.KitBaseDetailsView;
 import com.artlite.ckconcept.ui.views.KitChannelsView;
 import com.artlite.ckwidgets.R;
 import com.artlite.ckwidgets.ui.create.KitCreateChannelView;
@@ -45,50 +45,14 @@ public final class KitWidgetChannel extends KitWidgetModel<MMXChannel> {
     }
 
     /**
-     * Method which provide the getting of the layout for the {@link View} with create
-     * widget functional
-     *
-     * @return {@link Integer} value of the layout ID
-     */
-    @Nullable
-    @Override
-    public Integer getLayoutCreate() {
-        return R.layout.view_ck_create_channel;
-    }
-
-    /**
-     * Method which provide the getting of the layout for the {@link View} with displaying of the
-     * widget
-     *
-     * @return {@link Integer} value of the layout ID
-     */
-    @Nullable
-    @Override
-    public Integer getLayoutDisplay() {
-        return R.layout.view_ck_channel_details;
-    }
-
-    /**
-     * Method which provide the getting of the layout for the {@link View} with displaying of the
-     * widget in the {@link AdapteredRecyclerView}
-     *
-     * @return {@link Integer} value of the layout ID
-     */
-    @Nullable
-    @Override
-    public Integer getLayoutList() {
-        return R.layout.recycle_kit_channel;
-    }
-
-    /**
      * Method which provide the getting view for create widget
      *
      * @return instance of the {@link BSView}
      */
     @Nullable
     @Override
-    public BSView getViewCreate(@NonNull Context context) {
-        return new KitCreateChannelView(context, getLayoutCreate());
+    public KitBaseCreateView getViewCreate(@NonNull Context context) {
+        return new KitCreateChannelView(context);
     }
 
     /**
@@ -108,8 +72,9 @@ public final class KitWidgetChannel extends KitWidgetModel<MMXChannel> {
      */
     @Nullable
     @Override
-    public BSView getViewDetails(@NonNull Context context) {
-        return new KitDetailsChannelView(context, getObject(), getLayoutDisplay());
+    public KitBaseDetailsView getViewDetails(@NonNull Context context,
+                                             @Nullable final Object object) {
+        return new KitDetailsChannelView(context, object);
     }
 
     /**
@@ -129,8 +94,8 @@ public final class KitWidgetChannel extends KitWidgetModel<MMXChannel> {
      */
     @Nullable
     @Override
-    public BaseObject getViewList() {
-        return new KitListChannelView(getLayoutList(), getObject());
+    public KitBaseListObject getViewList() {
+        return new KitListChannelView(getObject());
     }
 
     /**

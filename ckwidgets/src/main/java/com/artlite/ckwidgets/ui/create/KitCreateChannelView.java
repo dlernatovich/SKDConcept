@@ -1,10 +1,10 @@
 package com.artlite.ckwidgets.ui.create;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
 import android.view.View;
 
 import com.artlite.bslibrary.ui.view.BSView;
+import com.artlite.ckconcept.ui.abs.KitBaseCreateView;
 import com.artlite.ckconcept.ui.views.KitChannelsView;
 import com.artlite.ckwidgets.R;
 
@@ -12,19 +12,15 @@ import com.artlite.ckwidgets.R;
  * Created by dlernatovich on 5/16/2017.
  */
 
-public final class KitCreateChannelView extends BSView {
-
-    @LayoutRes
-    final int layoutId;
+public final class KitCreateChannelView extends KitBaseCreateView {
 
     /**
      * Constructor which provide the create {@link BSView} from
      *
      * @param context instance of {@link Context}
      */
-    public KitCreateChannelView(Context context, final int layoutId) {
+    public KitCreateChannelView(Context context) {
         super(context);
-        this.layoutId = layoutId;
     }
 
     /**
@@ -34,7 +30,7 @@ public final class KitCreateChannelView extends BSView {
      */
     @Override
     protected int getLayoutId() {
-        return this.layoutId;
+        return R.layout.view_ck_create_channel;
     }
 
     /**

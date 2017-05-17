@@ -3,7 +3,6 @@ package com.artlite.ckwidgets.ui.list;
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
@@ -11,6 +10,7 @@ import com.artlite.adapteredrecyclerview.anotations.FindViewBy;
 import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
 import com.artlite.bslibrary.ui.fonted.BSTextView;
+import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckwidgets.R;
 import com.magnet.mmx.client.api.MMXChannel;
 
@@ -18,18 +18,7 @@ import com.magnet.mmx.client.api.MMXChannel;
  * Created by dlernatovich on 5/16/2017.
  */
 
-public final class KitListChannelView extends BaseObject {
-
-    /**
-     * {@link Integer} value of layout ID
-     */
-    @LayoutRes
-    private final int layoutId;
-
-    /**
-     * Instance of {@link MMXChannel}
-     */
-    private final MMXChannel channel;
+public final class KitListChannelView extends KitBaseListObject<MMXChannel> {
 
     /**
      * {@link String} value of the channel name
@@ -44,9 +33,8 @@ public final class KitListChannelView extends BaseObject {
     /**
      * Default constructor for {@link BaseObject}
      */
-    public KitListChannelView(int layoutId, MMXChannel channel) {
-        this.layoutId = layoutId;
-        this.channel = channel;
+    public KitListChannelView(MMXChannel channel) {
+        super(channel);
         this.channelName = (channel == null) ? "Undefined" : channel.getName();
         this.channelDescription = (channel == null) ? "No description" : channel.getSummary();
     }
@@ -58,8 +46,6 @@ public final class KitListChannelView extends BaseObject {
      */
     public KitListChannelView(Parcel source) {
         super(source);
-        this.layoutId = source.readInt();
-        this.channel = source.readParcelable(MMXChannel.class.getClassLoader());
         this.channelName = source.readString();
         this.channelDescription = source.readString();
     }
@@ -73,10 +59,19 @@ public final class KitListChannelView extends BaseObject {
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
         super.writeToParcel(parcel, flags);
-        parcel.writeInt(layoutId);
-        parcel.writeParcelable(channel, flags);
         parcel.writeString(channelName);
         parcel.writeString(channelDescription);
+    }
+
+    /**
+     * Method which provide the getting of the instance of the {@link ClassLoader}
+     *
+     * @return instance of the {@link ClassLoader}
+     */
+    @NonNull
+    @Override
+    protected ClassLoader getClassLoader() {
+        return MMXChannel.class.getClassLoader();
     }
 
     /**
@@ -109,7 +104,7 @@ public final class KitListChannelView extends BaseObject {
     /**
      * Inner recycle view class
      */
-    private class RecycleView extends BaseRecyclerItem<KitListChannelView> {
+    private static class RecycleView extends BaseRecyclerItem<KitListChannelView> {
 
         /**
          * Instance of the {@link ImageView}
@@ -165,7 +160,7 @@ public final class KitListChannelView extends BaseObject {
          */
         @Override
         protected int getLayoutId() {
-            return layoutId;
+            return R.layout.recycle_kit_channel;
         }
 
         /**
@@ -175,7 +170,7 @@ public final class KitListChannelView extends BaseObject {
          */
         @Override
         protected int getClickedID() {
-            return com.artlite.ckconcept.R.id.content;
+            return R.id.content;
         }
 
         /**

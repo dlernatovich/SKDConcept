@@ -18,6 +18,7 @@ import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.R;
 import com.artlite.ckconcept.constants.KitWidgetType;
 import com.artlite.ckconcept.managers.KitWidgetManager;
+import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
 import com.artlite.ckconcept.mvp.presenters.KitChannelPresenter;
@@ -216,10 +217,12 @@ public class KitChannelsView extends KitWidgetBaseView {
      */
     @Override
     public void onItemClick(int index, @NonNull BaseObject object) {
-        KitWidgetManager.showViewDetails(getContext(), KitWidgetType.CHANNEL.getValue(),
-                object, null);
         BSLogHelper.log(this, "onItemClick(int index, @NonNull BaseObject object)",
                 null, object);
+        if ((object != null) && (object instanceof KitBaseListObject)) {
+            KitWidgetManager.showViewDetails(getContext(), KitWidgetType.CHANNEL.getValue(),
+                    ((KitBaseListObject) object).getObject(), null);
+        }
     }
 
     /**
