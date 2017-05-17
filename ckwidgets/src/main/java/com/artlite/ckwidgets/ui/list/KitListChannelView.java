@@ -10,15 +10,16 @@ import com.artlite.adapteredrecyclerview.anotations.FindViewBy;
 import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
 import com.artlite.bslibrary.ui.fonted.BSTextView;
+import com.artlite.ckconcept.helpers.KitChannelHelper;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckwidgets.R;
-import com.magnet.mmx.client.api.MMXChannel;
+import com.magnet.mmx.client.api.ChannelDetail;
 
 /**
  * Created by dlernatovich on 5/16/2017.
  */
 
-public final class KitListChannelView extends KitBaseListObject<MMXChannel> {
+public final class KitListChannelView extends KitBaseListObject<ChannelDetail> {
 
     /**
      * {@link String} value of the channel name
@@ -33,10 +34,11 @@ public final class KitListChannelView extends KitBaseListObject<MMXChannel> {
     /**
      * Default constructor for {@link BaseObject}
      */
-    public KitListChannelView(MMXChannel channel) {
+    public KitListChannelView(Parcelable channel) {
         super(channel);
-        this.channelName = (channel == null) ? "Undefined" : channel.getName();
-        this.channelDescription = (channel == null) ? "No description" : channel.getSummary();
+        final ChannelDetail channelObject = getObject();
+        this.channelName = KitChannelHelper.getChannelName(channelObject);
+        this.channelDescription = KitChannelHelper.getChannelLastMessage(channelObject);
     }
 
     /**
@@ -71,7 +73,7 @@ public final class KitListChannelView extends KitBaseListObject<MMXChannel> {
     @NonNull
     @Override
     protected ClassLoader getClassLoader() {
-        return MMXChannel.class.getClassLoader();
+        return ChannelDetail.class.getClassLoader();
     }
 
     /**

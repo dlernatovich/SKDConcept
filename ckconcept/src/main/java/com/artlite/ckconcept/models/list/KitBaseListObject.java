@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.artlite.adapteredrecyclerview.models.BaseObject;
+import com.artlite.bslibrary.helpers.log.BSLogHelper;
 
 /**
  * Created by dlernatovich on 5/17/2017.
@@ -16,7 +17,7 @@ public abstract class KitBaseListObject<T extends Parcelable> extends BaseObject
     /**
      * Instance of the {@link Object}
      */
-    private final T object;
+    private final Parcelable object;
 
     /**
      * Constructor which provide the create the {@link KitBaseListObject} from the instance of the
@@ -24,7 +25,7 @@ public abstract class KitBaseListObject<T extends Parcelable> extends BaseObject
      *
      * @param object instance of the {@link Object}
      */
-    public KitBaseListObject(T object) {
+    public KitBaseListObject(Parcelable object) {
         this.object = object;
     }
 
@@ -45,7 +46,21 @@ public abstract class KitBaseListObject<T extends Parcelable> extends BaseObject
      */
     @Nullable
     public T getObject() {
-        return object;
+        try {
+            return (T) object;
+        } catch (Exception ex) {
+            BSLogHelper.log(this, "getObject", ex, object);
+            return null;
+        }
+    }
+
+    /**
+     * Method which provide the checking if {@link KitBaseListObject} is have of the object
+     *
+     * @return checking result
+     */
+    protected boolean isHaveObject() {
+        return getObject() != null;
     }
 
     /**

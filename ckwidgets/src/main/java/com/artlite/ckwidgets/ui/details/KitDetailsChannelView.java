@@ -1,19 +1,20 @@
 package com.artlite.ckwidgets.ui.details;
 
 import android.content.Context;
+import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.artlite.bslibrary.helpers.log.BSLogHelper;
 import com.artlite.ckconcept.ui.abs.KitBaseDetailsView;
 import com.artlite.ckwidgets.R;
-import com.magnet.mmx.client.api.MMXChannel;
+import com.magnet.mmx.client.api.ChannelDetail;
 
 /**
  * Created by dlernatovich on 5/16/2017.
  */
 
-public class KitDetailsChannelView extends KitBaseDetailsView<MMXChannel> {
+public class KitDetailsChannelView extends KitBaseDetailsView<ChannelDetail> {
 
     /**
      * Constructor which provide the create of the {@link KitBaseDetailsView} from the
@@ -21,7 +22,7 @@ public class KitDetailsChannelView extends KitBaseDetailsView<MMXChannel> {
      * @param context instance of {@link Context}
      * @param object  instance of {@link Object}
      */
-    public KitDetailsChannelView(Context context, @Nullable Object object) {
+    public KitDetailsChannelView(Context context, @Nullable Parcelable object) {
         super(context, object);
     }
 

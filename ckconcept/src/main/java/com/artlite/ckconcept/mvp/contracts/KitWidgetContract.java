@@ -1,6 +1,7 @@
 package com.artlite.ckconcept.mvp.contracts;
 
 import android.content.Context;
+import android.os.Parcelable;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -194,7 +195,7 @@ public interface KitWidgetContract {
          * @return instance of the {@link BaseRecyclerItem}
          */
         @Nullable
-        BaseObject getObject(@Nullable final String type, @Nullable final Object object);
+        BaseObject getObject(@Nullable final String type, @Nullable final Parcelable object);
 
         /**
          * Method which provide the show of the progress

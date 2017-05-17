@@ -1,6 +1,8 @@
 package com.artlite.ckconcept.models.widget;
 
 import android.content.Context;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -45,7 +47,7 @@ interface KitInterface<T> {
      * @return instance of the {@link BSView}
      */
     @Nullable
-    KitBaseDetailsView getViewDetails(@NonNull Context context, @Nullable final Object object);
+    KitBaseDetailsView getViewDetails(@NonNull Context context, @Nullable final Parcelable object);
 
     /**
      * Method which provide the checking if widget need to have of the details view
@@ -60,7 +62,7 @@ interface KitInterface<T> {
      * @return instance of the {@link BSView}
      */
     @Nullable
-    KitBaseListObject getViewList();
+    KitBaseListObject getViewList(@Nullable final Parcelable object);
 
     /**
      * Method which provide the checking if widget need to have of the create view

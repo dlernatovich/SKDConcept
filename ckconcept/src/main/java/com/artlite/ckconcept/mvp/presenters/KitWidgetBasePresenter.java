@@ -1,5 +1,6 @@
 package com.artlite.ckconcept.mvp.presenters;
 
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -61,7 +62,7 @@ public abstract class KitWidgetBasePresenter implements KitWidgetContract.Presen
      * @return instance of the {@link BaseRecyclerItem}
      */
     @Nullable
-    public BaseObject getObject(@Nullable final String type, @Nullable final Object object) {
+    public BaseObject getObject(@Nullable final String type, @Nullable final Parcelable object) {
         return KitWidgetManager.getViewList(type, object);
     }
 

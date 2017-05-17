@@ -1,6 +1,7 @@
 package com.artlite.ckconcept.managers;
 
 import android.content.Context;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -277,7 +278,7 @@ public final class KitWidgetManager extends BSBaseManager {
     @Nullable
     public static boolean showViewDetails(@Nullable final Context context,
                                           @Nullable final String type,
-                                          @Nullable final Object object,
+                                          @Nullable final Parcelable object,
                                           @Nullable final BSView.OnDialogCallback callback) {
         final BSView view = getViewDetails(context, type, object);
         if (view != null) {
@@ -297,7 +298,7 @@ public final class KitWidgetManager extends BSBaseManager {
     @Nullable
     public static boolean showViewDetails(@Nullable final Context context,
                                           @Nullable final Class type,
-                                          @Nullable final Object object,
+                                          @Nullable final Parcelable object,
                                           @Nullable final BSView.OnDialogCallback callback) {
         return showViewDetails(context, KitNameHelper.getClassType(type), object, callback);
     }
@@ -312,7 +313,7 @@ public final class KitWidgetManager extends BSBaseManager {
     @Nullable
     public static BSView getViewDetails(@Nullable final Context context,
                                         @Nullable final Class type,
-                                        @Nullable final Object object) {
+                                        @Nullable final Parcelable object) {
         return getViewDetails(context, KitNameHelper.getClassType(type), object);
     }
 
@@ -326,7 +327,7 @@ public final class KitWidgetManager extends BSBaseManager {
     @Nullable
     public static BSView getViewDetails(@Nullable final Context context,
                                         @Nullable final String type,
-                                        @Nullable final Object object) {
+                                        @Nullable final Parcelable object) {
         final OnKitCreatorFactory creator = getCreator(type);
         if (BSValidationHelper.validateNull(creator, context)) {
             final KitWidgetModel widget = creator.create(object);
@@ -350,7 +351,7 @@ public final class KitWidgetManager extends BSBaseManager {
      */
     @Nullable
     public static BaseObject getViewList(@Nullable final Class type,
-                                         @Nullable final Object object) {
+                                         @Nullable final Parcelable object) {
         return getViewList(KitNameHelper.getClassType(type), object);
     }
 
@@ -363,12 +364,12 @@ public final class KitWidgetManager extends BSBaseManager {
      */
     @Nullable
     public static BaseObject getViewList(@Nullable final String type,
-                                         @Nullable final Object object) {
+                                         @Nullable final Parcelable object) {
         final OnKitCreatorFactory creator = getCreator(type);
         if (BSValidationHelper.validateNull(creator)) {
             final KitWidgetModel widget = creator.create(object);
             if ((widget != null) && (widget.isNeedListView())) {
-                return widget.getViewList();
+                return widget.getViewList(object);
             }
         }
         return null;

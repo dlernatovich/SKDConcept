@@ -260,4 +260,16 @@ public class KitChannelsView extends KitWidgetBaseView {
         BSLogHelper.log(this, "void onMenuItemClick(@NonNull KitMenuModel object)",
                 null, object);
     }
+
+    /**
+     * Method which provide the performing of the error when the data received
+     *
+     * @param context instance of {@link Context}
+     * @param offset  {@link Integer} value of the offset
+     * @param error   instance of {@link Throwable}
+     */
+    @Override
+    public void onServerError(@NonNull Context context, int offset, @NonNull Throwable error) {
+
+    }
 }

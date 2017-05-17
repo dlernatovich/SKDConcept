@@ -16,7 +16,7 @@ public abstract class KitBaseDetailsView<T extends Parcelable> extends BSView {
     /**
      * Instance of {@link Object}
      */
-    private final Object object;
+    private final Parcelable object;
 
     /**
      * Constructor which provide the create of the {@link KitBaseDetailsView} from the
@@ -24,7 +24,7 @@ public abstract class KitBaseDetailsView<T extends Parcelable> extends BSView {
      * @param context instance of {@link Context}
      * @param object  instance of {@link Object}
      */
-    public KitBaseDetailsView(Context context, @Nullable final Object object) {
+    public KitBaseDetailsView(Context context, @Nullable final Parcelable object) {
         super(context);
         this.object = object;
     }

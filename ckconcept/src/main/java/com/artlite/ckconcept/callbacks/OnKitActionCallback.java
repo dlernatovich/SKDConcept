@@ -22,4 +22,15 @@ public interface OnKitActionCallback {
     void onDataReceived(@NonNull final Context context,
                         int offset,
                         @NonNull final List<BaseObject> items);
+
+    /**
+     * Method which provide the performing of the error when the data received
+     *
+     * @param context instance of {@link Context}
+     * @param offset  {@link Integer} value of the offset
+     * @param error   instance of {@link Throwable}
+     */
+    void onServerError(@NonNull final Context context,
+                       int offset,
+                       @NonNull final Throwable error);
 }

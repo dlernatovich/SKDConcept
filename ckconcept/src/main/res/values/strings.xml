@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">CKConcept</string>
     <string name="text_cancel">Cancel</string>
+    <!--Messages type-->
+    <string name="text_ck_unknown">Unknown</string>
+    <string name="text_ck_text">Message</string>
+    <string name="text_ck_photo">Photo</string>
+    <string name="text_ck_location">Location</string>
+    <string name="text_ck_video">Video</string>
+    <string name="text_ck_pool">Pool</string>
+    <string name="text_ck_answer">Answer</string>
+    <string name="text_ck_code">Code</string>
 </resources>

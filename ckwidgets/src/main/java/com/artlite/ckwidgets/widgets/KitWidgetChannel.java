@@ -1,6 +1,7 @@
 package com.artlite.ckwidgets.widgets;
 
 import android.content.Context;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -16,7 +17,7 @@ import com.artlite.ckwidgets.R;
 import com.artlite.ckwidgets.ui.create.KitCreateChannelView;
 import com.artlite.ckwidgets.ui.details.KitDetailsChannelView;
 import com.artlite.ckwidgets.ui.list.KitListChannelView;
-import com.magnet.mmx.client.api.MMXChannel;
+import com.magnet.mmx.client.api.ChannelDetail;
 
 import java.util.Arrays;
 import java.util.List;
@@ -25,7 +26,7 @@ import java.util.List;
  * Created by dlernatovich on 5/15/2017.
  */
 
-public final class KitWidgetChannel extends KitWidgetModel<MMXChannel> {
+public final class KitWidgetChannel extends KitWidgetModel<ChannelDetail> {
 
     /**
      * Constructor which provide the create of the {@link KitWidgetModel}
@@ -40,7 +41,7 @@ public final class KitWidgetChannel extends KitWidgetModel<MMXChannel> {
      *
      * @param object instance of {@link Object}
      */
-    public KitWidgetChannel(@Nullable MMXChannel object) {
+    public KitWidgetChannel(@Nullable ChannelDetail object) {
         super(object);
     }
 
@@ -73,7 +74,7 @@ public final class KitWidgetChannel extends KitWidgetModel<MMXChannel> {
     @Nullable
     @Override
     public KitBaseDetailsView getViewDetails(@NonNull Context context,
-                                             @Nullable final Object object) {
+                                             @Nullable final Parcelable object) {
         return new KitDetailsChannelView(context, object);
     }
 
@@ -94,8 +95,8 @@ public final class KitWidgetChannel extends KitWidgetModel<MMXChannel> {
      */
     @Nullable
     @Override
-    public KitBaseListObject getViewList() {
-        return new KitListChannelView(getObject());
+    public KitBaseListObject getViewList(@Nullable final Parcelable object) {
+        return new KitListChannelView(object);
     }
 
     /**
@@ -122,7 +123,7 @@ public final class KitWidgetChannel extends KitWidgetModel<MMXChannel> {
      * @param object instance of {@link Object}
      */
     @Override
-    public void apply(@Nullable MMXChannel object) {
+    public void apply(@Nullable ChannelDetail object) {
 
     }
 
@@ -136,7 +137,7 @@ public final class KitWidgetChannel extends KitWidgetModel<MMXChannel> {
     public List<KitMenuModel> getMenuHeaders() {
         return Arrays.asList(
                 new KitMenuModel("Create channel",
-                        R.mipmap.ic_no_menu,
+                        R.mipmap.ic_wgt_create_channel,
                         KitWidgetChannel.class,
                         KitChannelsView.class,
                         KitWidgetType.CHANNEL.getValue())

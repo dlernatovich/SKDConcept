@@ -8,7 +8,8 @@ import com.artlite.bslibrary.helpers.validation.BSValidationHelper;
  * Helper which provide the functional for name forming
  */
 
-public class KitNameHelper {
+public final class KitNameHelper {
+
     /**
      * {@link String} value for the formatting of the type for class
      */
