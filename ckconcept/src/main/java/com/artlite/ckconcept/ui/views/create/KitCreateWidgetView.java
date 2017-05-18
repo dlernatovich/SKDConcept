@@ -1,4 +1,4 @@
-package com.artlite.ckconcept.ui.views;
+package com.artlite.ckconcept.ui.views.create;
 
 import android.content.Context;
 import android.support.annotation.LayoutRes;

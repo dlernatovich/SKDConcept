@@ -1,4 +1,4 @@
-package com.artlite.ckconcept.ui.views;
+package com.artlite.ckconcept.ui.views.channels;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -166,7 +166,7 @@ public class KitChannelsView extends KitWidgetBaseView {
     @Nullable
     @Override
     public Integer getCreateButtonId() {
-        return R.id.button_create;
+        return null;
     }
 
     /**
@@ -189,7 +189,7 @@ public class KitChannelsView extends KitWidgetBaseView {
     @Nullable
     @Override
     public Integer getViewDropdown() {
-        return R.id.button_create;
+        return R.id.view_anchor;
     }
 
     /**

@@ -2,8 +2,25 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/dimen_5"
     android:background="@drawable/background_round"
     android:orientation="vertical">
+
+    <com.artlite.bslibrary.ui.fonted.BSTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Channel details"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="@dimen/text_20"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginBottom="@dimen/dimen_5"
+        android:layout_marginTop="@dimen/dimen_5"
+        android:background="@android:color/holo_blue_dark" />
 
     <com.artlite.bslibrary.ui.fonted.BSTextView
         android:layout_width="match_parent"
@@ -17,7 +34,7 @@
         android:id="@+id/label_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text=""
+        android:text="Name"
         android:textColor="@android:color/darker_gray"
         android:textSize="@dimen/text_18"
         android:textStyle="bold" />
@@ -30,11 +47,41 @@
         android:textSize="@dimen/text_18"
         android:textStyle="bold" />
 
-    <com.artlite.bslibrary.ui.fonted.BSTextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Name"
-        android:textColor="@android:color/darker_gray"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/image_type"
+            style="@style/styleFillImageCenter"
+            android:layout_width="@dimen/dimen_30"
+            android:layout_height="@dimen/dimen_30"
+            android:src="@mipmap/ic_ck_unknown"
+            android:tint="@android:color/darker_gray" />
+
+        <com.artlite.bslibrary.ui.fonted.BSTextView
+            android:id="@+id/label_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dimen_5"
+            android:text="Name"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="@dimen/text_18"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <com.artlite.bslibrary.ui.fonted.BSButton
+        android:id="@+id/button_close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_5"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:text="Close"
+        android:textAllCaps="true"
+        android:textColor="@android:color/holo_blue_dark"
         android:textSize="@dimen/text_18"
         android:textStyle="bold" />
 

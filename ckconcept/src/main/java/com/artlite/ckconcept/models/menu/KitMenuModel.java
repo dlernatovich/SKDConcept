@@ -7,6 +7,7 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -25,7 +26,8 @@ public final class KitMenuModel extends BaseObject {
     /**
      * {@link String} value of the text
      */
-    private final String text;
+    @StringRes
+    private final Integer text;
 
     /**
      * Instance of {@link Class}
@@ -67,7 +69,7 @@ public final class KitMenuModel extends BaseObject {
      * @param owner  instance of {@link Class}
      * @param caller instance of {@link Class}
      */
-    public KitMenuModel(@Nullable final String text,
+    public KitMenuModel(@Nullable @StringRes final Integer text,
                         @DrawableRes final int icon,
                         @NonNull final Class owner,
                         @NonNull final Class caller,
@@ -83,7 +85,7 @@ public final class KitMenuModel extends BaseObject {
      * @param owner  instance of {@link Class}
      * @param caller instance of {@link Class}
      */
-    public KitMenuModel(@Nullable final String text,
+    public KitMenuModel(@Nullable @StringRes final Integer text,
                         @DrawableRes final int icon,
                         @NonNull final Class owner,
                         @NonNull final Class caller,
@@ -99,7 +101,7 @@ public final class KitMenuModel extends BaseObject {
      * @param owner  {@link String} value of the class simple name
      * @param caller {@link String} value of caller name
      */
-    public KitMenuModel(@Nullable final String text,
+    public KitMenuModel(@Nullable @StringRes final Integer text,
                         @DrawableRes final int icon,
                         @NonNull final String owner,
                         @NonNull final String caller,
@@ -120,7 +122,8 @@ public final class KitMenuModel extends BaseObject {
      */
     public KitMenuModel(Parcel source) {
         super(source);
-        this.text = source.readString();
+        final Integer textValue = source.readInt();
+        this.text = (textValue == -1) ? null : textValue;
         this.ownerClass = source.readString();
         this.callerClassName = source.readString();
         this.isNeedShow = (source.readInt() == 1);
@@ -134,7 +137,8 @@ public final class KitMenuModel extends BaseObject {
      * @return {@link String} value of the text
      */
     @Nullable
-    public String getText() {
+    @StringRes
+    public Integer getText() {
         return text;
     }
 
@@ -224,7 +228,7 @@ public final class KitMenuModel extends BaseObject {
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
         super.writeToParcel(parcel, flags);
-        parcel.writeString(text);
+        parcel.writeInt((text == null) ? -1 : text);
         parcel.writeString(ownerClass);
         parcel.writeString(callerClassName);
         parcel.writeInt((isNeedShow == true) ? 1 : 0);

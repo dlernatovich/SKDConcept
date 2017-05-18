@@ -3,12 +3,14 @@ package com.artlite.ckwidgets.ui.list;
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.widget.ImageView;
 
 import com.artlite.adapteredrecyclerview.anotations.FindViewBy;
 import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
+import com.artlite.bslibrary.managers.BSContextManager;
 import com.artlite.bslibrary.ui.fonted.BSTextView;
 import com.artlite.ckconcept.helpers.KitChannelHelper;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
@@ -32,13 +34,27 @@ public final class KitListChannelView extends KitBaseListObject<ChannelDetail> {
     private final String channelDescription;
 
     /**
+     * {@link String} value of channel short name
+     */
+    private final String channelShortName;
+
+    /**
+     * {@link Integer} value of the channel icon
+     */
+    @DrawableRes
+    private final int iconType;
+
+    /**
      * Default constructor for {@link BaseObject}
      */
     public KitListChannelView(Parcelable channel) {
         super(channel);
         final ChannelDetail channelObject = getObject();
         this.channelName = KitChannelHelper.getChannelName(channelObject);
-        this.channelDescription = KitChannelHelper.getChannelLastMessage(channelObject);
+        this.channelDescription = KitChannelHelper
+                .getChannelDescription(BSContextManager.getRegisteredContext(), channelObject);
+        this.iconType = KitChannelHelper.getChannelIcon(channelObject);
+        this.channelShortName = KitChannelHelper.getChannelShortName(channelObject);
     }
 
     /**
@@ -50,6 +66,8 @@ public final class KitListChannelView extends KitBaseListObject<ChannelDetail> {
         super(source);
         this.channelName = source.readString();
         this.channelDescription = source.readString();
+        this.channelShortName = source.readString();
+        this.iconType = source.readInt();
     }
 
     /**
@@ -63,6 +81,8 @@ public final class KitListChannelView extends KitBaseListObject<ChannelDetail> {
         super.writeToParcel(parcel, flags);
         parcel.writeString(channelName);
         parcel.writeString(channelDescription);
+        parcel.writeString(channelShortName);
+        parcel.writeInt(iconType);
     }
 
     /**
@@ -123,6 +143,16 @@ public final class KitListChannelView extends KitBaseListObject<ChannelDetail> {
         private BSTextView labelDescription;
 
         /**
+         * Instance of the {@link BSTextView}
+         */
+        private BSTextView labelShortName;
+
+        /**
+         * Instance of the {@link ImageView}
+         */
+        private ImageView imageType;
+
+        /**
          * Default constructor
          *
          * @param context context to set
@@ -140,6 +170,8 @@ public final class KitListChannelView extends KitBaseListObject<ChannelDetail> {
         public void setUp(@NonNull KitListChannelView baseObject) {
             labelHeader.setText(baseObject.channelName);
             labelDescription.setText(baseObject.channelDescription);
+            labelShortName.setText(baseObject.channelShortName);
+            imageType.setImageResource(baseObject.iconType);
         }
 
         /**
@@ -153,6 +185,8 @@ public final class KitListChannelView extends KitBaseListObject<ChannelDetail> {
         protected void onLinkInterface() {
             labelHeader = (BSTextView) findViewById(R.id.label_header);
             labelDescription = (BSTextView) findViewById(R.id.label_description);
+            labelShortName = (BSTextView) findViewById(R.id.label_short_name);
+            imageType = (ImageView) findViewById(R.id.image_message_type);
         }
 
         /**

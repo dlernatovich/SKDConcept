@@ -1,5 +1,6 @@
-package com.artlite.ckconcept.callbacks;
+package com.artlite.ckconcept.factories;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.artlite.ckconcept.models.widget.KitWidgetModel;
@@ -18,4 +19,12 @@ public interface OnKitCreatorFactory<T> {
      */
     @Nullable
     KitWidgetModel create(@Nullable final T object);
+
+    /**
+     * Method which provide the create of the {@link KitWidgetModel} for first initialization
+     *
+     * @return instance of the {@link KitWidgetModel}
+     */
+    @NonNull
+    KitWidgetModel createForRegistration();
 }

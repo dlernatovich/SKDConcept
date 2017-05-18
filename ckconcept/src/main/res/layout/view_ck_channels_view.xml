@@ -4,15 +4,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.artlite.bslibrary.ui.fonted.BSButton
-        android:id="@+id/button_create"
-        android:layout_width="@dimen/dimen_150"
-        android:layout_height="wrap_content"
+    <View
+        android:id="@+id/view_anchor"
+        android:layout_width="@dimen/dimen_10"
+        android:layout_height="1px"
         android:layout_gravity="right"
-        android:gravity="center"
-        android:text="Create channel"
-        android:textColor="@android:color/black"
-        android:textSize="@dimen/text_18" />
+        android:background="@android:color/transparent" />
 
 
     <com.artlite.adapteredrecyclerview.core.AdapteredView

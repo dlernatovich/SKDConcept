@@ -11,8 +11,9 @@ import com.artlite.bslibrary.helpers.validation.BSValidationHelper;
 import com.artlite.bslibrary.managers.BSBaseManager;
 import com.artlite.bslibrary.managers.BSEventManager;
 import com.artlite.bslibrary.ui.view.BSView;
-import com.artlite.ckconcept.callbacks.OnKitCreatorFactory;
+import com.artlite.ckconcept.factories.OnKitCreatorFactory;
 import com.artlite.ckconcept.helpers.KitNameHelper;
+import com.artlite.ckconcept.models.define.KitBaseDefiner;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.models.widget.KitWidgetModel;
 
@@ -43,6 +44,11 @@ public final class KitWidgetManager extends BSBaseManager {
      * Instance of the {@link Map}
      */
     private Map<String, Set<KitMenuModel>> menuHeaders;
+
+    /**
+     * Instance of the {@link Map}
+     */
+    private Map<Class, List<KitBaseDefiner>> definers;
 
     /**
      * Method which provide the initialization of {@link KitWidgetManager}
@@ -97,6 +103,7 @@ public final class KitWidgetManager extends BSBaseManager {
         if (BSValidationHelper.validateNull(type, creator, instance)) {
             boolean result = instance.getTypedMap().put(type, creator) != null;
             registerMenus(type, creator);
+            registerDefiners(type, creator);
             return result;
         }
         return false;
@@ -123,7 +130,7 @@ public final class KitWidgetManager extends BSBaseManager {
     protected static void registerMenus(@Nullable final String type,
                                         @Nullable final OnKitCreatorFactory creator) {
         if (BSValidationHelper.validateEmpty(type, creator)) {
-            final KitWidgetModel widget = creator.create(type);
+            final KitWidgetModel widget = creator.createForRegistration();
             if (widget != null) {
                 final List<KitMenuModel> items = widget.getMenuHeaders();
                 if (items != null) {
@@ -155,6 +162,51 @@ public final class KitWidgetManager extends BSBaseManager {
                 Set<KitMenuModel> items = new HashSet<>();
                 items.add(menuItem);
                 menus.put(callerClass, items);
+            }
+        }
+    }
+
+    /**
+     * Method which provide the menus registering
+     *
+     * @param type    {@link String} value of the type
+     * @param creator instance of the {@link OnKitCreatorFactory}
+     */
+    protected static void registerDefiners(@Nullable final String type,
+                                           @Nullable final OnKitCreatorFactory creator) {
+        if (BSValidationHelper.validateEmpty(type, creator)) {
+            final KitWidgetModel widget = creator.createForRegistration();
+            if (widget != null) {
+                final List<KitBaseDefiner> items = widget.getDefiners();
+                if (items != null) {
+                    for (KitBaseDefiner item : items) {
+                        addDefiner(item);
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Method which provide the add of the {@link KitMenuModel}
+     *
+     * @param definer instance of the {@link KitMenuModel}
+     */
+    protected synchronized static void addDefiner(KitBaseDefiner definer) {
+        if (BSValidationHelper.validateNull(instance, definer)) {
+            final Class callerClass = definer.getCallerClass();
+            final Map<Class, List<KitBaseDefiner>> definers = instance.getDefiners();
+            if (definers.containsKey(callerClass)) {
+                List<KitBaseDefiner> items = definers.get(definer.getCallerClass());
+                if (items == null) {
+                    items = new ArrayList<>();
+                }
+                items.add(definer);
+                definers.put(callerClass, items);
+            } else {
+                List<KitBaseDefiner> items = new ArrayList<>();
+                items.add(definer);
+                definers.put(callerClass, items);
             }
         }
     }
@@ -435,4 +487,34 @@ public final class KitWidgetManager extends BSBaseManager {
         return new ArrayList<>();
     }
 
+    /**
+     * Method which provide the getting of the definers {@link Map}
+     *
+     * @return instance of the definers {@link Map}
+     */
+    protected Map<Class, List<KitBaseDefiner>> getDefiners() {
+        if (definers == null) {
+            definers = new HashMap<>();
+        }
+        return definers;
+    }
+
+    /**
+     * Method which provide the getting of the definers {@link Map}
+     *
+     * @param aClass instance of {@link Class}
+     * @return instance of the definers {@link Map}
+     */
+    @NonNull
+    public static List<KitBaseDefiner> getDefiners(@Nullable Class aClass) {
+        if (instance != null) {
+            if (instance.getDefiners().containsKey(aClass)) {
+                final List<KitBaseDefiner> definers = instance.getDefiners().get(aClass);
+                if (definers != null) {
+                    return definers;
+                }
+            }
+        }
+        return new ArrayList<>();
+    }
 }

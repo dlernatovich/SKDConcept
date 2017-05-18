@@ -144,6 +144,11 @@ public interface KitWidgetContract {
          */
         @Nullable
         BSView.OnDialogCallback getEventCallback();
+
+        /**
+         * Method which provide the show of the creation list
+         */
+        void showCreateList();
     }
 
     interface Presenter {
@@ -206,5 +211,13 @@ public interface KitWidgetContract {
          * Method which provide the progress hiding
          */
         void hideProgress();
+
+        /**
+         * Methd which provide the getting of the {@link android.view.View} class
+         *
+         * @return instance of the {@link android.view.View} class
+         */
+        @NonNull
+        Class getViewClass();
     }
 }

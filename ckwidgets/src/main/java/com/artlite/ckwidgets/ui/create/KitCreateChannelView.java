@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.ui.abs.KitBaseCreateView;
-import com.artlite.ckconcept.ui.views.KitChannelsView;
+import com.artlite.ckconcept.ui.views.channels.KitChannelsView;
 import com.artlite.ckwidgets.R;
 
 /**

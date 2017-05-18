@@ -7,13 +7,15 @@ import android.support.annotation.Nullable;
 
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.constants.KitWidgetType;
+import com.artlite.ckconcept.models.define.KitBaseDefiner;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.models.widget.KitWidgetModel;
 import com.artlite.ckconcept.ui.abs.KitBaseCreateView;
 import com.artlite.ckconcept.ui.abs.KitBaseDetailsView;
-import com.artlite.ckconcept.ui.views.KitChannelsView;
+import com.artlite.ckconcept.ui.views.channels.KitChannelsView;
 import com.artlite.ckwidgets.R;
+import com.artlite.ckwidgets.definers.KitChannelDefiner;
 import com.artlite.ckwidgets.ui.create.KitCreateChannelView;
 import com.artlite.ckwidgets.ui.details.KitDetailsChannelView;
 import com.artlite.ckwidgets.ui.list.KitListChannelView;
@@ -136,12 +138,27 @@ public final class KitWidgetChannel extends KitWidgetModel<ChannelDetail> {
     @Override
     public List<KitMenuModel> getMenuHeaders() {
         return Arrays.asList(
-                new KitMenuModel("Create channel",
+                new KitMenuModel(R.string.text_wgt_menu_item_create_channel,
                         R.mipmap.ic_wgt_create_channel,
                         KitWidgetChannel.class,
                         KitChannelsView.class,
                         KitWidgetType.CHANNEL.getValue())
 
+        );
+    }
+
+    /**
+     * Method which provide the getting of the {@link List} of the {@link KitBaseDefiner}
+     *
+     * @return {@link List} of the {@link KitBaseDefiner}
+     */
+    @Nullable
+    @Override
+    public List<KitBaseDefiner> getDefiners() {
+        return Arrays.asList(
+                new KitBaseDefiner[]{
+                        new KitChannelDefiner(KitChannelsView.class)
+                }
         );
     }
 

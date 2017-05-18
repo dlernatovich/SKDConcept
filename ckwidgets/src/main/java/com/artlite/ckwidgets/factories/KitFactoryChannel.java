@@ -1,8 +1,9 @@
 package com.artlite.ckwidgets.factories;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.artlite.ckconcept.callbacks.OnKitCreatorFactory;
+import com.artlite.ckconcept.factories.OnKitCreatorFactory;
 import com.artlite.ckconcept.models.widget.KitWidgetModel;
 import com.artlite.ckwidgets.widgets.KitWidgetChannel;
 import com.magnet.mmx.client.api.ChannelDetail;
@@ -24,6 +25,17 @@ public final class KitFactoryChannel implements OnKitCreatorFactory {
         if (object instanceof ChannelDetail) {
             return new KitWidgetChannel((ChannelDetail) object);
         }
+        return new KitWidgetChannel();
+    }
+
+    /**
+     * Method which provide the create of the {@link KitWidgetModel} for first initialization
+     *
+     * @return instance of the {@link KitWidgetModel}
+     */
+    @NonNull
+    @Override
+    public KitWidgetModel createForRegistration() {
         return new KitWidgetChannel();
     }
 }

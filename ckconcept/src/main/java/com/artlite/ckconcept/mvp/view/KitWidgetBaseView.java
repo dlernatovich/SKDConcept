@@ -17,7 +17,7 @@ import com.artlite.ckconcept.callbacks.OnKitEventCallback;
 import com.artlite.ckconcept.managers.KitWidgetManager;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
-import com.artlite.ckconcept.ui.views.KitCreateWidgetView;
+import com.artlite.ckconcept.ui.views.create.KitCreateWidgetView;
 
 import java.util.List;
 
@@ -160,6 +160,28 @@ public abstract class KitWidgetBaseView extends BSView implements KitWidgetContr
         return eventCallback;
     }
 
+    /**
+     * Method which provide the show of the creation list
+     */
+    @Override
+    public void showCreateList() {
+        final KitCreateWidgetView createWidgetView = new KitCreateWidgetView(getContext(),
+                KitWidgetBaseView.this);
+        final List<KitMenuModel> objects = KitWidgetManager.getCreateMenus(getCurrentClass());
+        final Integer dropdownId = getViewDropdown();
+        createWidgetView.setObjects(objects);
+        if (!objects.isEmpty()) {
+            if (dropdownId != null) {
+                final View dropdown = findViewById(dropdownId);
+                if (dropdown != null) {
+                    createWidgetView.showAsDropdown(dropdown);
+                    return;
+                }
+            }
+            createWidgetView.showAsDialog();
+        }
+    }
+
     //==============================================================================================
     //                                      ADAPTERED CALLBACK
     //==============================================================================================
@@ -208,21 +230,7 @@ public abstract class KitWidgetBaseView extends BSView implements KitWidgetContr
     private final OnClickListener createWidgetCallback = new OnClickListener() {
         @Override
         public void onClick(View view) {
-            final KitCreateWidgetView createWidgetView = new KitCreateWidgetView(getContext(),
-                    KitWidgetBaseView.this);
-            final List<KitMenuModel> objects = KitWidgetManager.getCreateMenus(getCurrentClass());
-            final Integer dropdownId = getViewDropdown();
-            createWidgetView.setObjects(objects);
-            if (!objects.isEmpty()) {
-                if (dropdownId != null) {
-                    final View dropdown = findViewById(dropdownId);
-                    if (dropdown != null) {
-                        createWidgetView.showAsDropdown(dropdown);
-                        return;
-                    }
-                }
-                createWidgetView.showAsDialog();
-            }
+            showCreateList();
         }
     };
 

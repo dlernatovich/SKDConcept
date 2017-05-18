@@ -109,7 +109,7 @@ public enum KitMessageType {
      * @return {@link KitMessageType} from the {@link String} value of the {@link MMXMessage} type
      */
     public static KitMessageType getType(@Nullable String type) {
-        if (type != null) {
+        if (type == null) {
             return UNKNOWN;
         }
         if (type.equalsIgnoreCase(TEXT.getValue())) {
@@ -175,7 +175,7 @@ public enum KitMessageType {
                                         @Nullable MMXMessage message) {
         final KitMessageType type = getType(message);
         if (type == TEXT) {
-            return message.getContent().get(KitMessageTags.TEXT);
+            return message.getContent().get(KitMessageTags.TEXT.getValue());
         } else {
             return context.getResources().getString(type.getText());
         }

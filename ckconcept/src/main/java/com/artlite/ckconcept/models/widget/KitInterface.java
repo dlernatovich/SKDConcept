@@ -1,12 +1,12 @@
 package com.artlite.ckconcept.models.widget;
 
 import android.content.Context;
-import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.artlite.bslibrary.ui.view.BSView;
+import com.artlite.ckconcept.models.define.KitBaseDefiner;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.ui.abs.KitBaseCreateView;
@@ -98,6 +98,13 @@ interface KitInterface<T> {
      */
     @Nullable
     List<KitMenuModel> getMenuHeaders();
+
+    /**
+     * Method which provide the getting of the {@link List} of the {@link KitBaseDefiner}
+     * @return {@link List} of the {@link KitBaseDefiner}
+     */
+    @Nullable
+    List<KitBaseDefiner> getDefiners();
 
     /**
      * Method which provide the getting of the menu header

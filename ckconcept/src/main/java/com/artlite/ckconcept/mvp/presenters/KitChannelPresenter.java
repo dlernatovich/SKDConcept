@@ -3,13 +3,16 @@ package com.artlite.ckconcept.mvp.presenters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.view.View;
 
 import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.bslibrary.managers.BSThreadManager;
 import com.artlite.ckconcept.callbacks.OnKitActionCallback;
-import com.artlite.ckconcept.constants.KitWidgetType;
 import com.artlite.ckconcept.helpers.KitCallbackHelper;
+import com.artlite.ckconcept.managers.KitWidgetManager;
+import com.artlite.ckconcept.models.define.KitBaseDefiner;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
+import com.artlite.ckconcept.ui.views.channels.KitChannelsView;
 import com.magnet.max.android.callbacks.MaxCoreActionCallback;
 import com.magnet.mmx.client.api.ChannelDetail;
 import com.magnet.mmx.client.api.ChannelDetailOptions;
@@ -50,18 +53,14 @@ public final class KitChannelPresenter extends KitWidgetBasePresenter {
     }
 
     /**
-     * Method which provide the getting of the class type from the {@link Object}
+     * Methd which provide the getting of the {@link View} class
      *
-     * @param object instance of {@link Object}
-     * @return {@link String} value of the type
+     * @return instance of the {@link View} class
      */
-    @Nullable
+    @NonNull
     @Override
-    public String getType(@NonNull Object object) {
-        if (object instanceof ChannelDetail) {
-            return KitWidgetType.CHANNEL.getValue();
-        }
-        return null;
+    public Class getViewClass() {
+        return KitChannelsView.class;
     }
 
     /**

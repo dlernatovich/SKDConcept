@@ -9,7 +9,10 @@ import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
 import com.artlite.ckconcept.helpers.KitNameHelper;
 import com.artlite.ckconcept.managers.KitWidgetManager;
+import com.artlite.ckconcept.models.define.KitBaseDefiner;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
+
+import java.util.List;
 
 /**
  * Class which provide the default functional for the {@link KitWidgetContract.Presenter}
@@ -92,5 +95,24 @@ public abstract class KitWidgetBasePresenter implements KitWidgetContract.Presen
                 adapteredView.hideRefresh();
             }
         }
+    }
+
+    /**
+     * Method which provide the getting of the class type from the {@link Object}
+     *
+     * @param object instance of {@link Object}
+     * @return {@link String} value of the type
+     */
+    @Nullable
+    @Override
+    public String getType(@NonNull Object object) {
+        final List<KitBaseDefiner> definers = KitWidgetManager.getDefiners(getViewClass());
+        for (KitBaseDefiner definer : definers) {
+            final String type = definer.define(object);
+            if ((type != null) && (!type.isEmpty())) {
+                return type;
+            }
+        }
+        return null;
     }
 }

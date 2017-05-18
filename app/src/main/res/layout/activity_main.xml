@@ -6,7 +6,8 @@
     android:orientation="vertical"
     tools:context="com.artlite.skdconcept.MainActivity">
 
-    <com.artlite.ckconcept.ui.views.KitChannelsView
+    <com.artlite.ckconcept.ui.views.channels.KitChannelsView
+        android:id="@+id/view_channels"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
