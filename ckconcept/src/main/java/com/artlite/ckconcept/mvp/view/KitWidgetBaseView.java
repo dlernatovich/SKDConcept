@@ -9,11 +9,13 @@ import android.view.View;
 import com.artlite.adapteredrecyclerview.callbacks.OnAdapteredPagingCallback;
 import com.artlite.adapteredrecyclerview.callbacks.OnAdapteredRefreshCallback;
 import com.artlite.adapteredrecyclerview.core.AdapteredView;
+import com.artlite.adapteredrecyclerview.events.RecycleEvent;
 import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.callbacks.OnKitActionCallback;
 import com.artlite.ckconcept.callbacks.OnKitEventCallback;
+import com.artlite.ckconcept.callbacks.OnKitViewCallback;
 import com.artlite.ckconcept.managers.KitWidgetManager;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
@@ -27,6 +29,11 @@ import java.util.List;
 
 public abstract class KitWidgetBaseView extends BSView implements KitWidgetContract.View,
         OnKitActionCallback, KitCreateWidgetView.OnMenuClickListener {
+
+    /**
+     * Instance of the {@link OnKitViewCallback}
+     */
+    private OnKitViewCallback viewCallback;
 
     /**
      * Constructor which provide the create {@link BSView} from
@@ -182,6 +189,15 @@ public abstract class KitWidgetBaseView extends BSView implements KitWidgetContr
         }
     }
 
+    /**
+     * Method which provide the setting of the {@link OnKitViewCallback}
+     *
+     * @param callback instance of the {@link OnKitViewCallback}
+     */
+    public void setOnViewCallback(@Nullable final OnKitViewCallback callback) {
+        this.viewCallback = callback;
+    }
+
     //==============================================================================================
     //                                      ADAPTERED CALLBACK
     //==============================================================================================
@@ -249,4 +265,78 @@ public abstract class KitWidgetBaseView extends BSView implements KitWidgetContr
             onCreateEventReceived(context, view, event);
         }
     };
+
+    //==============================================================================================
+    //                                      ACTIONS/CLICKS
+    //==============================================================================================
+
+    /**
+     * Method which provide the action when {@link Event} received
+     *
+     * @param context instance of {@link Context}
+     * @param view    instance of the {@link BSView}
+     * @param event   instance of the {@link Event}
+     */
+    @Override
+    public void onCreateEventReceived(@NonNull Context context,
+                                      @NonNull BSView view,
+                                      @NonNull Event event) {
+        if (viewCallback != null) {
+            viewCallback.onCreateEventReceived(context, view, event);
+        }
+    }
+
+    /**
+     * Method which provide the action when user press on the channel object
+     *
+     * @param index  current index
+     * @param object current object
+     */
+    @Override
+    public void onItemClick(int index, @NonNull BaseObject object) {
+        if (viewCallback != null) {
+            viewCallback.onItemClick(index, object);
+        }
+    }
+
+    /**
+     * Method which provide the action when user doing the long press on item
+     *
+     * @param index  index
+     * @param object object
+     */
+    @Override
+    public void onItemLongClick(int index, @NonNull BaseObject object) {
+        if (viewCallback != null) {
+            viewCallback.onItemLongClick(index, object);
+        }
+    }
+
+    /**
+     * Method which provide the action listening
+     *
+     * @param recycleEvent event
+     * @param index        index
+     * @param object       object
+     */
+    @Override
+    public void onActionReceived(@NonNull RecycleEvent recycleEvent,
+                                 int index,
+                                 @NonNull BaseObject object) {
+        if (viewCallback != null) {
+            viewCallback.onActionReceived(recycleEvent, index, object);
+        }
+    }
+
+    /**
+     * Method which provide the action when menu item was press
+     *
+     * @param object instance of the {@link KitMenuModel}
+     */
+    @Override
+    public void onMenuItemClick(@NonNull KitMenuModel object) {
+        if (viewCallback != null) {
+            viewCallback.onMenuItemClick(object);
+        }
+    }
 }

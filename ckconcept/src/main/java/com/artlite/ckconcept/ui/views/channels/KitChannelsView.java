@@ -193,6 +193,22 @@ public class KitChannelsView extends KitWidgetBaseView {
     }
 
     /**
+     * Method which provide the performing of the error when the data received
+     *
+     * @param context instance of {@link Context}
+     * @param offset  {@link Integer} value of the offset
+     * @param error   instance of {@link Throwable}
+     */
+    @Override
+    public void onServerError(@NonNull Context context, int offset, @NonNull Throwable error) {
+
+    }
+
+    //==============================================================================================
+    //                                      ACTIONS/CLICKS
+    //==============================================================================================
+
+    /**
      * Method which provide the action when {@link Event} received
      *
      * @param context instance of {@link Context}
@@ -207,6 +223,7 @@ public class KitChannelsView extends KitWidgetBaseView {
                         "                                      @NonNull BSView view,\n" +
                         "                                      @NonNull Event event)",
                 null, event);
+        super.onCreateEventReceived(context, view, event);
     }
 
     /**
@@ -223,6 +240,7 @@ public class KitChannelsView extends KitWidgetBaseView {
             KitWidgetManager.showViewDetails(getContext(), KitWidgetType.CHANNEL.getValue(),
                     ((KitBaseListObject) object).getObject(), null);
         }
+        super.onItemClick(index, object);
     }
 
     /**
@@ -233,7 +251,7 @@ public class KitChannelsView extends KitWidgetBaseView {
      */
     @Override
     public void onItemLongClick(int index, @NonNull BaseObject object) {
-
+        super.onItemLongClick(index, object);
     }
 
     /**
@@ -247,7 +265,7 @@ public class KitChannelsView extends KitWidgetBaseView {
     public void onActionReceived(@NonNull RecycleEvent recycleEvent,
                                  int index,
                                  @NonNull BaseObject object) {
-
+        super.onActionReceived(recycleEvent, index, object);
     }
 
     /**
@@ -257,19 +275,8 @@ public class KitChannelsView extends KitWidgetBaseView {
      */
     @Override
     public void onMenuItemClick(@NonNull KitMenuModel object) {
+        super.onMenuItemClick(object);
         BSLogHelper.log(this, "void onMenuItemClick(@NonNull KitMenuModel object)",
                 null, object);
-    }
-
-    /**
-     * Method which provide the performing of the error when the data received
-     *
-     * @param context instance of {@link Context}
-     * @param offset  {@link Integer} value of the offset
-     * @param error   instance of {@link Throwable}
-     */
-    @Override
-    public void onServerError(@NonNull Context context, int offset, @NonNull Throwable error) {
-
     }
 }

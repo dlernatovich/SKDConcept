@@ -1,12 +1,19 @@
 package com.artlite.skdconcept;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
+import com.artlite.adapteredrecyclerview.events.RecycleEvent;
+import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.bslibrary.annotations.FindViewBy;
 import com.artlite.bslibrary.ui.activity.BSActivity;
+import com.artlite.bslibrary.ui.view.BSView;
+import com.artlite.ckconcept.callbacks.OnKitViewCallback;
+import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.ui.views.channels.KitChannelsView;
 
 public class MainActivity extends BSActivity {
@@ -60,6 +67,36 @@ public class MainActivity extends BSActivity {
     @Override
     protected void onCreateActivity(@Nullable Bundle bundle) {
         setTitle("Channels");
+//        channelsView.setOnViewCallback(new OnKitViewCallback() {
+//            @Override
+//            public void onCreateEventReceived(@NonNull Context context,
+//                                              @NonNull BSView view,
+//                                              @NonNull BSView.Event event) {
+//
+//            }
+//
+//            @Override
+//            public void onItemClick(int index, @NonNull BaseObject object) {
+//                startActivity(DetailsActivity.class);
+//            }
+//
+//            @Override
+//            public void onItemLongClick(int index, @NonNull BaseObject object) {
+//
+//            }
+//
+//            @Override
+//            public void onActionReceived(@NonNull RecycleEvent recycleEvent,
+//                                         int index,
+//                                         @NonNull BaseObject object) {
+//
+//            }
+//
+//            @Override
+//            public void onMenuItemClick(@NonNull KitMenuModel object) {
+//
+//            }
+//        });
     }
 
     /**
