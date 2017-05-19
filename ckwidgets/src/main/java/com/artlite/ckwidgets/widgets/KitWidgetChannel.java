@@ -143,7 +143,6 @@ public final class KitWidgetChannel extends KitWidgetModel<ChannelDetail> {
                         KitWidgetChannel.class,
                         KitChannelsView.class,
                         KitWidgetType.CHANNEL.getValue())
-
         );
     }
 

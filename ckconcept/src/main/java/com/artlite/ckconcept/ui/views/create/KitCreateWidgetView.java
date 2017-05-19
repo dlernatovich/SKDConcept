@@ -10,6 +10,7 @@ import android.view.View;
 import com.artlite.adapteredrecyclerview.callbacks.OnAdapteredBaseCallback;
 import com.artlite.adapteredrecyclerview.core.AdapteredView;
 import com.artlite.adapteredrecyclerview.events.RecycleEvent;
+import com.artlite.adapteredrecyclerview.ui.views.AdapteredRecyclerView;
 import com.artlite.bslibrary.annotations.FindLibraryViewBy;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.R;
@@ -75,7 +76,6 @@ public final class KitCreateWidgetView extends BSView {
      */
     @Override
     protected void onCreateView() {
-        setOnClickListeners(R.id.button_cancel);
         recycleView.init(new GridLayoutManager(getContext(), 1), listCallback);
     }
 
@@ -123,19 +123,6 @@ public final class KitCreateWidgetView extends BSView {
                 }
             }
             recycleView.set(objects);
-        }
-    }
-
-    /**
-     * Method which provide the on click functional
-     *
-     * @param view instance of {@link View}
-     */
-    @Override
-    public void onClick(View view) {
-        int i = view.getId();
-        if (i == R.id.button_cancel) {
-            dismiss();
         }
     }
 
