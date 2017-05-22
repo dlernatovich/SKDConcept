@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.artlite.bslibrary.ui.view.BSView;
+import com.artlite.ckconcept.constants.KitWidgetPriority;
 import com.artlite.ckconcept.constants.KitWidgetType;
 import com.artlite.ckconcept.models.define.KitBaseDefiner;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
@@ -169,5 +170,16 @@ public final class KitWidgetChannel extends KitWidgetModel<ChannelDetail> {
     @Override
     public boolean isNeedMenuHeader() {
         return true;
+    }
+
+    /**
+     * Method which provide the getting of the priority for the widget
+     *
+     * @return instance of the {@link KitWidgetPriority}
+     */
+    @NonNull
+    @Override
+    public KitWidgetPriority getPriority() {
+        return KitWidgetPriority.MIDDLE;
     }
 }

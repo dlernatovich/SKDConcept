@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.artlite.bslibrary.ui.view.BSView;
+import com.artlite.ckconcept.constants.KitWidgetPriority;
 import com.artlite.ckconcept.models.define.KitBaseDefiner;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
@@ -101,6 +102,7 @@ interface KitInterface<T> {
 
     /**
      * Method which provide the getting of the {@link List} of the {@link KitBaseDefiner}
+     *
      * @return {@link List} of the {@link KitBaseDefiner}
      */
     @Nullable
@@ -121,5 +123,12 @@ interface KitInterface<T> {
     @Nullable
     T getObject();
 
+    /**
+     * Method which provide the getting of the priority for the widget
+     *
+     * @return instance of the {@link KitWidgetPriority}
+     */
+    @NonNull
+    KitWidgetPriority getPriority();
 
 }

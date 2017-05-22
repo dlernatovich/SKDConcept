@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.View;
 
 import com.artlite.bslibrary.ui.view.BSView;
+import com.artlite.ckconcept.constants.KitEvent;
 import com.artlite.ckconcept.ui.abs.KitBaseCreateView;
-import com.artlite.ckconcept.ui.views.channels.KitChannelsView;
 import com.artlite.ckwidgets.R;
 
 /**
@@ -49,7 +49,7 @@ public final class KitCreateChannelView extends KitBaseCreateView {
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.button_create) {
-            sendEvent(KitChannelsView.K_EVENT_CREATE_CHANNEL);
+            sendEvent(KitEvent.CREATE_CHANNEL);
             dismiss();
         }
     }

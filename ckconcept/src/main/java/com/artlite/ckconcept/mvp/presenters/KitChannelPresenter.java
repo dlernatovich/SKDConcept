@@ -8,9 +8,10 @@ import android.view.View;
 import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.bslibrary.managers.BSThreadManager;
 import com.artlite.ckconcept.callbacks.OnKitActionCallback;
+import com.artlite.ckconcept.comparators.KitComparatorChannels;
+import com.artlite.ckconcept.constants.KitChannelFilter;
 import com.artlite.ckconcept.helpers.KitCallbackHelper;
-import com.artlite.ckconcept.managers.KitWidgetManager;
-import com.artlite.ckconcept.models.define.KitBaseDefiner;
+import com.artlite.ckconcept.helpers.KitChannelHelper;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
 import com.artlite.ckconcept.ui.views.channels.KitChannelsView;
 import com.magnet.max.android.callbacks.MaxCoreActionCallback;
@@ -19,6 +20,7 @@ import com.magnet.mmx.client.api.ChannelDetailOptions;
 import com.magnet.mmx.client.api.MMXChannel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -49,6 +51,9 @@ public final class KitChannelPresenter extends KitWidgetBasePresenter {
     public void getServerData(@NonNull final Context context,
                               final int offset,
                               @Nullable final OnKitActionCallback callback) {
+        if (offset > 0) {
+            return;
+        }
         getSubscription(context, offset, callback);
     }
 
@@ -129,7 +134,7 @@ public final class KitChannelPresenter extends KitWidgetBasePresenter {
                     public void onSuccess(List<ChannelDetail> result) {
                         final List<ChannelDetail> details = (result == null)
                                 ? new ArrayList<ChannelDetail>() : result;
-                        getListObjects(context, offset, callback, details);
+                        processChannels(context, offset, callback, details);
                     }
 
                     @Override
@@ -137,6 +142,41 @@ public final class KitChannelPresenter extends KitWidgetBasePresenter {
                         KitCallbackHelper.onError(callback, context, offset, throwable);
                     }
                 });
+    }
+
+    /**
+     * Method which provide the channels processing (sorting and filtering)
+     *
+     * @param context  instance of {@link Context}
+     * @param offset   {@link Integer} value of the offset
+     * @param callback instance of {@link OnKitActionCallback}
+     */
+    private void processChannels(@NonNull final Context context,
+                                 final int offset,
+                                 @Nullable final OnKitActionCallback callback,
+                                 @NonNull final List<ChannelDetail> channels) {
+        final List<ChannelDetail> result = new ArrayList<>();
+        BSThreadManager.execute(new BSThreadManager.OnExecutionCallback() {
+            @Override
+            public void onBackground() {
+                //Filtering channels
+                for (ChannelDetail detail : channels) {
+                    if (!KitChannelHelper.isContainKeyword(detail, KitChannelFilter.APPROVAL)) {
+                        result.add(detail);
+                    }
+                }
+
+                //Sort channels
+                Collections.sort(result,
+                        Collections.reverseOrder(new KitComparatorChannels()));
+            }
+
+            @Override
+            public void onMain() {
+                getListObjects(context, offset, callback, result);
+            }
+        });
+
     }
 
     /**

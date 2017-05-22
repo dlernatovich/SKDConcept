@@ -92,6 +92,28 @@ public final class KitWidgetManager extends BSBaseManager {
     //==============================================================================================
 
     /**
+     * Method which provide the checking if {@link OnKitCreatorFactory} need to be registering
+     *
+     * @param type    instance of {@link String} type
+     * @param creator instance of the {@link OnKitCreatorFactory}
+     * @return checking result
+     */
+    private static boolean isNeedRegistration(@Nullable final String type,
+                                              @Nullable final OnKitCreatorFactory creator) {
+        if (BSValidationHelper.validateNull(type, creator, instance)) {
+            final OnKitCreatorFactory factory = instance.getTypedMap().get(type);
+            if (factory != null) {
+                final KitWidgetModel registered = factory.createForRegistration();
+                final KitWidgetModel current = creator.createForRegistration();
+                if (BSValidationHelper.validateNull(registered, current)) {
+                    return registered.getPriority().lessThan(current.getPriority());
+                }
+            }
+        }
+        return true;
+    }
+
+    /**
      * Method which provide the register of the {@link OnKitCreatorFactory} by type
      *
      * @param type    {@link String} value of the type
@@ -101,10 +123,12 @@ public final class KitWidgetManager extends BSBaseManager {
     public static boolean register(@Nullable final String type,
                                    @Nullable final OnKitCreatorFactory creator) {
         if (BSValidationHelper.validateNull(type, creator, instance)) {
-            boolean result = instance.getTypedMap().put(type, creator) != null;
-            registerMenus(type, creator);
-            registerDefiners(type, creator);
-            return result;
+            if (isNeedRegistration(type, creator)) {
+                boolean result = instance.getTypedMap().put(type, creator) != null;
+                registerMenus(type, creator);
+                registerDefiners(type, creator);
+                return result;
+            }
         }
         return false;
     }

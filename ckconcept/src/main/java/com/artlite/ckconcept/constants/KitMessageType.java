@@ -14,7 +14,7 @@ import com.magnet.mmx.client.api.MMXMessage;
  * Class which provide the keeping of the {@link MMXMessage} types
  */
 public enum KitMessageType {
-    UNKNOWN("unknown", R.mipmap.ic_ck_unknown, R.string.text_ck_unknown),
+    UNKNOWN("unknown", R.mipmap.ic_ck_no_messages, R.string.text_ck_unknown),
     TEXT("text", R.mipmap.ic_ck_message, R.string.text_ck_text),
     PHOTO("photo", R.mipmap.ic_ck_photo, R.string.text_ck_photo),
     MAP("location", R.mipmap.ic_ck_map, R.string.text_ck_location),
@@ -174,6 +174,28 @@ public enum KitMessageType {
     public static String getDescription(@Nullable Context context,
                                         @Nullable MMXMessage message) {
         final KitMessageType type = getType(message);
+        if (type == TEXT) {
+            return message.getContent().get(KitMessageTags.TEXT.getValue());
+        } else {
+            return context.getResources().getString(type.getText());
+        }
+    }
+
+    /**
+     * Method which provide the getting of the {@link MMXMessage} description
+     *
+     * @param message instance of the {@link MMXMessage}
+     * @param context instance of {@link Context}
+     * @param type    instance of {@link KitMessageType}
+     * @return {@link String} value of the {@link MMXMessage} description
+     */
+    @NonNull
+    public static String getDescription(@Nullable Context context,
+                                        @Nullable MMXMessage message,
+                                        @Nullable KitMessageType type) {
+        if (type == null) {
+            type = UNKNOWN;
+        }
         if (type == TEXT) {
             return message.getContent().get(KitMessageTags.TEXT.getValue());
         } else {

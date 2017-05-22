@@ -1,11 +1,18 @@
 package com.artlite.ckconcept.constants;
 
+import android.support.annotation.NonNull;
+
 /**
- * Created by dlernatovich on 5/15/2017.
+ * Class which provide the type for the {@link com.artlite.ckconcept.models.widget.KitWidgetModel}
  */
 
 public enum KitWidgetType {
-    CHANNEL("KIT_CHANNEL");
+    CHANNEL(createName("Channel"));
+
+    /**
+     * {@link String} constants of the prefix for the {@link KitWidgetType}
+     */
+    private static final String K_PREFIX = "Widget:";
 
     /**
      * {@link String} value of the type
@@ -28,5 +35,16 @@ public enum KitWidgetType {
      */
     public String getValue() {
         return value;
+    }
+
+    /**
+     * Method which provide the create {@link String} value of the name for the {@link KitWidgetType}
+     *
+     * @param name {@link String} value of the name
+     * @return {@link String} value of the name
+     */
+    @NonNull
+    private static final String createName(@NonNull final String name) {
+        return String.format("%s%s", K_PREFIX, name);
     }
 }

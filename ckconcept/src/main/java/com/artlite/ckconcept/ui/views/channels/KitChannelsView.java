@@ -31,12 +31,6 @@ import com.artlite.ckconcept.mvp.view.KitWidgetBaseView;
 public class KitChannelsView extends KitWidgetBaseView {
 
     /**
-     * Instance of the {@link BSView.Event}
-     */
-    public static final BSView.Event K_EVENT_CREATE_CHANNEL
-            = new BSView.Event("KitChannelsView:CREATE_CHANNEL");
-
-    /**
      * Instance of the {@link KitChannelPresenter}
      */
     private KitChannelPresenter presenter;
