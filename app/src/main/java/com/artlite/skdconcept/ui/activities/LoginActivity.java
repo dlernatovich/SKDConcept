@@ -42,8 +42,6 @@ public final class LoginActivity extends BSActivity implements OnKitLoginCallbac
     protected void onCreateActivity(@Nullable Bundle bundle) {
         setTitle("Login");
         loginView.setOnKitLoginCallback(this);
-        loginView.setUserName("hanju.kim@magnet.com");
-        loginView.setPassword("12345a");
     }
 
     /**
