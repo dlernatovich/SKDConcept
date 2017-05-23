@@ -16,19 +16,24 @@ import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.bslibrary.helpers.log.BSLogHelper;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.R;
-import com.artlite.ckconcept.constants.KitWidgetType;
-import com.artlite.ckconcept.managers.KitWidgetManager;
+import com.artlite.ckconcept.callbacks.OnKitChannelsCallback;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
 import com.artlite.ckconcept.mvp.presenters.KitChannelPresenter;
-import com.artlite.ckconcept.mvp.view.KitWidgetBaseView;
+import com.artlite.ckconcept.mvp.abs.view.KitBaseWidgetView;
+import com.magnet.mmx.client.api.ChannelDetail;
 
 /**
  * Class which provide the interface or channels list
  */
 
-public class KitChannelsView extends KitWidgetBaseView {
+public class KitChannelsView extends KitBaseWidgetView {
+
+    /**
+     * Instance of the {@link OnKitChannelsCallback}
+     */
+    private OnKitChannelsCallback channelsCallback;
 
     /**
      * Instance of the {@link KitChannelPresenter}
@@ -228,13 +233,16 @@ public class KitChannelsView extends KitWidgetBaseView {
      */
     @Override
     public void onItemClick(int index, @NonNull BaseObject object) {
-        BSLogHelper.log(this, "onItemClick(int index, @NonNull BaseObject object)",
-                null, object);
-        if ((object != null) && (object instanceof KitBaseListObject)) {
-            KitWidgetManager.showViewDetails(getContext(), KitWidgetType.CHANNEL.getValue(),
-                    ((KitBaseListObject) object).getObject(), null);
+        final String methodName = "onItemClick(int index, @NonNull BaseObject object)";
+        BSLogHelper.log(this, methodName, null, object);
+        try {
+            KitBaseListObject listObject = (KitBaseListObject) object;
+            ChannelDetail detail = (ChannelDetail) listObject.getObject();
+            channelsCallback.onChannelClick(index, detail);
+        } catch (Exception ex) {
+            BSLogHelper.log(this, methodName, ex, null);
+            super.onItemClick(index, object);
         }
-        super.onItemClick(index, object);
     }
 
     /**
@@ -245,7 +253,16 @@ public class KitChannelsView extends KitWidgetBaseView {
      */
     @Override
     public void onItemLongClick(int index, @NonNull BaseObject object) {
-        super.onItemLongClick(index, object);
+        final String methodName = "onItemLongClick(int index, @NonNull BaseObject object)";
+        BSLogHelper.log(this, methodName, null, object);
+        try {
+            KitBaseListObject listObject = (KitBaseListObject) object;
+            ChannelDetail detail = (ChannelDetail) listObject.getObject();
+            channelsCallback.onChannelLongClick(index, detail);
+        } catch (Exception ex) {
+            BSLogHelper.log(this, methodName, ex, null);
+            super.onItemLongClick(index, object);
+        }
     }
 
     /**
@@ -259,7 +276,16 @@ public class KitChannelsView extends KitWidgetBaseView {
     public void onActionReceived(@NonNull RecycleEvent recycleEvent,
                                  int index,
                                  @NonNull BaseObject object) {
-        super.onActionReceived(recycleEvent, index, object);
+        final String methodName = "onActionReceived(recycleEvent, index, object)";
+        BSLogHelper.log(this, methodName, null, object);
+        try {
+            KitBaseListObject listObject = (KitBaseListObject) object;
+            ChannelDetail detail = (ChannelDetail) listObject.getObject();
+            channelsCallback.onActionReceived(recycleEvent, index, detail);
+        } catch (Exception ex) {
+            BSLogHelper.log(this, methodName, ex, null);
+            super.onActionReceived(recycleEvent, index, object);
+        }
     }
 
     /**
@@ -269,8 +295,21 @@ public class KitChannelsView extends KitWidgetBaseView {
      */
     @Override
     public void onMenuItemClick(@NonNull KitMenuModel object) {
-        super.onMenuItemClick(object);
         BSLogHelper.log(this, "void onMenuItemClick(@NonNull KitMenuModel object)",
                 null, object);
+        super.onMenuItemClick(object);
+    }
+
+    //==============================================================================================
+    //                                      GET/SET
+    //==============================================================================================
+
+    /**
+     * Method which provide the setting of the {@link OnKitChannelsCallback}
+     *
+     * @param callback instance of the {@link OnKitChannelsCallback}
+     */
+    public void setChannelsCallback(@Nullable final OnKitChannelsCallback callback) {
+        this.channelsCallback = callback;
     }
 }

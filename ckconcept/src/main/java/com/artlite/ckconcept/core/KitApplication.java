@@ -3,12 +3,15 @@ package com.artlite.ckconcept.core;
 import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.RawRes;
 
 import com.artlite.bslibrary.container.BSResourceContainer;
 import com.artlite.bslibrary.core.BSInstance;
 import com.artlite.bslibrary.helpers.log.BSLogHelper;
 import com.artlite.ckconcept.R;
 import com.artlite.ckconcept.managers.KitWidgetManager;
+import com.magnet.max.android.Max;
+import com.magnet.max.android.config.MaxAndroidPropertiesConfig;
 
 /**
  * Class which provide the {@link Application} container
@@ -28,6 +31,7 @@ public abstract class KitApplication extends Application {
         BSLogHelper.log(this, "onCreate", null, "Application: KitApplication is initialized");
         //Init widget manager
         KitWidgetManager.init(getContext());
+        Max.init(getContext(), new MaxAndroidPropertiesConfig(this, getMagnetConfiguration()));
         registerWidgets();
     }
 
@@ -43,4 +47,13 @@ public abstract class KitApplication extends Application {
      */
     @NonNull
     public abstract Context getContext();
+
+    /**
+     * Method which provide the getting of the configuration for the Magnet Max server
+     *
+     * @return {@link Integer} value of the configuration ID
+     */
+    @RawRes
+    @NonNull
+    protected abstract int getMagnetConfiguration();
 }

@@ -1,6 +1,5 @@
-package com.artlite.skdconcept;
+package com.artlite.skdconcept.ui.activities;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,15 +7,14 @@ import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 import com.artlite.adapteredrecyclerview.events.RecycleEvent;
-import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.bslibrary.annotations.FindViewBy;
 import com.artlite.bslibrary.ui.activity.BSActivity;
-import com.artlite.bslibrary.ui.view.BSView;
-import com.artlite.ckconcept.callbacks.OnKitViewCallback;
-import com.artlite.ckconcept.models.menu.KitMenuModel;
+import com.artlite.ckconcept.callbacks.OnKitChannelsCallback;
 import com.artlite.ckconcept.ui.views.channels.KitChannelsView;
+import com.artlite.skdconcept.R;
+import com.magnet.mmx.client.api.ChannelDetail;
 
-public class MainActivity extends BSActivity {
+public class MainActivity extends BSActivity implements OnKitChannelsCallback {
 
     /**
      * Instance of the {@link KitChannelsView}
@@ -53,7 +51,7 @@ public class MainActivity extends BSActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_item_create_channel) {
-            channelsView.showCreateList();
+            startActivity(CreateChannelActivity.class);
             return true;
         }
         return super.onOptionsItemSelected(item);
@@ -66,37 +64,8 @@ public class MainActivity extends BSActivity {
      */
     @Override
     protected void onCreateActivity(@Nullable Bundle bundle) {
-        setTitle("Channels");
-//        channelsView.setOnViewCallback(new OnKitViewCallback() {
-//            @Override
-//            public void onCreateEventReceived(@NonNull Context context,
-//                                              @NonNull BSView view,
-//                                              @NonNull BSView.Event event) {
-//
-//            }
-//
-//            @Override
-//            public void onItemClick(int index, @NonNull BaseObject object) {
-//                startActivity(DetailsActivity.class);
-//            }
-//
-//            @Override
-//            public void onItemLongClick(int index, @NonNull BaseObject object) {
-//
-//            }
-//
-//            @Override
-//            public void onActionReceived(@NonNull RecycleEvent recycleEvent,
-//                                         int index,
-//                                         @NonNull BaseObject object) {
-//
-//            }
-//
-//            @Override
-//            public void onMenuItemClick(@NonNull KitMenuModel object) {
-//
-//            }
-//        });
+        setTitle("Conversations");
+        channelsView.setChannelsCallback(this);
     }
 
     /**
@@ -120,4 +89,38 @@ public class MainActivity extends BSActivity {
     }
 
 
+    /**
+     * Method which provide the functional when user press of the {@link ChannelDetail}
+     *
+     * @param index   {@link Integer} value of the {@link ChannelDetail} index
+     * @param channel instance of the {@link ChannelDetail}
+     */
+    @Override
+    public void onChannelClick(int index, @NonNull ChannelDetail channel) {
+        startActivity(DetailsActivity.class);
+    }
+
+    /**
+     * Method which provide the functional when user do the long press of the {@link ChannelDetail}
+     *
+     * @param index   {@link Integer} value of the {@link ChannelDetail} index
+     * @param channel instance of the {@link ChannelDetail}
+     */
+    @Override
+    public void onChannelLongClick(int index, @NonNull ChannelDetail channel) {
+
+    }
+
+    /**
+     * Method which provide the the functional when user sent the action
+     * for the {@link KitChannelsView}
+     *
+     * @param recycleEvent instance of the {@link RecycleEvent}
+     * @param index        {@link Integer} value of the {@link ChannelDetail} index
+     * @param channel      instance of the {@link ChannelDetail}
+     */
+    @Override
+    public void onActionReceived(@NonNull RecycleEvent recycleEvent, int index, @NonNull ChannelDetail channel) {
+
+    }
 }

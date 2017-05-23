@@ -12,6 +12,7 @@ import com.artlite.ckconcept.comparators.KitComparatorChannels;
 import com.artlite.ckconcept.constants.KitChannelFilter;
 import com.artlite.ckconcept.helpers.KitCallbackHelper;
 import com.artlite.ckconcept.helpers.KitChannelHelper;
+import com.artlite.ckconcept.mvp.abs.presenter.KitBaseWidgetPresenter;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
 import com.artlite.ckconcept.ui.views.channels.KitChannelsView;
 import com.magnet.max.android.callbacks.MaxCoreActionCallback;
@@ -27,10 +28,10 @@ import java.util.List;
  * Created by dlernatovich on 5/15/2017.
  */
 
-public final class KitChannelPresenter extends KitWidgetBasePresenter {
+public final class KitChannelPresenter extends KitBaseWidgetPresenter {
 
     /**
-     * Constructor which provide to create the {@link KitWidgetBasePresenter} from
+     * Constructor which provide to create the {@link KitBaseWidgetPresenter} from
      *
      * @param view instance of {@link KitWidgetContract.View}
      */

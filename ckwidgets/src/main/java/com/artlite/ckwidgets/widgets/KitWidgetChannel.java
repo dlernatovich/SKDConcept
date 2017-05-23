@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.artlite.bslibrary.ui.view.BSView;
+import com.artlite.ckconcept.callbacks.OnKitChannelsCallback;
 import com.artlite.ckconcept.constants.KitWidgetPriority;
 import com.artlite.ckconcept.constants.KitWidgetType;
 import com.artlite.ckconcept.models.define.KitBaseDefiner;
@@ -66,7 +67,7 @@ public final class KitWidgetChannel extends KitWidgetModel<ChannelDetail> {
      */
     @Override
     public boolean isNeedCreateView() {
-        return true;
+        return false;
     }
 
     /**
@@ -88,7 +89,7 @@ public final class KitWidgetChannel extends KitWidgetModel<ChannelDetail> {
      */
     @Override
     public boolean isNeedDetailsView() {
-        return true;
+        return false;
     }
 
     /**
@@ -145,6 +146,16 @@ public final class KitWidgetChannel extends KitWidgetModel<ChannelDetail> {
                         KitChannelsView.class,
                         KitWidgetType.CHANNEL.getValue())
         );
+    }
+
+    /**
+     * Method which provide the checking if widget is need of the menu headers
+     *
+     * @return checking if widget is need of the menu headers
+     */
+    @Override
+    public boolean isNeedHeaders() {
+        return false;
     }
 
     /**

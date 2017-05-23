@@ -7,10 +7,10 @@ import com.artlite.adapteredrecyclerview.events.RecycleEvent;
 import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
-import com.artlite.ckconcept.mvp.view.KitWidgetBaseView;
+import com.artlite.ckconcept.mvp.abs.view.KitBaseWidgetView;
 
 /**
- * Class which provide the listener for the {@link KitWidgetBaseView}
+ * Class which provide the listener for the {@link KitBaseWidgetView}
  */
 
 public interface OnKitViewCallback {

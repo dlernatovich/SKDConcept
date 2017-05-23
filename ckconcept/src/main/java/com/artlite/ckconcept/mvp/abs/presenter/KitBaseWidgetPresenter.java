@@ -1,4 +1,4 @@
-package com.artlite.ckconcept.mvp.presenters;
+package com.artlite.ckconcept.mvp.abs.presenter;
 
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
@@ -18,7 +18,7 @@ import java.util.List;
  * Class which provide the default functional for the {@link KitWidgetContract.Presenter}
  */
 
-public abstract class KitWidgetBasePresenter implements KitWidgetContract.Presenter {
+public abstract class KitBaseWidgetPresenter implements KitWidgetContract.Presenter {
 
     /**
      * Instance of the {@link KitWidgetContract.View}
@@ -26,11 +26,11 @@ public abstract class KitWidgetBasePresenter implements KitWidgetContract.Presen
     private final KitWidgetContract.View view;
 
     /**
-     * Constructor which provide to create the {@link KitWidgetBasePresenter} from
+     * Constructor which provide to create the {@link KitBaseWidgetPresenter} from
      *
      * @param view instance of {@link KitWidgetContract.View}
      */
-    public KitWidgetBasePresenter(@NonNull final KitWidgetContract.View view) {
+    public KitBaseWidgetPresenter(@NonNull final KitWidgetContract.View view) {
         this.view = view;
     }
 

@@ -155,7 +155,7 @@ public final class KitWidgetManager extends BSBaseManager {
                                         @Nullable final OnKitCreatorFactory creator) {
         if (BSValidationHelper.validateEmpty(type, creator)) {
             final KitWidgetModel widget = creator.createForRegistration();
-            if (widget != null) {
+            if ((widget != null) && (widget.isNeedHeaders())) {
                 final List<KitMenuModel> items = widget.getMenuHeaders();
                 if (items != null) {
                     for (KitMenuModel item : items) {

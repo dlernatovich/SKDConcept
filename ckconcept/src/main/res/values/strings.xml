@@ -7,7 +7,10 @@
     <string name="text_ck_photo">Photo</string>
     <string name="text_ck_location">Location</string>
     <string name="text_ck_video">Video</string>
-    <string name="text_ck_pool">Pool</string>
+    <string name="text_ck_pool">Answer</string>
     <string name="text_ck_answer">Answer</string>
     <string name="text_ck_code">Code</string>
+    <string name="text_ck_error_empty_login">User name or email can\'t be empty</string>
+    <string name="text_ck_error_empty_password">Password can\'t be empty</string>
+    <string name="text_ck_please_wait">Please wait</string>
 </resources>

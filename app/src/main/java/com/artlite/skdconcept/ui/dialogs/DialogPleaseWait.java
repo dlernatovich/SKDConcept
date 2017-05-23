@@ -1,10 +1,11 @@
-package com.artlite.skdconcept;
+package com.artlite.skdconcept.ui.dialogs;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.artlite.bslibrary.ui.view.BSView;
+import com.artlite.skdconcept.R;
 
 /**
  * Created by dlernatovich on 12.05.2017.

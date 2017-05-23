@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimen_5"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.artlite.bslibrary.ui.fonted.BSEditText
+            android:id="@+id/edit_login"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_round_gray"
+            android:hint="User name or Email"
+            android:lines="1"
+            android:text=""
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/holo_blue_dark"
+            android:textSize="@dimen/text_16" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dimen_5" />
+
+        <com.artlite.bslibrary.ui.fonted.BSEditText
+            android:id="@+id/edit_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/background_round_gray"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:lines="1"
+            android:text=""
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/holo_blue_dark"
+            android:textSize="@dimen/text_16" />
+
+        <com.artlite.bslibrary.ui.fonted.BSButton
+            android:id="@+id/button_sign_in"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:gravity="center"
+            android:text="Sign In"
+            android:textColor="@android:color/holo_blue_dark"
+            android:textSize="@dimen/text_14"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/view_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:gravity="center"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/dimen_5"
+            android:background="@drawable/background_round_gray_transparent"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ProgressBar
+                android:layout_width="@dimen/dimen_30"
+                android:layout_height="@dimen/dimen_30"
+                android:progressTint="@android:color/holo_blue_dark" />
+
+            <com.artlite.bslibrary.ui.fonted.BSTextView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/dimen_20"
+                android:layout_marginLeft="@dimen/dimen_5"
+                android:gravity="center"
+                android:text="@string/text_ck_please_wait"
+                android:textColor="@android:color/holo_blue_dark"
+                android:textSize="@dimen/text_16" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+</FrameLayout>

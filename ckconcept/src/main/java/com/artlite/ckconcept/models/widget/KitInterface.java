@@ -101,6 +101,13 @@ interface KitInterface<T> {
     List<KitMenuModel> getMenuHeaders();
 
     /**
+     * Method which provide the checking if widget is need of the menu headers
+     *
+     * @return checking if widget is need of the menu headers
+     */
+    boolean isNeedHeaders();
+
+    /**
      * Method which provide the getting of the {@link List} of the {@link KitBaseDefiner}
      *
      * @return {@link List} of the {@link KitBaseDefiner}

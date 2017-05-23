@@ -1,4 +1,4 @@
-package com.artlite.ckconcept.mvp.view;
+package com.artlite.ckconcept.mvp.abs.view;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -27,7 +27,7 @@ import java.util.List;
  * {@link View} which provide the widget functional
  */
 
-public abstract class KitWidgetBaseView extends BSView implements KitWidgetContract.View,
+public abstract class KitBaseWidgetView extends BSView implements KitWidgetContract.View,
         OnKitActionCallback, KitCreateWidgetView.OnMenuClickListener {
 
     /**
@@ -40,7 +40,7 @@ public abstract class KitWidgetBaseView extends BSView implements KitWidgetContr
      *
      * @param context instance of {@link Context}
      */
-    public KitWidgetBaseView(Context context) {
+    public KitBaseWidgetView(Context context) {
         super(context);
     }
 
@@ -50,7 +50,7 @@ public abstract class KitWidgetBaseView extends BSView implements KitWidgetContr
      * @param context instance of {@link Context}
      * @param attrs   instance of {@link AttributeSet}
      */
-    public KitWidgetBaseView(Context context, AttributeSet attrs) {
+    public KitBaseWidgetView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -61,7 +61,7 @@ public abstract class KitWidgetBaseView extends BSView implements KitWidgetContr
      * @param attrs        instance of {@link AttributeSet}
      * @param defStyleAttr attribute style
      */
-    public KitWidgetBaseView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public KitBaseWidgetView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 
@@ -72,9 +72,9 @@ public abstract class KitWidgetBaseView extends BSView implements KitWidgetContr
     protected void onCreateView() {
         showProgress();
         getAdapteredView().init(getLayoutManager(getContext()),
-                KitWidgetBaseView.this, refreshCallback, pagingCallback);
+                KitBaseWidgetView.this, refreshCallback, pagingCallback);
         getAdapteredView().setIsNeedResfresh(isNeedSwipeRefresh());
-        getPresenter().getServerData(getContext(), 0, KitWidgetBaseView.this);
+        getPresenter().getServerData(getContext(), 0, KitBaseWidgetView.this);
         if (getCreateButtonId() != null) {
             findViewById(getCreateButtonId()).setOnClickListener(createWidgetCallback);
         }
@@ -173,7 +173,7 @@ public abstract class KitWidgetBaseView extends BSView implements KitWidgetContr
     @Override
     public void showCreateList() {
         final KitCreateWidgetView createWidgetView = new KitCreateWidgetView(getContext(),
-                KitWidgetBaseView.this);
+                KitBaseWidgetView.this);
         final List<KitMenuModel> objects = KitWidgetManager.getCreateMenus(getCurrentClass());
         final Integer dropdownId = getViewDropdown();
         createWidgetView.setObjects(objects);
@@ -215,7 +215,7 @@ public abstract class KitWidgetBaseView extends BSView implements KitWidgetContr
                 public void onRefreshData() {
                     final KitWidgetContract.Presenter presenter = getPresenter();
                     if (presenter != null) {
-                        presenter.getServerData(getContext(), 0, KitWidgetBaseView.this);
+                        presenter.getServerData(getContext(), 0, KitBaseWidgetView.this);
                     }
                 }
             };
@@ -235,7 +235,7 @@ public abstract class KitWidgetBaseView extends BSView implements KitWidgetContr
                 public void onNextPage(int listSize) {
                     final KitWidgetContract.Presenter presenter = getPresenter();
                     if (presenter != null) {
-                        presenter.getServerData(getContext(), listSize, KitWidgetBaseView.this);
+                        presenter.getServerData(getContext(), listSize, KitBaseWidgetView.this);
                     }
                 }
             };
