@@ -28,7 +28,7 @@ import java.util.List;
  * Created by dlernatovich on 5/15/2017.
  */
 
-public final class KitChannelPresenter extends KitBaseWidgetPresenter {
+public class KitChannelPresenter extends KitBaseWidgetPresenter {
 
     /**
      * Constructor which provide to create the {@link KitBaseWidgetPresenter} from
@@ -76,9 +76,9 @@ public final class KitChannelPresenter extends KitBaseWidgetPresenter {
      * @param offset   {@link Integer} value of the offset
      * @param callback instance of {@link OnKitActionCallback}
      */
-    private void getSubscription(@NonNull final Context context,
-                                 final int offset,
-                                 @Nullable final OnKitActionCallback callback) {
+    protected void getSubscription(@NonNull final Context context,
+                                   final int offset,
+                                   @Nullable final OnKitActionCallback callback) {
         MMXChannel.getAllSubscriptions(new MMXChannel.OnFinishedListener<List<MMXChannel>>() {
             @Override
             public void onSuccess(List<MMXChannel> result) {
@@ -102,10 +102,10 @@ public final class KitChannelPresenter extends KitBaseWidgetPresenter {
      * @param callback instance of {@link OnKitActionCallback}
      * @param channels {@link List} of the {@link ChannelDetail}
      */
-    private void getMessageUnreadCount(@NonNull final Context context,
-                                       final int offset,
-                                       @Nullable final OnKitActionCallback callback,
-                                       @NonNull final List<MMXChannel> channels) {
+    protected void getMessageUnreadCount(@NonNull final Context context,
+                                         final int offset,
+                                         @Nullable final OnKitActionCallback callback,
+                                         @NonNull final List<MMXChannel> channels) {
         MMXChannel.getUnreadCount(channels, new MaxCoreActionCallback<List<MMXChannel>>() {
             @Override
             public void onResult(boolean isSuccess, Throwable error, List<MMXChannel> result) {
@@ -125,10 +125,10 @@ public final class KitChannelPresenter extends KitBaseWidgetPresenter {
      * @param offset   {@link Integer} value of the offset
      * @param callback instance of {@link OnKitActionCallback}
      */
-    private void getChannelsDetail(@NonNull final Context context,
-                                   final int offset,
-                                   @Nullable final OnKitActionCallback callback,
-                                   @NonNull List<MMXChannel> channels) {
+    protected void getChannelsDetail(@NonNull final Context context,
+                                     final int offset,
+                                     @Nullable final OnKitActionCallback callback,
+                                     @NonNull List<MMXChannel> channels) {
         MMXChannel.getChannelDetail(channels, getChannelDetailOptions(),
                 new MMXChannel.OnFinishedListener<List<ChannelDetail>>() {
                     @Override
@@ -152,10 +152,10 @@ public final class KitChannelPresenter extends KitBaseWidgetPresenter {
      * @param offset   {@link Integer} value of the offset
      * @param callback instance of {@link OnKitActionCallback}
      */
-    private void processChannels(@NonNull final Context context,
-                                 final int offset,
-                                 @Nullable final OnKitActionCallback callback,
-                                 @NonNull final List<ChannelDetail> channels) {
+    protected void processChannels(@NonNull final Context context,
+                                   final int offset,
+                                   @Nullable final OnKitActionCallback callback,
+                                   @NonNull final List<ChannelDetail> channels) {
         final List<ChannelDetail> result = new ArrayList<>();
         BSThreadManager.execute(new BSThreadManager.OnExecutionCallback() {
             @Override
@@ -188,10 +188,10 @@ public final class KitChannelPresenter extends KitBaseWidgetPresenter {
      * @param callback instance of {@link OnKitActionCallback}
      * @param channels {@link List} of the {@link ChannelDetail}
      */
-    private void getListObjects(@NonNull final Context context,
-                                final int offset,
-                                @Nullable final OnKitActionCallback callback,
-                                @NonNull final List<ChannelDetail> channels) {
+    protected void getListObjects(@NonNull final Context context,
+                                  final int offset,
+                                  @Nullable final OnKitActionCallback callback,
+                                  @NonNull final List<ChannelDetail> channels) {
         final List<BaseObject> objects = new ArrayList<>();
         BSThreadManager.execute(new BSThreadManager.OnExecutionCallback() {
             @Override
@@ -216,7 +216,7 @@ public final class KitChannelPresenter extends KitBaseWidgetPresenter {
      *
      * @return instance of the {@link ChannelDetailOptions}
      */
-    private ChannelDetailOptions getChannelDetailOptions() {
+    protected ChannelDetailOptions getChannelDetailOptions() {
         return new ChannelDetailOptions.Builder()
                 .numOfMessages(1)
                 .numOfSubcribers(Integer.MAX_VALUE)

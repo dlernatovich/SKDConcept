@@ -13,4 +13,5 @@
     <string name="text_ck_error_empty_login">User name or email can\'t be empty</string>
     <string name="text_ck_error_empty_password">Password can\'t be empty</string>
     <string name="text_ck_please_wait">Please wait</string>
+    <string name="text_ck_header_groups">Groups</string>
 </resources>
