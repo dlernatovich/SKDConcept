@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="accent">#517daa</color>
+
+    <color name="input_lighter_gray">#ddd</color>
+    <color name="input_darker_gray">#aaa</color>
+
+    <color name="input_action_button_tint">#607d8b</color>
+
 </resources>

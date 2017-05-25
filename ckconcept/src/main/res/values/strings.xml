@@ -17,4 +17,7 @@
     <string name="text_ck_please_wait">Please wait</string>
     <string name="text_ck_header_groups">Groups</string>
     <string name="text_ck_header_no_groups">No groups</string>
+
+    <!--Input Messages View-->
+    <string name="text_ck_input_prompt_message">Write a message</string>
 </resources>
