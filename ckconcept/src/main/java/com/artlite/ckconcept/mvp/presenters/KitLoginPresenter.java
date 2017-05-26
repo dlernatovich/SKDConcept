@@ -73,6 +73,7 @@ public class KitLoginPresenter implements KitLoginContract.Presenter {
                             .getResources()
                             .getString(R.string.text_ck_error_empty_login));
                     loginEdit.requestFocus();
+                    hideProgress();
                     return;
                 }
 
@@ -82,6 +83,7 @@ public class KitLoginPresenter implements KitLoginContract.Presenter {
                             .getResources()
                             .getString(R.string.text_ck_error_empty_password));
                     passwordEdit.requestFocus();
+                    hideProgress();
                     return;
                 }
 

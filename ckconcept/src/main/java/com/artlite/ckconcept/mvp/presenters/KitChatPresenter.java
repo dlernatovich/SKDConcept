@@ -43,7 +43,7 @@ public class KitChatPresenter extends KitBaseWidgetPresenter {
             return;
         }
 
-        // TODO:
+        // TODO: Implement this later
     }
 
     /**

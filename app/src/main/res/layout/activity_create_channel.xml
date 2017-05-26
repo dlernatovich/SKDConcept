@@ -4,10 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.artlite.bslibrary.ui.fonted.BSTextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Create conversation" />
+    <com.artlite.ckconcept.ui.views.users.KitGroupView
+        android:id="@+id/view_groups"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </FrameLayout>

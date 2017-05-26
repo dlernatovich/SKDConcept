@@ -4,7 +4,9 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 
+import com.artlite.bslibrary.annotations.FindViewBy;
 import com.artlite.bslibrary.ui.activity.BSActivity;
+import com.artlite.ckconcept.ui.views.users.KitGroupView;
 import com.artlite.skdconcept.R;
 
 /**
@@ -12,6 +14,14 @@ import com.artlite.skdconcept.R;
  */
 
 public final class CreateChannelActivity extends BSActivity {
+
+
+    /**
+     * Instance of the {@link KitGroupView}
+     */
+    @FindViewBy(id = R.id.view_groups)
+    private KitGroupView viewGroups;
+
     /**
      * Method which provide the getting of the layout ID for the current Activity
      *

@@ -12,7 +12,7 @@ import com.artlite.bslibrary.managers.BSBaseManager;
 import com.artlite.bslibrary.managers.BSEventManager;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.factories.OnKitCreatorFactory;
-import com.artlite.ckconcept.helpers.KitNameHelper;
+import com.artlite.ckconcept.helpers.name.KitNameHelper;
 import com.artlite.ckconcept.models.define.KitBaseDefiner;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.models.widget.KitWidgetModel;

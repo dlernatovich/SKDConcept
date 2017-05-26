@@ -15,7 +15,7 @@ import com.artlite.adapteredrecyclerview.anotations.FindViewBy;
 import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
 import com.artlite.ckconcept.R;
-import com.artlite.ckconcept.helpers.KitNameHelper;
+import com.artlite.ckconcept.helpers.name.KitNameHelper;
 
 /**
  * Class which provide the container for the menu item

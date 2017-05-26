@@ -6,15 +6,14 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
-import com.artlite.adapteredrecyclerview.events.RecycleEvent;
 import com.artlite.bslibrary.annotations.FindViewBy;
 import com.artlite.bslibrary.ui.activity.BSActivity;
-import com.artlite.ckconcept.callbacks.OnKitChannelsCallback;
+import com.artlite.ckconcept.mvp.contracts.KitChannelsContract;
 import com.artlite.ckconcept.ui.views.channels.KitChannelsView;
 import com.artlite.skdconcept.R;
 import com.magnet.mmx.client.api.ChannelDetail;
 
-public class MainActivity extends BSActivity implements OnKitChannelsCallback {
+public class MainActivity extends BSActivity implements KitChannelsContract.OnChannelClickListener {
 
     /**
      * Instance of the {@link KitChannelsView}
@@ -65,7 +64,7 @@ public class MainActivity extends BSActivity implements OnKitChannelsCallback {
     @Override
     protected void onCreateActivity(@Nullable Bundle bundle) {
         setTitle("Conversations");
-        channelsView.setChannelsCallback(this);
+        channelsView.setOnChannelClickListener(this);
     }
 
     /**
@@ -88,39 +87,23 @@ public class MainActivity extends BSActivity implements OnKitChannelsCallback {
         return true;
     }
 
-
     /**
-     * Method which provide the functional when user press of the {@link ChannelDetail}
+     * Method which provide the action when user click on channel
      *
-     * @param index   {@link Integer} value of the {@link ChannelDetail} index
-     * @param channel instance of the {@link ChannelDetail}
+     * @param channel channel
      */
     @Override
-    public void onChannelClick(int index, @NonNull ChannelDetail channel) {
+    public void onChannelClick(@NonNull ChannelDetail channel) {
         startActivity(DetailsActivity.class);
     }
 
     /**
-     * Method which provide the functional when user do the long press of the {@link ChannelDetail}
+     * Method which provide the action when user do a long click on channel
      *
-     * @param index   {@link Integer} value of the {@link ChannelDetail} index
-     * @param channel instance of the {@link ChannelDetail}
+     * @param channel channel object
      */
     @Override
-    public void onChannelLongClick(int index, @NonNull ChannelDetail channel) {
-
-    }
-
-    /**
-     * Method which provide the the functional when user sent the action
-     * for the {@link KitChannelsView}
-     *
-     * @param recycleEvent instance of the {@link RecycleEvent}
-     * @param index        {@link Integer} value of the {@link ChannelDetail} index
-     * @param channel      instance of the {@link ChannelDetail}
-     */
-    @Override
-    public void onActionReceived(@NonNull RecycleEvent recycleEvent, int index, @NonNull ChannelDetail channel) {
+    public void onChannelLongClick(@NonNull ChannelDetail channel) {
 
     }
 }

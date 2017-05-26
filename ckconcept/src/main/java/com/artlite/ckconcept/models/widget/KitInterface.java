@@ -10,8 +10,8 @@ import com.artlite.ckconcept.constants.KitWidgetPriority;
 import com.artlite.ckconcept.models.define.KitBaseDefiner;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
-import com.artlite.ckconcept.ui.abs.KitBaseCreateView;
-import com.artlite.ckconcept.ui.abs.KitBaseDetailsView;
+import com.artlite.ckconcept.ui.abs.create.KitBaseCreateView;
+import com.artlite.ckconcept.ui.abs.details.KitBaseDetailsView;
 
 import java.util.List;
 

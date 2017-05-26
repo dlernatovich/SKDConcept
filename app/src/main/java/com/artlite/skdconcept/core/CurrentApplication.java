@@ -4,14 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
 
-import com.artlite.bslibrary.helpers.log.BSLogHelper;
-import com.artlite.ckconcept.constants.KitWidgetType;
 import com.artlite.ckconcept.core.KitApplication;
-import com.artlite.ckconcept.managers.KitWidgetManager;
-import com.artlite.ckwidgets.factories.KitFactoryChannel;
 import com.artlite.skdconcept.R;
-import com.magnet.max.android.Max;
-import com.magnet.max.android.config.MaxAndroidPropertiesConfig;
 
 /**
  * Created by dlernatovich on 12.05.2017.
@@ -24,7 +18,8 @@ public class CurrentApplication extends KitApplication {
      */
     @Override
     protected void registerWidgets() {
-        KitWidgetManager.register(KitWidgetType.CHANNEL.getValue(), new KitFactoryChannel());
+        // TODO: 26.05.2017 Leave this as example
+//        KitWidgetManager.register(KitWidgetType.CHANNEL.getValue(), new KitFactoryChannel());
     }
 
     /**

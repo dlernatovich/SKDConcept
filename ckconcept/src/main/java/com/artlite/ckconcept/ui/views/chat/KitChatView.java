@@ -15,7 +15,7 @@ import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.R;
 import com.artlite.ckconcept.mvp.abs.view.KitBaseWidgetView;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
-import com.artlite.ckconcept.mvp.presenters.KitChannelPresenter;
+import com.artlite.ckconcept.mvp.presenters.KitChatPresenter;
 
 /**
  * Class which provide the interface of chat
@@ -24,9 +24,9 @@ import com.artlite.ckconcept.mvp.presenters.KitChannelPresenter;
 public class KitChatView extends KitBaseWidgetView {
 
     /**
-     * Instance of the {@link KitChannelPresenter}
+     * Instance of the {@link KitChatPresenter}
      */
-    private KitChannelPresenter presenter;
+    private KitChatPresenter presenter;
 
     /**
      * Instance of {@link AdapteredView}
@@ -105,7 +105,7 @@ public class KitChatView extends KitBaseWidgetView {
     @Override
     public KitWidgetContract.Presenter getPresenter() {
         if (presenter == null) {
-            presenter = new KitChannelPresenter(this);
+            presenter = new KitChatPresenter(this);
         }
         return presenter;
     }
