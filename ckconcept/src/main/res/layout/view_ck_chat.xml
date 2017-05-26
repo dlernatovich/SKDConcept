@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <View
+        android:id="@+id/view_ck_anchor"
+        android:layout_width="@dimen/dimen_10"
+        android:layout_height="1px"
+        android:layout_gravity="right"
+        android:background="@android:color/transparent" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <com.artlite.adapteredrecyclerview.core.AdapteredView
+            android:id="@+id/view_ck_recycle_chat"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <View
+            android:id="@+id/view_ck_toolbar_shadow"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/input_shadow" />
+
+    </FrameLayout>
+
+    <com.artlite.ckconcept.ui.views.chat.input.KitInputMsgView
+        android:id="@+id/view_ck_input"
+        app:actionMenu="@menu/menu_ck_input_actions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

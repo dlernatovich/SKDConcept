@@ -7,4 +7,7 @@
 
     <color name="input_action_button_tint">#607d8b</color>
 
+    <color name="input_shadow_end">#30444444</color>
+    <color name="input_shadow_center">#07444444</color>
+
 </resources>
