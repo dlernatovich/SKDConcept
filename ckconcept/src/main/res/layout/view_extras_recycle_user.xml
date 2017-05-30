@@ -28,17 +28,18 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:src="@drawable/background_blue_circle_cover"
-                android:tint="#00a1a7" />
+                android:tint="@color/color_ck_accent" />
 
-            <android.support.v7.widget.AppCompatTextView
+            <com.artlite.bslibrary.ui.fonted.BSTextView
                 android:id="@+id/label_short_name"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:text="NA"
+                android:maxLength="2"
                 android:textColor="@android:color/white"
-                android:textSize="16sp"
+                android:textSize="@dimen/text_18"
                 android:textStyle="bold" />
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -48,7 +49,7 @@
                 android:layout_gravity="center" />
         </FrameLayout>
 
-        <android.support.v7.widget.AppCompatTextView
+        <com.artlite.bslibrary.ui.fonted.BSTextView
             android:id="@+id/label_user_name"
             android:layout_width="@dimen/dimen_0"
             android:layout_height="match_parent"
@@ -56,7 +57,7 @@
             android:gravity="center_vertical"
             android:text="User Name"
             android:textColor="@android:color/black"
-            android:textSize="16sp" />
+            android:textSize="@dimen/text_18" />
 
         <ImageView
             android:id="@+id/image_blocked"

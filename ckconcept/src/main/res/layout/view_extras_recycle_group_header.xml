@@ -5,16 +5,16 @@
     android:background="#f7f7f7"
     android:orientation="horizontal">
 
-    <android.support.v7.widget.AppCompatTextView
+    <com.artlite.bslibrary.ui.fonted.BSTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="8dp"
         android:text="@string/text_ck_header_groups"
         android:textColor="@android:color/black"
-        android:textSize="16sp"
+        android:textSize="@dimen/text_18"
         android:textStyle="bold" />
 
-    <Button
+    <com.artlite.bslibrary.ui.fonted.BSButton
         android:id="@+id/button_manage_header"
         android:layout_width="0dp"
         android:layout_height="30dp"
@@ -24,8 +24,8 @@
         android:paddingRight="8dp"
         android:text="Manage"
         android:textAllCaps="false"
-        android:textColor="#00a1a7"
-        android:textSize="17sp"
+        android:textColor="@color/color_ck_accent"
+        android:textSize="@dimen/text_18"
         android:textStyle="bold" />
 
 </LinearLayout>

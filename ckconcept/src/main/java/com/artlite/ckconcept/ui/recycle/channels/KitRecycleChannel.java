@@ -11,6 +11,7 @@ import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
@@ -259,12 +260,12 @@ public class KitRecycleChannel extends BaseObject {
         private ImageView imageGroup;
         private ImageView imageType;
         private View circleNameView;
-        private AppCompatTextView labelShortName;
+        private TextView labelShortName;
         private CircleImageView imageAvatar;
 
-        private AppCompatTextView labelName;
-        private AppCompatTextView labelTime;
-        private AppCompatTextView labelDescription;
+        private TextView labelName;
+        private TextView labelTime;
+        private TextView labelDescription;
 
         private View unreadView;
 
@@ -324,13 +325,13 @@ public class KitRecycleChannel extends BaseObject {
         protected void onLinkInterface() {
             imageType = (ImageView) findViewById(R.id.image_type);
             circleNameView = findViewById(R.id.view_circle_name);
-            labelShortName = (AppCompatTextView) findViewById(R.id.label_short_name);
+            labelShortName = (TextView) findViewById(R.id.label_short_name);
             imageAvatar = (CircleImageView) findViewById(R.id.image_channel_avatar);
             imageGroup = (ImageView) findViewById(R.id.image_group);
-            labelName = (AppCompatTextView) findViewById(R.id.label_channel_name);
-            labelTime = (AppCompatTextView) findViewById(R.id.label_date);
-            labelDescription = (AppCompatTextView) findViewById(R.id.label_last_message);
-            unreadView = (View) findViewById(R.id.view_unread);
+            labelName = (TextView) findViewById(R.id.label_channel_name);
+            labelTime = (TextView) findViewById(R.id.label_date);
+            labelDescription = (TextView) findViewById(R.id.label_last_message);
+            unreadView = findViewById(R.id.view_unread);
         }
 
         /**

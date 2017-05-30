@@ -115,7 +115,7 @@ public class KitDefaultChannelsPresenter extends KitBaseChannelsPresenter {
     @Override
     @ColorRes
     public int getRefreshColorBackground() {
-        return android.R.color.white;
+        return R.color.color_ck_background_channels_view;
     }
 
     /**

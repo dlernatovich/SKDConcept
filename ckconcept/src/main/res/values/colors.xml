@@ -4,10 +4,23 @@
 
     <color name="input_lighter_gray">#ddd</color>
     <color name="input_darker_gray">#aaa</color>
-
     <color name="input_action_button_tint">#607d8b</color>
-
     <color name="input_shadow_end">#30444444</color>
     <color name="input_shadow_center">#07444444</color>
+
+    <!--Backgrounds-->
+    <!--Channels list-->
+    <color name="color_ck_background_channels_list">#ffffff</color>
+    <color name="color_ck_background_channels_view">#ffffff</color>
+    <!--Users list-->
+    <color name="color_ck_background_users_view">#ffffff</color>
+    <color name="color_ck_background_users_list">#ffffff</color>
+    <!--User list divider-->
+    <color name="color_ck_background_users_divider_list">#f7f7f7</color>
+
+
+    <!--Accent color-->
+    <color name="color_ck_accent">#517daa</color>
+
 
 </resources>

@@ -3,6 +3,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/color_ck_background_channels_list"
 
     android:orientation="vertical">
 
@@ -44,9 +45,9 @@
                 android:layout_height="@dimen/dimen_50"
                 android:layout_gravity="center"
                 android:background="@drawable/background_accent_circle"
-                android:backgroundTint="@color/accent">
+                android:backgroundTint="@color/color_ck_accent">
 
-                <android.support.v7.widget.AppCompatTextView
+                <com.artlite.bslibrary.ui.fonted.BSTextView
                     android:id="@+id/label_short_name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -55,7 +56,7 @@
                     android:text="NA"
                     android:textAllCaps="true"
                     android:textColor="@android:color/white"
-                    android:textSize="@dimen/text_16"
+                    android:textSize="@dimen/text_20"
                     android:textStyle="bold" />
 
                 <de.hdodenhof.circleimageview.CircleImageView
@@ -78,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
-                <android.support.v7.widget.AppCompatTextView
+                <com.artlite.bslibrary.ui.fonted.BSTextView
                     android:id="@+id/label_channel_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -86,10 +87,10 @@
                     android:maxLines="2"
                     android:text="Channel name"
                     android:textColor="@android:color/black"
-                    android:textSize="@dimen/text_16"
+                    android:textSize="@dimen/text_20"
                     android:textStyle="bold" />
 
-                <android.support.v7.widget.AppCompatTextView
+                <com.artlite.bslibrary.ui.fonted.BSTextView
                     android:id="@+id/label_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -97,7 +98,7 @@
                     android:layout_marginRight="@dimen/dimen_5"
                     android:text="Yesterday"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="@dimen/text_13" />
+                    android:textSize="@dimen/text_14" />
             </LinearLayout>
 
             <LinearLayout
@@ -108,23 +109,25 @@
                 <ImageView
                     android:id="@+id/image_type"
                     style="@style/styleCropImageCenter"
-                    android:layout_width="@dimen/dimen_15"
-                    android:layout_height="@dimen/dimen_15"
+                    android:layout_width="@dimen/dimen_18"
+                    android:layout_height="@dimen/dimen_18"
                     android:layout_marginRight="@dimen/dimen_5"
                     android:layout_marginTop="@dimen/dimen_2"
                     android:src="@mipmap/ic_ck_message"
-                    android:tint="@color/accent" />
+                    android:tint="@color/color_ck_accent" />
 
-                <android.support.v7.widget.AppCompatTextView
+                <com.artlite.bslibrary.ui.fonted.BSTextView
                     android:id="@+id/label_last_message"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:maxLines="5"
-                    android:minHeight="@dimen/dimen_15"
+                    android:minHeight="@dimen/dimen_18"
                     android:text="Channel description"
                     android:textColor="@android:color/darker_gray"
-                    android:textSize="@dimen/text_13" />
+                    android:textSize="@dimen/text_18" />
+
+
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
