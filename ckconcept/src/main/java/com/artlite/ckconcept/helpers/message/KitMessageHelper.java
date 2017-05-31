@@ -31,6 +31,11 @@ public final class KitMessageHelper {
     private static final String K_TAG_ID = "object/" + ObjectIdentifier.TYPE;
 
     /**
+     * {@link String} constant of the question
+     */
+    private static final String K_TAG_QUESTION = "question";
+
+    /**
      * {@link String} constant of the tag of the checklist
      */
     private static final String K_TAG_CHECKLIST = "object/"
@@ -148,6 +153,8 @@ public final class KitMessageHelper {
                 tagType = content.get(KitMessageTags.FORMAT.getValue());
             } else if (content.containsKey(KitMessageTags.TYPE.getValue())) {
                 tagType = content.get(KitMessageTags.TYPE.getValue());
+            } else if (content.containsKey(K_TAG_QUESTION)) {
+                return KitMessageType.SURVEY;
             }
         }
         final KitMessageType type = KitMessageType.getType(tagType);

@@ -12,6 +12,7 @@
     <string name="text_ck_code">Code</string>
     <string name="text_ch_no_messages">No messages</string>
     <string name="text_ch_checklist">Checklist</string>
+    <string name="text_ck_question">Survey</string>
     <string name="text_ck_error_empty_login">User name or email can\'t be empty</string>
     <string name="text_ck_error_empty_password">Password can\'t be empty</string>
     <string name="text_ck_please_wait">Please wait</string>

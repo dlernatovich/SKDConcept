@@ -21,6 +21,7 @@ public enum KitMessageType {
     VIDEO("video", R.mipmap.ic_ck_video, R.string.text_ck_video),
     POLL("poll", R.mipmap.ic_ck_poll, R.string.text_ck_pool),
     ANSWER("poll", R.mipmap.ic_ck_poll, R.string.text_ck_answer),
+    SURVEY("survey", R.drawable.ic_ck_survey, R.string.text_ck_question),
     CODE("code", R.mipmap.ic_ck_code, R.string.text_ck_code);
 
     /**
