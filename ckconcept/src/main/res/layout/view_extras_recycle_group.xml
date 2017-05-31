@@ -3,7 +3,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="66dp"
-    android:background="@color/color_ck_background_channels_list">
+    android:background="@color/color_ck_background_groups_list">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
                 android:layout_height="50dp"
                 android:layout_gravity="center"
                 android:src="@drawable/user_group_tinted"
-                android:tint="@color/color_ck_accent" />
+                android:tint="@color/color_ck_background_groups_avatar_view" />
         </FrameLayout>
 
         <com.artlite.bslibrary.ui.fonted.BSTextView
@@ -30,7 +30,7 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="User Name"
-            android:textColor="@android:color/black"
+            android:textColor="@color/color_ck_text_groups_name"
             android:textSize="@dimen/text_18"
             android:textStyle="bold" />
 

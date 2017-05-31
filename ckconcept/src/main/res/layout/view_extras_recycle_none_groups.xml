@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="50dp"
-    android:background="@android:color/white"
+    android:background="@color/color_ck_background_no_groups"
     android:orientation="vertical">
 
     <com.artlite.bslibrary.ui.fonted.BSTextView
@@ -10,7 +10,8 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="@string/text_ck_header_no_groups"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="@dimen/text_18" />
+        android:textStyle="bold"
+        android:textColor="@color/color_ck_text_no_groups"
+        android:textSize="@dimen/text_20" />
 
 </LinearLayout>

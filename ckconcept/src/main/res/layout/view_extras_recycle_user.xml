@@ -2,15 +2,15 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/container"
     android:layout_width="match_parent"
-    android:layout_height="66dp"
-    android:background="@android:color/white"
+    android:layout_height="@dimen/dimen_66"
+    android:background="@color/color_ck_background_users_list"
     android:orientation="vertical">
 
     <View
         android:id="@+id/container_selected"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/darker_gray"
+        android:background="@color/color_ck_background_users_highlight_list"
         android:visibility="gone" />
 
     <LinearLayout
@@ -19,33 +19,33 @@
         android:orientation="horizontal">
 
         <FrameLayout
-            android:layout_width="66dp"
+            android:layout_width="@dimen/dimen_66"
             android:layout_height="match_parent"
-            android:layout_margin="8dp">
+            android:layout_margin="@dimen/dimen_8">
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/dimen_50"
+                android:layout_height="@dimen/dimen_50"
                 android:layout_gravity="center"
                 android:src="@drawable/background_blue_circle_cover"
-                android:tint="@color/color_ck_accent" />
+                android:tint="@color/color_ck_background_users_avatar_view" />
 
             <com.artlite.bslibrary.ui.fonted.BSTextView
                 android:id="@+id/label_short_name"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/dimen_50"
+                android:layout_height="@dimen/dimen_50"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:text="NA"
                 android:maxLength="2"
-                android:textColor="@android:color/white"
-                android:textSize="@dimen/text_18"
+                android:text="NA"
+                android:textColor="@color/color_ck_text_users_avatar"
+                android:textSize="@dimen/text_20"
                 android:textStyle="bold" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/image_avatar"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/dimen_50"
+                android:layout_height="@dimen/dimen_50"
                 android:layout_gravity="center" />
         </FrameLayout>
 
@@ -56,8 +56,8 @@
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:text="User Name"
-            android:textColor="@android:color/black"
-            android:textSize="@dimen/text_18" />
+            android:textColor="@color/color_ck_text_users_name"
+            android:textSize="@dimen/text_20" />
 
         <ImageView
             android:id="@+id/image_blocked"
@@ -66,7 +66,7 @@
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/dimen_5"
             android:src="@drawable/ic_block_black_24dp"
-            android:tint="#666666" />
+            android:tint="@color/color_ck_background_users_blocked_view" />
 
     </LinearLayout>
 

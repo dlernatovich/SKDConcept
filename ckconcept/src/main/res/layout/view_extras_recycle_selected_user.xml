@@ -1,32 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
-    android:layout_height="85dp"
-    android:background="@android:color/white"
+    android:layout_height="@dimen/dimen_85"
+    android:background="@color/color_ck_background_users_selected_list"
     android:orientation="vertical"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp">
+    android:paddingLeft="@dimen/dimen_8"
+    android:paddingRight="@dimen/dimen_8">
 
     <FrameLayout
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/dimen_50"
+        android:layout_height="@dimen/dimen_50"
         android:layout_gravity="center_horizontal">
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/background_blue_circle_cover"
-            android:tint="@color/color_ck_accent" />
+            android:tint="@color/color_ck_background_users_selected_avatar_view" />
 
         <com.artlite.bslibrary.ui.fonted.BSTextView
             android:id="@+id/label_short_name"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="NA"
             android:maxLength="2"
-            android:textColor="@android:color/white"
-            android:textSize="@dimen/text_18"
+            android:text="NA"
+            android:textColor="@color/color_ck_text_users_selected_avatar"
+            android:textSize="@dimen/text_20"
             android:textStyle="bold" />
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -42,7 +42,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="Dmitry\nLernatovich"
-        android:textColor="@android:color/black"
+        android:textColor="@color/color_ck_text_users_selected_name"
         android:textSize="@dimen/text_16" />
 
 </LinearLayout>

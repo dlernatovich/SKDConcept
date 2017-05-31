@@ -10,7 +10,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="1px"
+        android:layout_marginBottom="@dimen/dimen_5"
+        android:layout_marginLeft="@dimen/dimen_5"
+        android:layout_marginRight="@dimen/dimen_5"
+        android:layout_marginTop="@dimen/dimen_5"
         android:minHeight="@dimen/dimen_60"
         android:orientation="horizontal">
 
@@ -21,7 +24,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/dimen_5"
             android:background="@drawable/background_accent_circle"
-            android:backgroundTint="@android:color/holo_orange_dark"
+            android:backgroundTint="@color/color_ck_background_channels_unread_view"
             android:minHeight="@dimen/dimen_8"
             android:minWidth="@dimen/dimen_8" />
 
@@ -37,7 +40,7 @@
                 android:layout_gravity="center"
                 android:minHeight="@dimen/dimen_50"
                 android:src="@drawable/user_group_tinted"
-                android:tint="@color/accent" />
+                android:tint="@color/color_ck_background_channels_avatar_view" />
 
             <FrameLayout
                 android:id="@+id/view_circle_name"
@@ -45,7 +48,7 @@
                 android:layout_height="@dimen/dimen_50"
                 android:layout_gravity="center"
                 android:background="@drawable/background_accent_circle"
-                android:backgroundTint="@color/color_ck_accent">
+                android:backgroundTint="@color/color_ck_background_channels_avatar_view">
 
                 <com.artlite.bslibrary.ui.fonted.BSTextView
                     android:id="@+id/label_short_name"
@@ -55,7 +58,7 @@
                     android:maxLength="2"
                     android:text="NA"
                     android:textAllCaps="true"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/color_ck_text_channels_avatar"
                     android:textSize="@dimen/text_20"
                     android:textStyle="bold" />
 
@@ -86,7 +89,7 @@
                     android:layout_weight="1"
                     android:maxLines="2"
                     android:text="Channel name"
-                    android:textColor="@android:color/black"
+                    android:textColor="@color/color_ck_text_channels_name"
                     android:textSize="@dimen/text_20"
                     android:textStyle="bold" />
 
@@ -97,7 +100,7 @@
                     android:layout_marginLeft="@dimen/dimen_5"
                     android:layout_marginRight="@dimen/dimen_5"
                     android:text="Yesterday"
-                    android:textColor="@android:color/darker_gray"
+                    android:textColor="@color/color_ck_text_channels_time"
                     android:textSize="@dimen/text_14" />
             </LinearLayout>
 
@@ -114,7 +117,7 @@
                     android:layout_marginRight="@dimen/dimen_5"
                     android:layout_marginTop="@dimen/dimen_2"
                     android:src="@mipmap/ic_ck_message"
-                    android:tint="@color/color_ck_accent" />
+                    android:tint="@color/color_ck_background_channels_type_view" />
 
                 <com.artlite.bslibrary.ui.fonted.BSTextView
                     android:id="@+id/label_last_message"
@@ -124,7 +127,7 @@
                     android:maxLines="5"
                     android:minHeight="@dimen/dimen_18"
                     android:text="Channel description"
-                    android:textColor="@android:color/darker_gray"
+                    android:textColor="@color/color_ck_text_channels_description"
                     android:textSize="@dimen/text_18" />
 
 
@@ -136,5 +139,5 @@
         android:layout_width="match_parent"
         android:layout_height="1px"
         android:layout_gravity="bottom"
-        android:background="@android:color/darker_gray" />
+        android:background="@color/color_ck_text_channels_divider" />
 </FrameLayout>

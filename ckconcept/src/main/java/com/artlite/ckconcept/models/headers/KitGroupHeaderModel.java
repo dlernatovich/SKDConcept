@@ -14,6 +14,6 @@ public class KitGroupHeaderModel {
      * {@link Integer} value of the text
      */
     @StringRes
-    private final int text = R.string.text_ck_header_groups;
+    private final int text = R.string.text_ck_groups;
 
 }

@@ -1,14 +1,15 @@
 package com.artlite.ckconcept.ui.recycle.users;
 
 import android.content.Context;
+import android.os.Parcel;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.AppCompatTextView;
 import android.text.Html;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
@@ -30,11 +31,31 @@ import de.hdodenhof.circleimageview.CircleImageView;
  */
 
 public class KitRecycleUser extends BaseObject {
+
+    /**
+     * {@link Integer} value of the layout Id
+     */
     @LayoutRes
     private final int layoutID;
+
+    /**
+     * Instance of the {@link MaxCoreUserHelper.UpdateAvatarMethod}
+     */
     private final MaxCoreUserHelper.UpdateAvatarMethod avatarMethod;
+
+    /**
+     * {@link WeakReference} of the {@link User}
+     */
     private final WeakReference<User> user;
+
+    /**
+     * {@link Boolean} value if need blocked user icon
+     */
     private final boolean isNeedBlockedIcon;
+
+    /**
+     * {@link Boolean} value if the {@link User} is selected
+     */
     private boolean isSelected = false;
 
     /**
@@ -87,15 +108,45 @@ public class KitRecycleUser extends BaseObject {
         this.isNeedBlockedIcon = isNeedBlockedIcon;
     }
 
+    /**
+     * Constructor which provide the create the {@link KitRecycleUser} from the instance
+     * of the {@link Parcel}
+     *
+     * @param parcel instance of the {@link Parcel}
+     */
+    protected KitRecycleUser(Parcel parcel) {
+        super(parcel);
+        this.layoutID = parcel.readInt();
+        int tmpAvatarMethod = parcel.readInt();
+        this.avatarMethod = tmpAvatarMethod == -1
+                ? MaxCoreUserHelper.UpdateAvatarMethod.ALL :
+                MaxCoreUserHelper.UpdateAvatarMethod.values()[tmpAvatarMethod];
+        final User user = parcel.readParcelable(User.class.getClassLoader());
+        if (user != null) {
+            this.user = new WeakReference<User>(user);
+        } else {
+            this.user = null;
+        }
+        this.isNeedBlockedIcon = parcel.readByte() != 0;
+        this.isSelected = parcel.readByte() != 0;
+    }
+
+    /**
+     * Method which provide the getting of the {@link BaseRecyclerItem}
+     * for the {@link KitRecycleUser}
+     *
+     * @param context instance of {@link Context}
+     * @return instance of the {@link BaseRecyclerItem}
+     */
     @Override
     public BaseRecyclerItem getRecyclerItem(@NonNull Context context) {
-        return new ItemView(context);
+        return new RecycleItemView(context);
     }
 
     /**
      * Method which provide the user getting
      *
-     * @return user for return
+     * @return instance of the {@link User}
      */
     @Nullable
     public User getUser() {
@@ -128,40 +179,105 @@ public class KitRecycleUser extends BaseObject {
     }
 
     /**
-     * View class
+     * Method which provide the writing of the {@link KitRecycleUser} to parcel
+     *
+     * @param parcel instance of the {@link Parcel}
+     * @param flags  {@link Integer} value of the flags
      */
-    private final class ItemView extends BaseRecyclerItem<KitRecycleUser> {
+    @Override
+    public void writeToParcel(Parcel parcel, int flags) {
+        super.writeToParcel(parcel, flags);
+        parcel.writeInt(this.layoutID);
+        parcel.writeInt(this.avatarMethod == null ? -1 : this.avatarMethod.ordinal());
+        parcel.writeParcelable(getUser(), flags);
+        parcel.writeByte(this.isNeedBlockedIcon ? (byte) 1 : (byte) 0);
+        parcel.writeByte(this.isSelected ? (byte) 1 : (byte) 0);
+    }
 
-        private View container;
-        private View selectedContainer;
-        private AppCompatTextView avatar;
-        private AppCompatTextView labelUseName;
-        private CircleImageView circleImageView;
-        private ImageView imageBlocked;
-
-        public ItemView(Context context) {
-            super(context);
+    /**
+     * Instance of the {@link Creator}
+     */
+    public static final Creator<KitRecycleUser> CREATOR = new Creator<KitRecycleUser>() {
+        @Override
+        public KitRecycleUser createFromParcel(Parcel source) {
+            return new KitRecycleUser(source);
         }
 
         @Override
+        public KitRecycleUser[] newArray(int size) {
+            return new KitRecycleUser[size];
+        }
+    };
+
+    /**
+     * Class which provide the recycle logic for the {@link KitRecycleUser}
+     */
+    private final class RecycleItemView extends BaseRecyclerItem<KitRecycleUser> {
+
+        /**
+         * Instance of the {@link View}
+         */
+        private View container;
+
+        /**
+         * Instance of the selected {@link View}
+         */
+        private View selectedContainer;
+
+        /**
+         * Instance of the {@link TextView}
+         */
+        private TextView avatar;
+
+        /**
+         * Instance of the {@link TextView}
+         */
+        private TextView labelUseName;
+
+        /**
+         * Instance of the {@link CircleImageView}
+         */
+        private CircleImageView circleImageView;
+
+        /**
+         * Instance of the {@link ImageView}
+         */
+        private ImageView imageBlocked;
+
+        /**
+         * Constructor which provide the create {@link RecycleItemView} from the instance
+         * of the {@link Context}
+         *
+         * @param context instance of {@link Context}
+         */
+        public RecycleItemView(Context context) {
+            super(context);
+        }
+
+        /**
+         * Method which provide the setting up of the {@link RecycleItemView}
+         *
+         * @param recycleUser instance of the {@link KitRecycleUser}
+         */
+        @Override
         public void setUp(@NonNull KitRecycleUser recycleUser) {
             final User user = recycleUser.user.get();
-            String fistrName = "Not";
+            String firstName = "Not";
             String lastName = "Available";
             String url = null;
             setUserSelected(recycleUser.isSelected);
             if (user != null) {
                 if (user.getFirstName() != null) {
-                    fistrName = user.getFirstName();
+                    firstName = user.getFirstName();
                 }
                 if (user.getLastName() != null) {
                     lastName = user.getLastName();
                 }
                 url = user.generateAvatarUrl(user, avatarMethod);
             }
-            String userName = String.format("%s <b>%s</b>", fistrName, lastName);
+            String userName = String.format("%s <b>%s</b>", firstName, lastName);
             labelUseName.setText(Html.fromHtml(userName));
-            avatar.setText(KitUserNameHelper.getShortName(String.format("%s %s", fistrName, lastName)));
+            avatar.setText(KitUserNameHelper.getShortName(String.format("%s %s", firstName, lastName)));
 
             if (url != null) {
                 Glide.with(getContext())
@@ -180,21 +296,33 @@ public class KitRecycleUser extends BaseObject {
 
         }
 
+        /**
+         * Method which provide the {@link Integer} value of the layout Id for the
+         * instance of the {@link RecycleItemView}
+         *
+         * @return {@link Integer} value of the layout Id
+         */
         @Override
         protected int getLayoutId() {
             return layoutID;
         }
 
+        /**
+         * Method which provide the interface linking
+         */
         @Override
         protected void onLinkInterface() {
             container = findViewById(R.id.container);
             selectedContainer = findViewById(R.id.container_selected);
-            avatar = (AppCompatTextView) findViewById(R.id.label_short_name);
-            labelUseName = (AppCompatTextView) findViewById(R.id.label_user_name);
+            avatar = (TextView) findViewById(R.id.label_short_name);
+            labelUseName = (TextView) findViewById(R.id.label_user_name);
             circleImageView = (CircleImageView) findViewById(R.id.image_avatar);
             imageBlocked = (ImageView) findViewById(R.id.image_blocked);
         }
 
+        /**
+         * Method which provide the action for create view action
+         */
         @Override
         protected void onCreateView() {
         }
