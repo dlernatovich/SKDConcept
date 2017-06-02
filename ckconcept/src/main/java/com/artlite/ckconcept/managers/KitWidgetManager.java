@@ -14,8 +14,10 @@ import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.factories.OnKitCreatorFactory;
 import com.artlite.ckconcept.helpers.name.KitNameHelper;
 import com.artlite.ckconcept.models.define.KitBaseDefiner;
+import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.models.widget.KitWidgetModel;
+import com.artlite.ckconcept.widget.KitListNotSupport;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,6 +51,11 @@ public final class KitWidgetManager extends BSBaseManager {
      * Instance of the {@link Map}
      */
     private Map<Class, List<KitBaseDefiner>> definers;
+
+    /**
+     * Instance of the {@link KitBaseListObject}
+     */
+    private KitBaseListObject widgetNoSupport;
 
     /**
      * Method which provide the initialization of {@link KitWidgetManager}
@@ -448,7 +455,7 @@ public final class KitWidgetManager extends BSBaseManager {
                 return widget.getViewList(object);
             }
         }
-        return null;
+        return getWidgetNoSupport();
     }
 
     //==============================================================================================
@@ -540,5 +547,35 @@ public final class KitWidgetManager extends BSBaseManager {
             }
         }
         return new ArrayList<>();
+    }
+
+    /**
+     * Method which provide the getting of the list item for widgets that isn't support
+     *
+     * @return instance of the {@link KitBaseListObject}
+     */
+    private static KitBaseListObject getWidgetNoSupport() {
+        KitBaseListObject result = null;
+        if (instance != null) {
+            if (instance.widgetNoSupport == null) {
+                instance.widgetNoSupport = new KitListNotSupport();
+            } else {
+                result = instance.widgetNoSupport;
+            }
+        } else {
+            result = new KitListNotSupport();
+        }
+        return result;
+    }
+
+    /**
+     * Method which provide the setting of the list item for widgets that isn't support
+     *
+     * @param object instance of the {@link KitBaseListObject}
+     */
+    public static void setWidgetNoSupport(@Nullable final KitBaseListObject object) {
+        if (instance != null) {
+            instance.widgetNoSupport = object;
+        }
     }
 }

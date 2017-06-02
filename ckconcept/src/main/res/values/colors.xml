@@ -8,11 +8,8 @@
     <color name="input_shadow_end">#30444444</color>
     <color name="input_shadow_center">#07444444</color>
 
-    <!--Users list-->
-    <!--User list divider-->
-
     <!--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
-    <!--Main colors for fast customization-->
+    <!--MAIN COLORS FOR FAST CUSTOMIZATION-->
     <!--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
 
     <!--Accent color-->
@@ -39,7 +36,7 @@
     <!--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
 
     <!--\\\\\\\\\\\\\\\\\\-->
-    <!--Channels list view-->
+    <!--CHANNELS LIST VIEW-->
     <!--\\\\\\\\\\\\\\\\\\-->
 
     <!--Backgrounds-->
@@ -57,7 +54,7 @@
     <color name="color_ck_text_channels_divider">@color/color_ck_list_line</color>
 
     <!--\\\\\\\\\\\\\\\\-->
-    <!--Groups list view-->
+    <!--GROUPS LIST VIEW-->
     <!--\\\\\\\\\\\\\\\\-->
 
     <!--Backgrounds-->
@@ -73,7 +70,7 @@
     <color name="color_ck_text_no_groups">@color/color_ck_text_description</color>
 
     <!--\\\\\\\\\\\\\\\-->
-    <!--Users list view-->
+    <!--USERS LIST VIEW-->
     <!--\\\\\\\\\\\\\\\-->
 
     <!--Backgrounds-->
@@ -98,5 +95,13 @@
     <color name="color_ck_background_alphabetic_background">@color/color_ck_header_divider</color>
     <!--Text colors-->
     <color name="color_ck_text_alphabetic">#757575</color>
+
+    <!--\\\\\\\\\-->
+    <!--CHAT VIEW-->
+    <!--\\\\\\\\\-->
+
+    <!--Backgrounds-->
+    <color name="color_ck_background_chat_input_background">@color/color_ck_background</color>
+
 
 </resources>

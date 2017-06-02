@@ -179,7 +179,8 @@ public class KitInputMsgView extends FrameLayout {
     }
 
     private void updateSendButtonState(boolean enable) {
-        if ((enable && sendEnabled.getVisibility() == VISIBLE) || (!enable && sendDisabled.getVisibility() == VISIBLE)) {
+        if ((enable && sendEnabled.getVisibility() == VISIBLE)
+                || (!enable && sendDisabled.getVisibility() == VISIBLE)) {
             // Already in correct state
             return;
         }

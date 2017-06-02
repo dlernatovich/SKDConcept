@@ -3,8 +3,10 @@ package com.artlite.skdconcept.core;
 import android.app.Application;
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.artlite.ckconcept.core.KitApplication;
+import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.skdconcept.R;
 
 /**
@@ -42,5 +44,16 @@ public class CurrentApplication extends KitApplication {
     @Override
     protected int getMagnetConfiguration() {
         return R.raw.iapprove;
+    }
+
+    /**
+     * Method which provide the getting of the list item for widgets that isn't support
+     *
+     * @return instance of the {@link KitBaseListObject}
+     */
+    @Nullable
+    @Override
+    protected KitBaseListObject getWidgetNoSupport() {
+        return null;
     }
 }

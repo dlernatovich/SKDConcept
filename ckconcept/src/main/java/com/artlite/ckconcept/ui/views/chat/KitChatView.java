@@ -16,6 +16,8 @@ import com.artlite.ckconcept.R;
 import com.artlite.ckconcept.mvp.abs.view.KitBaseWidgetView;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
 import com.artlite.ckconcept.mvp.presenters.KitChatPresenter;
+import com.magnet.mmx.client.api.ChannelDetail;
+import com.magnet.mmx.client.api.MMXChannel;
 
 /**
  * Class which provide the interface of chat
@@ -32,6 +34,11 @@ public class KitChatView extends KitBaseWidgetView {
      * Instance of {@link AdapteredView}
      */
     private AdapteredView recycleView;
+
+    /**
+     * Instance of the {@link MMXChannel}
+     */
+    private MMXChannel channel;
 
     /**
      * Constructor which provide the create {@link BSView} from
@@ -134,7 +141,7 @@ public class KitChatView extends KitBaseWidgetView {
     @NonNull
     @Override
     public RecyclerView.LayoutManager getLayoutManager(@NonNull Context context) {
-        return new GridLayoutManager(context, 1);
+        return new GridLayoutManager(context, 1, VERTICAL, true);
     }
 
     /**
@@ -145,7 +152,7 @@ public class KitChatView extends KitBaseWidgetView {
      */
     @Override
     public boolean isNeedSwipeRefresh() {
-        return true;
+        return false;
     }
 
     /**
@@ -192,5 +199,38 @@ public class KitChatView extends KitBaseWidgetView {
     @Override
     public void onServerError(@NonNull Context context, int offset, @NonNull Throwable error) {
 
+    }
+
+    /**
+     * Method which provide the setting of the {@link MMXChannel} id
+     *
+     * @param channelId {@link String} value of the {@link MMXChannel} Id
+     */
+    public void setChannelId(@Nullable final String channelId) {
+        if (presenter != null) {
+            presenter.setChannelId(getContext(), channelId, this);
+        }
+    }
+
+    /**
+     * Method which provide the setting of the instance of the {@link MMXChannel}
+     *
+     * @param channel instance of the {@link MMXChannel}
+     */
+    public void setChannel(@Nullable final MMXChannel channel) {
+        if (presenter != null) {
+            presenter.setChannel(getContext(), channel, this);
+        }
+    }
+
+    /**
+     * Method which provide the setting of the instance of the {@link MMXChannel}
+     *
+     * @param channel instance of the {@link ChannelDetail}
+     */
+    public void setChannel(@Nullable final ChannelDetail channel) {
+        if (channel != null) {
+            setChannel(channel.getChannel());
+        }
     }
 }

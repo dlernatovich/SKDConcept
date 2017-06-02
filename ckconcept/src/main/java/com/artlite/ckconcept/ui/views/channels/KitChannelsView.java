@@ -10,6 +10,25 @@ import com.artlite.ckconcept.ui.abs.channels.KitBaseChannelsView;
 
 
 /**
+ * <h1>How to use</h1>
+ * <code>
+ *
+ * @Override protected void onCreateActivity(@Nullable Bundle bundle) {
+ * setTitle("Conversations");
+ * channelsView.setOnChannelClickListener(this);
+ * }
+ * ...
+ * @Override protected void onResume() {
+ * super.onResume();
+ * channelsView.onResumeView();
+ * }
+ * ...
+ * @Override protected void onDestroy() {
+ * channelsView.onDestroyView();
+ * super.onDestroy();
+ * }
+ * <p>
+ * </code>
  * Created by dlernatovich on 11/18/2016.
  */
 

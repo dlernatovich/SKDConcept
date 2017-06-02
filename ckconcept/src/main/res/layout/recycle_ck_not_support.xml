@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimen_5"
+    android:background="@drawable/background_round_gray"
+    android:gravity="center"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:layout_width="@dimen/dimen_30"
+        android:layout_height="@dimen/dimen_30"
+        android:src="@mipmap/ic_ck_unknown"
+        android:tint="@color/accent" />
+
+    <com.artlite.bslibrary.ui.fonted.BSTextView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/dimen_5"
+        android:gravity="center_vertical"
+        android:text="@string/text_ck_widget_not_support"
+        android:textColor="@color/accent"
+        android:textSize="@dimen/text_18"
+        android:textStyle="bold" />
+
+</LinearLayout>

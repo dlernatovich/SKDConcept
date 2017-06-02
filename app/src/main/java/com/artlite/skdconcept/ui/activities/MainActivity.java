@@ -7,6 +7,7 @@ import android.support.v7.app.ActionBar;
 import android.view.MenuItem;
 
 import com.artlite.bslibrary.annotations.FindViewBy;
+import com.artlite.bslibrary.managers.BSTransferManager;
 import com.artlite.bslibrary.ui.activity.BSActivity;
 import com.artlite.ckconcept.mvp.contracts.KitChannelsContract;
 import com.artlite.ckconcept.ui.views.channels.KitChannelsView;
@@ -68,6 +69,24 @@ public class MainActivity extends BSActivity implements KitChannelsContract.OnCh
     }
 
     /**
+     * Method which provide the action when {@link android.app.Activity} is resume
+     */
+    @Override
+    protected void onResume() {
+        super.onResume();
+        channelsView.onResumeView();
+    }
+
+    /**
+     * Method which provide the action when {@link android.app.Activity} is destroy
+     */
+    @Override
+    protected void onDestroy() {
+        channelsView.onDestroyView();
+        super.onDestroy();
+    }
+
+    /**
      * Method which provide the defining if need to override of the transition animation
      *
      * @return defining results
@@ -94,6 +113,7 @@ public class MainActivity extends BSActivity implements KitChannelsContract.OnCh
      */
     @Override
     public void onChannelClick(@NonNull ChannelDetail channel) {
+        BSTransferManager.put(DetailsActivity.class, channel);
         startActivity(DetailsActivity.class);
     }
 

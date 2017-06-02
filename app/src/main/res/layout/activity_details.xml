@@ -5,10 +5,9 @@
     android:layout_height="match_parent"
     tools:context="com.artlite.skdconcept.ui.activities.DetailsActivity">
 
-    <com.artlite.bslibrary.ui.fonted.BSTextView
+    <com.artlite.ckconcept.ui.views.chat.KitChatView
+        android:id="@+id/view_chat"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="Details activity" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

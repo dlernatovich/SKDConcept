@@ -24,7 +24,6 @@ import java.util.List;
  * Contract which provide the functional for channel views
  *
  * @see {@link com.magnet.mmx.client.api.MMXChannel}
- * Created by dlernatovich on 11/17/2016.
  */
 
 public interface KitChannelsContract {
@@ -34,7 +33,7 @@ public interface KitChannelsContract {
      *
      * @see KitBaseChannelsView
      */
-    RecycleEvent LONG_CLICK_EVENT = new RecycleEvent(0);
+    RecycleEvent K_LONG_CLICK_EVENT = new RecycleEvent("KitChannelsContract:LongClick");
 
     /**
      * Listener which provide the perform actions when channel is clicking

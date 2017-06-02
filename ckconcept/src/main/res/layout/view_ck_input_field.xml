@@ -3,6 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/dimen_5"
+    android:layout_marginRight="@dimen/dimen_5"
+    android:layout_marginTop="@dimen/dimen_5"
+    android:background="@color/color_ck_background_chat_input_background"
     android:orientation="horizontal">
 
     <LinearLayout
@@ -10,18 +14,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginLeft="4dp"
+        android:layout_marginLeft="@dimen/dimen_5"
         android:orientation="horizontal" />
 
     <EditText
         android:id="@+id/input_edit_text"
-        android:background="@android:color/transparent"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="4dp"
         android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_gravity="center"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/dimen_5"
+        android:layout_marginRight="@dimen/dimen_5"
+        android:layout_weight="1"
+        android:textColor="@android:color/black"
+        android:background="@drawable/background_round_gray"
         android:hint="@string/text_ck_input_prompt_message"
         android:inputType="textCapSentences|textShortMessage|textImeMultiLine|textMultiLine" />
 
@@ -30,13 +35,13 @@
         android:layout_height="wrap_content">
 
         <android.support.design.widget.FloatingActionButton
-            android:visibility="invisible"
             android:id="@+id/input_send_enabled"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:src="@drawable/ic_input_send"
             android:tint="@android:color/white"
+            android:visibility="invisible"
             app:fabSize="mini" />
 
         <android.support.design.widget.FloatingActionButton

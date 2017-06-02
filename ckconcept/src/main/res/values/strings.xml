@@ -22,4 +22,5 @@
     <!--Input Messages View-->
     <string name="text_ck_input_prompt_message">Write a message</string>
     <string name="text_ck_manage">Manage</string>
+    <string name="text_ck_widget_not_support">This widget isn\'t support</string>
 </resources>

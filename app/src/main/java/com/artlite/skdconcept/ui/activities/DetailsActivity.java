@@ -4,10 +4,25 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 
+import com.artlite.bslibrary.annotations.FindViewBy;
+import com.artlite.bslibrary.managers.BSTransferManager;
 import com.artlite.bslibrary.ui.activity.BSActivity;
+import com.artlite.ckconcept.ui.views.chat.KitChatView;
 import com.artlite.skdconcept.R;
+import com.magnet.mmx.client.api.ChannelDetail;
 
 public class DetailsActivity extends BSActivity {
+
+    /**
+     * Instance of the {@link ChannelDetail}
+     */
+    private ChannelDetail channel;
+
+    /**
+     * Instance of the {@link KitChatView}
+     */
+    @FindViewBy(id = R.id.view_chat)
+    private KitChatView chatView;
 
     /**
      * Method which provide the getting of the layout ID for the current Activity
@@ -27,6 +42,8 @@ public class DetailsActivity extends BSActivity {
     @Override
     protected void onCreateActivity(@Nullable Bundle bundle) {
         setTitle("Conversation details");
+        channel = BSTransferManager.get(this);
+        chatView.setChannel(channel);
     }
 
     /**

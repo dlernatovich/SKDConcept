@@ -13,11 +13,11 @@ import com.artlite.adapteredrecyclerview.events.RecycleEvent;
 import com.artlite.bslibrary.managers.BSThreadManager;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.R;
+import com.artlite.ckconcept.callbacks.OnKitMessagesCallback;
 import com.artlite.ckconcept.managers.KitChannelsCacheManager;
 import com.artlite.ckconcept.mvp.contracts.KitChannelsContract;
 import com.artlite.ckconcept.ui.recycle.channels.KitRecycleChannel;
 import com.magnet.mmx.client.api.ChannelDetail;
-import com.magnet.mmx.client.api.MMX;
 import com.magnet.mmx.client.api.MMXChannel;
 import com.magnet.mmx.client.api.MMXMessage;
 
@@ -31,11 +31,29 @@ import java.util.List;
 
 public abstract class KitBaseChannelsView extends BSView {
 
+    /**
+     * {@link List} of the {@link ChannelDetail}
+     */
     protected final List<ChannelDetail> channels = new ArrayList<>();
 
+    /**
+     * Instance of the {@link AdapteredView}
+     */
     protected AdapteredView recycleView;
+
+    /**
+     * Instance of the {@link KitChannelsContract.OnChannelClickListener}
+     */
     protected KitChannelsContract.OnChannelClickListener onChannelClickListener;
-    protected boolean isUpdaingProgress = false;
+
+    /**
+     * {@link Boolean} value of the updating progress
+     */
+    protected boolean isUpdatingProgress = false;
+
+    /**
+     * Instance of the {@link OnChannelsViewListener}
+     */
     protected OnChannelsViewListener channelsViewListener;
 
     /**
@@ -102,8 +120,6 @@ public abstract class KitBaseChannelsView extends BSView {
             recycleView.setRefreshColoursRes(presenter.getRefreshColorBackground(),
                     presenter.getRefreshColor());
         }
-
-        MMX.registerListener(eventListener);
     }
 
     /**
@@ -161,6 +177,15 @@ public abstract class KitBaseChannelsView extends BSView {
      */
     public void onResumeView() {
         updateChannelsListFromCache();
+    }
+
+    /**
+     * Method which provide the action when {@link android.view.View} is destroying
+     */
+    public void onDestroyView() {
+        if (eventListener != null) {
+            eventListener.unregister();
+        }
     }
 
     /**
@@ -365,11 +390,11 @@ public abstract class KitBaseChannelsView extends BSView {
     /**
      * MMX event listener
      */
-    private final MMX.EventListener eventListener = new MMX.EventListener() {
+    private final OnKitMessagesCallback eventListener = new OnKitMessagesCallback() {
         @Override
         public boolean onMessageReceived(MMXMessage message) {
-            if (isUpdaingProgress == false) {
-                isUpdaingProgress = true;
+            if (isUpdatingProgress == false) {
+                isUpdatingProgress = true;
                 synchronized (message) {
                     if ((message != null) &&
                             (message.getChannel() != null)) {
@@ -407,7 +432,7 @@ public abstract class KitBaseChannelsView extends BSView {
      * @param channels channels for set
      */
     public void setViewChannels(@Nullable final List<ChannelDetail> channels) {
-        isUpdaingProgress = false;
+        isUpdatingProgress = false;
         synchronized (this.channels) {
             if (channels != null) {
                 this.channels.clear();
