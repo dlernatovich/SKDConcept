@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 
 import com.artlite.ckconcept.constants.KitMessageTags;
 import com.artlite.ckconcept.constants.KitMessageType;
+import com.magnet.max.android.User;
 import com.magnet.mmx.client.api.MMXMessage;
 import com.magnet.mmx.client.ext.ObjectIdentifier;
 import com.magnet.mmx.client.ext.poll.MMXChecklist;
@@ -162,5 +163,22 @@ public final class KitMessageHelper {
             return KitMessageType.getType(message);
         }
         return type;
+    }
+
+    /**
+     * Method which provide the checking if the current {@link MMXMessage} is my
+     *
+     * @param message instance of the {@link MMXMessage}
+     * @return checking value
+     */
+    public static boolean isMy(@Nullable final MMXMessage message) {
+        final String currentId = User.getCurrentUserId();
+        if ((message != null) && (currentId != null) && (message.getSender() != null)) {
+            final String senderId = message.getSender().getUserIdentifier();
+            if (senderId != null) {
+                return currentId.equals(senderId);
+            }
+        }
+        return false;
     }
 }

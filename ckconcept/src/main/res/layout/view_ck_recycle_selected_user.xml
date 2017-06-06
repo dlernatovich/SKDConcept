@@ -15,7 +15,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/background_blue_circle_cover"
+            android:src="@drawable/bg_ck_blue_circle_cover"
             android:tint="@color/color_ck_background_users_selected_avatar_view" />
 
         <com.artlite.bslibrary.ui.fonted.BSTextView

@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="@dimen/dimen_185"
     android:layout_margin="@dimen/dimen_10"
-    android:background="@drawable/background_round_gray"
+    android:background="@drawable/bg_ck_round_gray"
     android:orientation="vertical">
 
     <com.artlite.adapteredrecyclerview.core.AdapteredView

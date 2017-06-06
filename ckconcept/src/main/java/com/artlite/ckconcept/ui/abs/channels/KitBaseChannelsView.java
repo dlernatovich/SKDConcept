@@ -93,7 +93,7 @@ public abstract class KitBaseChannelsView extends BSView {
      */
     @Override
     protected int getLayoutId() {
-        return R.layout.view_extras_channels;
+        return R.layout.view_ck_channels;
     }
 
     /**

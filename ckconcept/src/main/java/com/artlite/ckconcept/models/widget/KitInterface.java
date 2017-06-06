@@ -65,13 +65,6 @@ interface KitInterface<T> {
     @Nullable
     KitBaseListObject getViewList(@Nullable final Parcelable object);
 
-    /**
-     * Method which provide the checking if widget need to have of the create view
-     *
-     * @return checking if widget need to have of the create view
-     */
-    boolean isNeedListView();
-
     //==============================================================================================
     //                                     APPLY
     //==============================================================================================

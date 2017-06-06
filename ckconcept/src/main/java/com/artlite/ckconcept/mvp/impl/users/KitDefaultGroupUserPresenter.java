@@ -28,7 +28,7 @@ public class KitDefaultGroupUserPresenter extends KitBaseGroupUserPresenter {
      */
     @Override
     public int getGroupHeaderLayout() {
-        return R.layout.view_extras_recycle_group_header;
+        return R.layout.view_ck_recycle_group_header;
     }
 
     /**
@@ -38,7 +38,7 @@ public class KitDefaultGroupUserPresenter extends KitBaseGroupUserPresenter {
      */
     @Override
     public int getNoGroupsLayout() {
-        return R.layout.view_extras_recycle_none_groups;
+        return R.layout.view_ck_recycle_none_groups;
     }
 
     /**
@@ -54,7 +54,7 @@ public class KitDefaultGroupUserPresenter extends KitBaseGroupUserPresenter {
      */
     @Override
     public int getUserLayout() {
-        return R.layout.view_extras_recycle_user;
+        return R.layout.view_ck_recycle_user;
     }
 
     /**
@@ -67,7 +67,7 @@ public class KitDefaultGroupUserPresenter extends KitBaseGroupUserPresenter {
      */
     @Override
     public int getAlphabeticDividerLayout() {
-        return R.layout.view_extras_recycle_alphabetic_divider;
+        return R.layout.view_ck_recycle_alphabetic_divider;
     }
 
     /**
@@ -84,7 +84,7 @@ public class KitDefaultGroupUserPresenter extends KitBaseGroupUserPresenter {
      */
     @Override
     public int getSelectedUserLayout() {
-        return R.layout.view_extras_recycle_selected_user;
+        return R.layout.view_ck_recycle_selected_user;
     }
 
     /**
@@ -106,7 +106,7 @@ public class KitDefaultGroupUserPresenter extends KitBaseGroupUserPresenter {
      */
     @Override
     public int getGroupLayout() {
-        return R.layout.view_extras_recycle_group;
+        return R.layout.view_ck_recycle_group;
     }
 
     /**

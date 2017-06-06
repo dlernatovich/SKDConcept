@@ -43,7 +43,7 @@ public abstract class KitBaseGroupUserView extends KitBaseGroupUserView_View {
 
     @Override
     protected int getLayoutId() {
-        return R.layout.view_extras_user_list;
+        return R.layout.view_ck_user_list;
     }
 
     protected void onLinkInterface() {

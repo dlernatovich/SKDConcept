@@ -14,7 +14,7 @@
             android:id="@+id/edit_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_round_gray"
+            android:background="@drawable/bg_ck_round_gray"
             android:hint="User name or Email"
             android:lines="1"
             android:text=""
@@ -30,7 +30,7 @@
             android:id="@+id/edit_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_round_gray"
+            android:background="@drawable/bg_ck_round_gray"
             android:hint="Password"
             android:inputType="textPassword"
             android:lines="1"
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/dimen_5"
-            android:background="@drawable/background_round_gray_transparent"
+            android:background="@drawable/bg_ck_round_gray_transparent"
             android:gravity="center"
             android:orientation="horizontal">
 

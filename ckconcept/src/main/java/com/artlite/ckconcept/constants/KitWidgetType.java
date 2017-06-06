@@ -7,7 +7,9 @@ import android.support.annotation.NonNull;
  */
 
 public enum KitWidgetType {
-    CHANNEL(createName("Channel"));
+    CHANNEL(createName("Channel")),
+    MESSAGE_MY_TEXT(createName("Message_My_Text")),
+    MESSAGE_OTHER_TEXT(createName("Message_Other_Text"));
 
     /**
      * {@link String} constants of the prefix for the {@link KitWidgetType}

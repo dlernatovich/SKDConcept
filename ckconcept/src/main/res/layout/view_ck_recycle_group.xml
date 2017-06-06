@@ -19,7 +19,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:src="@drawable/user_group_tinted"
+                android:src="@drawable/ic_ck_user_group_tinted"
                 android:tint="@color/color_ck_background_groups_avatar_view" />
         </FrameLayout>
 

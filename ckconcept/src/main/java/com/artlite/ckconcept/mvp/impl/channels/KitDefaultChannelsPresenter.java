@@ -33,7 +33,7 @@ public class KitDefaultChannelsPresenter extends KitBaseChannelsPresenter {
      */
     @Override
     public int getChannelLayout() {
-        return R.layout.view_extras_recycle_channel;
+        return R.layout.view_ck_recycle_channel;
     }
 
     /**

@@ -33,8 +33,13 @@ public abstract class KitApplication extends Application {
         BSLogHelper.log(this, "onCreate", null, "Application: KitApplication is initialized");
         //Init widget manager
         KitWidgetManager.init(getContext());
-        KitWidgetManager.setWidgetNoSupport(getWidgetNoSupport());
+        //Register unsupported message views
+        KitWidgetManager.setUnsupported(getWidgetUnsupported());
+        KitWidgetManager.setMessageUnsupportedMy(getMessageUnsupportedMy());
+        KitWidgetManager.setMessageUnsupportedOther(getMessageUnsupportedOther());
+        //Init Magnet Max
         Max.init(getContext(), new MaxAndroidPropertiesConfig(this, getMagnetConfiguration()));
+        //Register the widgets
         registerWidgets();
     }
 
@@ -66,5 +71,22 @@ public abstract class KitApplication extends Application {
      * @return instance of the {@link KitBaseListObject}
      */
     @Nullable
-    protected abstract KitBaseListObject getWidgetNoSupport();
+    protected abstract KitBaseListObject getWidgetUnsupported();
+
+    /**
+     * Method which provide the getting of the list item for my message widgets that isn't support
+     *
+     * @return instance of the {@link KitBaseListObject}
+     */
+    @Nullable
+    protected abstract KitBaseListObject getMessageUnsupportedMy();
+
+    /**
+     * Method which provide the getting of the list item for other message widgets that
+     * isn't support
+     *
+     * @return instance of the {@link KitBaseListObject}
+     */
+    @Nullable
+    protected abstract KitBaseListObject getMessageUnsupportedOther();
 }

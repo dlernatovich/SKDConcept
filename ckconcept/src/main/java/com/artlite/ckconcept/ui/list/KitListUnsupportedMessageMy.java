@@ -1,4 +1,4 @@
-package com.artlite.ckconcept.widget;
+package com.artlite.ckconcept.ui.list;
 
 import android.content.Context;
 import android.os.Parcel;
@@ -13,13 +13,13 @@ import com.artlite.ckconcept.models.list.KitBaseListObject;
  * Created by dlernatovich on 6/2/2017.
  */
 
-public final class KitListNotSupport extends KitBaseListObject<Parcelable> {
+public final class KitListUnsupportedMessageMy extends KitBaseListObject<Parcelable> {
 
     /**
      * Constructor which provide the create the {@link KitBaseListObject} from the instance of the
      * {@link Object}
      */
-    public KitListNotSupport() {
+    public KitListUnsupportedMessageMy() {
         super((Parcelable) null);
     }
 
@@ -29,7 +29,7 @@ public final class KitListNotSupport extends KitBaseListObject<Parcelable> {
      *
      * @param object instance of the {@link Object}
      */
-    public KitListNotSupport(Parcelable object) {
+    public KitListUnsupportedMessageMy(Parcelable object) {
         super(object);
     }
 
@@ -38,7 +38,7 @@ public final class KitListNotSupport extends KitBaseListObject<Parcelable> {
      *
      * @param source instance of {@link Parcel}
      */
-    public KitListNotSupport(Parcel source) {
+    public KitListUnsupportedMessageMy(Parcel source) {
         super(source);
     }
 
@@ -65,25 +65,25 @@ public final class KitListNotSupport extends KitBaseListObject<Parcelable> {
     }
 
     /**
-     * Instance of {@link Parcelable.Creator}
+     * Instance of {@link Creator}
      */
-    public static final Parcelable.Creator<KitListNotSupport> CREATOR =
-            new Parcelable.Creator<KitListNotSupport>() {
+    public static final Creator<KitListUnsupportedMessageMy> CREATOR =
+            new Creator<KitListUnsupportedMessageMy>() {
                 @Override
-                public KitListNotSupport createFromParcel(Parcel source) {
-                    return new KitListNotSupport(source);
+                public KitListUnsupportedMessageMy createFromParcel(Parcel source) {
+                    return new KitListUnsupportedMessageMy(source);
                 }
 
                 @Override
-                public KitListNotSupport[] newArray(int size) {
-                    return new KitListNotSupport[size];
+                public KitListUnsupportedMessageMy[] newArray(int size) {
+                    return new KitListUnsupportedMessageMy[size];
                 }
             };
 
     /**
      * Inner recycle view class
      */
-    private static final class RecycleView extends BaseRecyclerItem<KitListNotSupport> {
+    private static final class RecycleView extends BaseRecyclerItem<KitListUnsupportedMessageMy> {
 
         /**
          * Default constructor
@@ -100,7 +100,7 @@ public final class KitListNotSupport extends KitBaseListObject<Parcelable> {
          * @param support current object
          */
         @Override
-        public void setUp(@NonNull KitListNotSupport support) {
+        public void setUp(@NonNull KitListUnsupportedMessageMy support) {
 
         }
 
@@ -111,7 +111,7 @@ public final class KitListNotSupport extends KitBaseListObject<Parcelable> {
          */
         @Override
         protected int getLayoutId() {
-            return R.layout.recycle_ck_not_support;
+            return R.layout.recycle_ck_message_my_not_support;
         }
 
         /**

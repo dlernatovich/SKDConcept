@@ -27,7 +27,7 @@
                 android:layout_width="@dimen/dimen_50"
                 android:layout_height="@dimen/dimen_50"
                 android:layout_gravity="center"
-                android:src="@drawable/background_blue_circle_cover"
+                android:src="@drawable/bg_ck_blue_circle_cover"
                 android:tint="@color/color_ck_background_users_avatar_view" />
 
             <com.artlite.bslibrary.ui.fonted.BSTextView
@@ -65,7 +65,7 @@
             android:layout_width="@dimen/dimen_10"
             android:layout_height="match_parent"
             android:layout_marginRight="@dimen/dimen_5"
-            android:src="@drawable/ic_block_black_24dp"
+            android:src="@drawable/ic_ck_block_black"
             android:tint="@color/color_ck_background_users_blocked_view" />
 
     </LinearLayout>

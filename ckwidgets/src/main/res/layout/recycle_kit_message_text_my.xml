@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="right"
+    android:layout_margin="@dimen/dimen_5"
+    android:background="@drawable/bg_ck_message_me"
+    android:backgroundTint="@color/color_ck_bubble_me"
+    android:gravity="center_vertical|right"
+    android:orientation="vertical">
+
+    <com.artlite.bslibrary.ui.fonted.BSTextView
+        android:id="@+id/label_user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_18"
+        android:textStyle="bold" />
+
+    <com.artlite.bslibrary.ui.fonted.BSTextView
+        android:id="@+id/label_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dimen_5"
+        android:text="This the text for the message"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_16" />
+
+</LinearLayout>

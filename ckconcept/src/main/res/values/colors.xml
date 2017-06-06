@@ -30,6 +30,11 @@
     <color name="color_ck_unread_mark">#f57c00</color>
     <!--Color for the divider headers-->
     <color name="color_ck_header_divider">#f7f7f7</color>
+    <!--Colors for bubbles-->
+    <!--Bubble other-->
+    <color name="color_ck_bubble_other">#E5E5E9</color>
+    <!--Bubble me-->
+    <color name="color_ck_bubble_me">#517daa</color>
 
     <!--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
     <!--Detailed colors for fast customization-->

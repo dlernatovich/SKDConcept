@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
 import com.artlite.ckconcept.R;
-import com.artlite.ckconcept.helpers.user.KitUserNameHelper;
+import com.artlite.ckconcept.helpers.user.KitUserHelper;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.RequestListener;
@@ -182,7 +182,7 @@ public class KitRecycleSelectedUser extends BaseObject {
                 url = user.generateAvatarUrl(user, avatarMethod);
             }
             name.setText(Html.fromHtml(String.format("%s<br/><b>%s</b>", firstName, lastName)));
-            avatar.setText(KitUserNameHelper.getShortName(String.format("%s %s", firstName, lastName)));
+            avatar.setText(KitUserHelper.getShortName(String.format("%s %s", firstName, lastName)));
 
             if (url != null) {
                 Glide.with(getContext())

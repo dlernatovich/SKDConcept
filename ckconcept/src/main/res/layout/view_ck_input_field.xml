@@ -26,7 +26,7 @@
         android:layout_marginRight="@dimen/dimen_5"
         android:layout_weight="1"
         android:textColor="@android:color/black"
-        android:background="@drawable/background_round_gray"
+        android:background="@drawable/bg_ck_round_gray"
         android:hint="@string/text_ck_input_prompt_message"
         android:inputType="textCapSentences|textShortMessage|textImeMultiLine|textMultiLine" />
 
@@ -39,7 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/ic_input_send"
+            android:src="@drawable/ic_ck_input_send"
             android:tint="@android:color/white"
             android:visibility="invisible"
             app:fabSize="mini" />
@@ -49,7 +49,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:src="@drawable/ic_input_send"
+            android:src="@drawable/ic_ck_input_send"
             android:tint="@color/input_darker_gray"
             app:backgroundTint="@color/input_lighter_gray"
             app:fabSize="mini" />
