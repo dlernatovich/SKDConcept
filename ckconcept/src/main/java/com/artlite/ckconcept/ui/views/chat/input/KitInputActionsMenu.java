@@ -16,17 +16,40 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Class which provide the action menu for the {@link KitInputMsgView}
+ */
 class KitInputActionsMenu implements Menu {
 
-    private final Context mContext;
+    /**
+     * Instance of the {@link Context}
+     */
+    private final Context context;
+
+    /**
+     * {@link List} of the {@link InputActionsMenuItem}
+     */
     private final List<InputActionsMenuItem> mItems = new ArrayList<>();
 
+    /**
+     * Constructor which provide to create the {@link KitInputActionsMenu} from the instance
+     * of the {@link Context}
+     *
+     * @param context instance of the {@link Context}
+     */
     public KitInputActionsMenu(@NonNull Context context) {
-        mContext = context;
+        this.context = context;
     }
 
+    /**
+     * Method which provide the adding of the {@link MenuItem} from the {@link String} value of
+     * the title
+     *
+     * @param title {@link String} value of the title
+     * @return instance of the {@link MenuItem}
+     */
     @Override
-    public MenuItem add(CharSequence title) {
+    public MenuItem add(@NonNull final CharSequence title) {
         InputActionsMenuItem item = new InputActionsMenuItem();
         item.setTitle(title);
         mItems.add(item);
@@ -202,7 +225,7 @@ class KitInputActionsMenu implements Menu {
 
         @Override
         public MenuItem setTitle(int title) {
-            mTitle = mContext.getString(title);
+            mTitle = context.getString(title);
             return this;
         }
 
@@ -232,7 +255,7 @@ class KitInputActionsMenu implements Menu {
         @Override
         public MenuItem setIcon(int iconRes) {
             //noinspection deprecation
-            mIcon = mContext.getResources().getDrawable(iconRes);
+            mIcon = context.getResources().getDrawable(iconRes);
             return this;
         }
 

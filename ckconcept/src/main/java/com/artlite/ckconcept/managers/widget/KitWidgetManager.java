@@ -1,4 +1,4 @@
-package com.artlite.ckconcept.managers;
+package com.artlite.ckconcept.managers.widget;
 
 import android.content.Context;
 import android.os.Parcelable;
@@ -60,17 +60,17 @@ public final class KitWidgetManager extends BSBaseManager {
     /**
      * Instance of the {@link KitBaseListObject}
      */
-    private KitBaseListObject unsupported = new KitListUnsupported();
+    private KitBaseListObject unsupported;
 
     /**
      * Instance of the {@link KitBaseListObject}
      */
-    private KitBaseListObject unsupportedMyMessage = new KitListUnsupportedMessageMy();
+    private KitBaseListObject unsupportedMyMessage;
 
     /**
      * Instance of the {@link KitBaseListObject}
      */
-    private KitBaseListObject unsupportedOtherMessage = new KitListUnsupportedMessageOther();
+    private KitBaseListObject unsupportedOtherMessage;
 
     /**
      * Method which provide the initialization of {@link KitWidgetManager}
@@ -307,8 +307,10 @@ public final class KitWidgetManager extends BSBaseManager {
     /**
      * Method which provide the getting view for create widget
      *
-     * @param object instance of {@link Object}
-     * @param type   {@link String} value of the type
+     * @param callback instance of the {@link BSView.OnDialogCallback}
+     * @param context  instance of {@link Context}
+     * @param object   instance of {@link Object}
+     * @param type     {@link String} value of the type
      * @return instance of the {@link BSView}
      */
     @Nullable
@@ -327,8 +329,10 @@ public final class KitWidgetManager extends BSBaseManager {
     /**
      * Method which provide the getting view for create widget
      *
-     * @param object instance of {@link Object}
-     * @param type   {@link String} value of the type
+     * @param context  instance of {@link Context}
+     * @param callback instance of the {@link BSView.OnDialogCallback}
+     * @param object   instance of {@link Object}
+     * @param type     {@link String} value of the type
      * @return instance of the {@link BSView}
      */
     @Nullable
@@ -342,8 +346,9 @@ public final class KitWidgetManager extends BSBaseManager {
     /**
      * Method which provide the getting view for create widget
      *
-     * @param object instance of {@link Object}
-     * @param type   instance of {@link Class}
+     * @param context instance of {@link Context}
+     * @param object  instance of {@link Object}
+     * @param type    instance of {@link Class}
      * @return instance of the {@link BSView}
      */
     @Nullable
@@ -356,8 +361,9 @@ public final class KitWidgetManager extends BSBaseManager {
     /**
      * Method which provide the getting view for create widget
      *
-     * @param object instance of {@link Object}
-     * @param type   {@link String} value of the type
+     * @param context instance of {@link Context}
+     * @param object  instance of {@link Object}
+     * @param type    {@link String} value of the type
      * @return instance of the {@link BSView}
      */
     @Nullable
@@ -381,8 +387,10 @@ public final class KitWidgetManager extends BSBaseManager {
     /**
      * Method which provide the showing of the view for display details
      *
-     * @param object instance of {@link Object}
-     * @param type   {@link String} value of the type
+     * @param context  instance of {@link Context}
+     * @param callback instance of the {@link BSView.OnDialogCallback}
+     * @param object   instance of {@link Object}
+     * @param type     {@link String} value of the type
      * @return instance of the {@link BSView}
      */
     @Nullable
@@ -401,8 +409,10 @@ public final class KitWidgetManager extends BSBaseManager {
     /**
      * Method which provide the showing of the view for display details
      *
-     * @param object instance of {@link Object}
-     * @param type   {@link String} value of the type
+     * @param callback instance of the {@link BSView.OnDialogCallback}
+     * @param context  instance of {@link Context}
+     * @param object   instance of {@link Object}
+     * @param type     {@link String} value of the type
      * @return instance of the {@link BSView}
      */
     @Nullable
@@ -416,8 +426,9 @@ public final class KitWidgetManager extends BSBaseManager {
     /**
      * Method which provide the getting view for display details
      *
-     * @param object instance of {@link Object}
-     * @param type   instance of {@link Class}
+     * @param context instance of {@link Context}
+     * @param object  instance of {@link Object}
+     * @param type    instance of {@link Class}
      * @return instance of the {@link BSView}
      */
     @Nullable
@@ -430,8 +441,9 @@ public final class KitWidgetManager extends BSBaseManager {
     /**
      * Method which provide the getting view for display details
      *
-     * @param object instance of {@link Object}
-     * @param type   {@link String} value of the type
+     * @param context instance of {@link Context}
+     * @param object  instance of {@link Object}
+     * @param type    {@link String} value of the type
      * @return instance of the {@link BSView}
      */
     @Nullable
@@ -591,6 +603,7 @@ public final class KitWidgetManager extends BSBaseManager {
         if (instance != null) {
             if (instance.unsupported == null) {
                 instance.unsupported = new KitListUnsupported();
+                result = instance.unsupported;
             } else {
                 result = instance.unsupported;
             }
@@ -622,6 +635,7 @@ public final class KitWidgetManager extends BSBaseManager {
         if (instance != null) {
             if (instance.unsupportedMyMessage == null) {
                 instance.unsupportedMyMessage = new KitListUnsupportedMessageMy();
+                result = instance.unsupportedMyMessage;
             } else {
                 result = instance.unsupportedMyMessage;
             }
@@ -653,6 +667,7 @@ public final class KitWidgetManager extends BSBaseManager {
         if (instance != null) {
             if (instance.unsupportedOtherMessage == null) {
                 instance.unsupportedOtherMessage = new KitListUnsupportedMessageOther();
+                result = instance.unsupportedOtherMessage;
             } else {
                 result = instance.unsupportedOtherMessage;
             }

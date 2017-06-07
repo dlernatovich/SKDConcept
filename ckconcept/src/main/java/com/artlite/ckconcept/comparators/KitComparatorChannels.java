@@ -10,7 +10,14 @@ import java.util.Comparator;
  */
 
 public class KitComparatorChannels implements Comparator<ChannelDetail> {
-    
+
+    /**
+     * Method which provide the comparisons of the objects
+     *
+     * @param lhs instance of the {@link ChannelDetail}
+     * @param rhs instance of the {@link ChannelDetail}
+     * @return comparisons result
+     */
     @Override
     public int compare(ChannelDetail lhs, ChannelDetail rhs) {
         final MMXChannel lch = lhs.getChannel();

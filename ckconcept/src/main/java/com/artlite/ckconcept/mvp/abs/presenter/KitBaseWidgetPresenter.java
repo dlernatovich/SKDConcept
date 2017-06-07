@@ -8,7 +8,7 @@ import com.artlite.adapteredrecyclerview.core.AdapteredView;
 import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
 import com.artlite.ckconcept.helpers.name.KitNameHelper;
-import com.artlite.ckconcept.managers.KitWidgetManager;
+import com.artlite.ckconcept.managers.widget.KitWidgetManager;
 import com.artlite.ckconcept.models.define.KitBaseDefiner;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
 

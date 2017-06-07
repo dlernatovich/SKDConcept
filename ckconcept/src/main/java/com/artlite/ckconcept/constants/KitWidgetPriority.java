@@ -8,7 +8,7 @@ import com.artlite.ckconcept.models.widget.KitWidgetModel;
  * Class which provide the priority for the {@link KitWidgetModel}
  */
 public enum KitWidgetPriority {
-    MINIMUM, LOW, MIDDLE, HIGHT, MAXIMUM;
+    MINIMUM, LOW, MIDDLE, HIGH, MAXIMUM;
 
     /**
      * Method which provide the checking if current priority is more then compared

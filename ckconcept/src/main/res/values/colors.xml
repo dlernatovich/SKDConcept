@@ -34,7 +34,7 @@
     <!--Bubble other-->
     <color name="color_ck_bubble_other">#E5E5E9</color>
     <!--Bubble me-->
-    <color name="color_ck_bubble_me">#517daa</color>
+    <color name="color_ck_bubble_me">@color/color_ck_accent</color>
 
     <!--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
     <!--Detailed colors for fast customization-->

@@ -66,22 +66,6 @@ interface KitInterface<T> {
     KitBaseListObject getViewList(@Nullable final Parcelable object);
 
     //==============================================================================================
-    //                                     APPLY
-    //==============================================================================================
-
-    /**
-     * Method which provide the applying of the widget from the instance of inner {@link Object}
-     */
-    void apply();
-
-    /**
-     * Method which provide applying of the content from {@link Object}
-     *
-     * @param object instance of {@link Object}
-     */
-    void apply(@Nullable final T object);
-
-    //==============================================================================================
     //                                CREATION MENU HEADER
     //==============================================================================================
 

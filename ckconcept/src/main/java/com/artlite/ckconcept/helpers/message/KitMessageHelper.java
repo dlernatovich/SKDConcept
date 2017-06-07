@@ -181,4 +181,44 @@ public final class KitMessageHelper {
         }
         return false;
     }
+
+    //==============================================================================================
+    //                                          LOCATION
+    //==============================================================================================
+
+    /**
+     * Method which provide the getting of the longitude from the instance of the {@link MMXMessage}
+     *
+     * @param message instance of the {@link MMXMessage}
+     * @return {@link String} value of the longitude
+     */
+    @Nullable
+    public static String getLongitude(@Nullable final MMXMessage message) {
+        if (message != null) {
+            final KitMessageType type = getType(message);
+            if (type == KitMessageType.MAP) {
+                return (message.getMetaData().containsKey(KitMessageTags.LONGITUDE.getValue()))
+                        ? message.getMetaData().get(KitMessageTags.LONGITUDE.getValue()) : null;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Method which provide the getting of the latitude from the instance of the {@link MMXMessage}
+     *
+     * @param message instance of the {@link MMXMessage}
+     * @return {@link String} value of the longitude
+     */
+    @Nullable
+    public static String getLatitude(@Nullable final MMXMessage message) {
+        if (message != null) {
+            final KitMessageType type = getType(message);
+            if (type == KitMessageType.MAP) {
+                return (message.getMetaData().containsKey(KitMessageTags.LATITUDE.getValue()))
+                        ? message.getMetaData().get(KitMessageTags.LATITUDE.getValue()) : null;
+            }
+        }
+        return null;
+    }
 }

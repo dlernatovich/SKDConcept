@@ -16,7 +16,7 @@ import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.callbacks.OnKitActionCallback;
 import com.artlite.ckconcept.callbacks.OnKitEventCallback;
 import com.artlite.ckconcept.callbacks.OnKitViewCallback;
-import com.artlite.ckconcept.managers.KitWidgetManager;
+import com.artlite.ckconcept.managers.widget.KitWidgetManager;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
 import com.artlite.ckconcept.ui.views.create.KitCreateWidgetView;

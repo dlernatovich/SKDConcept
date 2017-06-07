@@ -7,8 +7,9 @@ import android.support.annotation.Nullable;
 
 import com.artlite.ckconcept.constants.KitWidgetType;
 import com.artlite.ckconcept.core.KitApplication;
-import com.artlite.ckconcept.managers.KitWidgetManager;
+import com.artlite.ckconcept.managers.widget.KitWidgetManager;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
+import com.artlite.ckwidgets.factories.KitCreatorMessageLocation;
 import com.artlite.ckwidgets.factories.KitCreatorMessageText;
 import com.artlite.skdconcept.R;
 
@@ -23,10 +24,12 @@ public class CurrentApplication extends KitApplication {
      */
     @Override
     protected void registerWidgets() {
-        // TODO: 26.05.2017 Leave this as example
-//        KitWidgetManager.register(KitWidgetType.CHANNEL.getValue(), new KitFactoryChannel());
+        //Register the message with type - text
         KitWidgetManager.register(KitWidgetType.MESSAGE_MY_TEXT, new KitCreatorMessageText());
         KitWidgetManager.register(KitWidgetType.MESSAGE_OTHER_TEXT, new KitCreatorMessageText());
+        //Register the message with type - location
+        KitWidgetManager.register(KitWidgetType.MESSAGE_MY_LOCATION, new KitCreatorMessageLocation());
+        KitWidgetManager.register(KitWidgetType.MESSAGE_OTHER_LOCATION, new KitCreatorMessageLocation());
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.artlite.ckconcept.managers;
+package com.artlite.ckconcept.managers.channel;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -19,8 +19,20 @@ import java.util.List;
  */
 
 public final class KitChannelsCacheManager {
+
+    /**
+     * Instance of the {@link KitChannelsCacheManager}
+     */
     private static KitChannelsCacheManager instance;
+
+    /**
+     * {@link List} of the {@link ChannelDetail}
+     */
     private final List<ChannelDetail> cache;
+
+    /**
+     * {@link String} value of the {@link User} Id
+     */
     private String userID;
 
     /**
@@ -46,7 +58,7 @@ public final class KitChannelsCacheManager {
     /**
      * Method which provide the getting channels
      *
-     * @return channels
+     * @return channels {@link List} of the {@link ChannelDetail}
      */
     @NonNull
     public final List<ChannelDetail> getChannels() {
@@ -65,7 +77,7 @@ public final class KitChannelsCacheManager {
     /**
      * Method which provide the set channels
      *
-     * @param channels channels
+     * @param channels {@link List} of the {@link ChannelDetail}
      */
     public void setChannels(@Nullable final List<ChannelDetail> channels) {
         final String currentUserID = User.getCurrentUserId();
@@ -90,8 +102,8 @@ public final class KitChannelsCacheManager {
     /**
      * Method which provide the update of the channel name
      *
-     * @param detail  channel details
-     * @param newName new channel name
+     * @param detail  instance of the {@link ChannelDetail}
+     * @param newName {@link String} value of the {@link ChannelDetail} new name
      */
     public void updateChannelName(@Nullable final ChannelDetail detail,
                                   @Nullable final String newName) {
@@ -103,8 +115,8 @@ public final class KitChannelsCacheManager {
     /**
      * Method which provide the update of the channel name
      *
-     * @param mmxChannel channel
-     * @param newName    new channel name
+     * @param mmxChannel instance of the {@link MMXChannel}
+     * @param newName    {@link String} value of the {@link ChannelDetail} new name
      */
     public void updateChannelName(@Nullable final MMXChannel mmxChannel,
                                   @Nullable final String newName) {
@@ -116,8 +128,8 @@ public final class KitChannelsCacheManager {
     /**
      * Method which provide the update of the channel name
      *
-     * @param channelID channel ID
-     * @param newName   new channel name
+     * @param channelID {@link String} value of the {@link MMXChannel} Id
+     * @param newName   {@link String} value of the {@link ChannelDetail} new name
      */
     public void updateChannelName(@Nullable final String channelID,
                                   @Nullable final String newName) {
@@ -140,8 +152,8 @@ public final class KitChannelsCacheManager {
     /**
      * Method which provide the getting channel by ID
      *
-     * @param channelID channel ID
-     * @return channel
+     * @param channelID {@link String} value of the {@link MMXChannel} Id
+     * @return instance of the {@link MMXChannel}
      */
     @Nullable
     public MMXChannel getChannel(@Nullable final String channelID) {
@@ -163,10 +175,10 @@ public final class KitChannelsCacheManager {
      * Method which provide the getting of the channel position
      * (TODO: TEMPORARY FIX, BECAUSE FOR NOW EQUALS AND HASHCODE FOR MMXCHANNEL CLASS WORKING HORRIBLE)
      *
-     * @param channelID channel id
+     * @param channelID {@link String} value of the {@link MMXChannel} Id
      * @return channel position
      */
-    protected int getChannePosition(@Nullable final String channelID) {
+    protected int getChannelPosition(@Nullable final String channelID) {
         synchronized (cache) {
             int index = -1;
             for (final ChannelDetail detail : cache) {
@@ -191,7 +203,7 @@ public final class KitChannelsCacheManager {
     /**
      * Method which provide the clear unread count for messages
      *
-     * @param detail channel detail
+     * @param detail instance of the {@link ChannelDetail}
      */
     public void clearUnreadMessages(@Nullable final ChannelDetail detail) {
         if (detail != null) {
@@ -202,7 +214,7 @@ public final class KitChannelsCacheManager {
     /**
      * Method which provide the clear unread count for messages
      *
-     * @param channel channel
+     * @param channel instance of the {@link MMXChannel}
      */
     public void clearUnreadMessages(@Nullable final MMXChannel channel) {
         if (channel != null) {
@@ -213,7 +225,7 @@ public final class KitChannelsCacheManager {
     /**
      * Method which provide the clear unread count for messages
      *
-     * @param id channel ID
+     * @param id {@link String} value of the {@link MMXChannel} Id
      */
     public void clearUnreadMessages(@Nullable final String id) {
         if (TextUtils.isEmpty(id) == false) {
@@ -231,7 +243,7 @@ public final class KitChannelsCacheManager {
     /**
      * Method which provide the delete channel from cache
      *
-     * @param detail channel detail
+     * @param detail instance of the {@link ChannelDetail}
      */
     public void delete(@Nullable final ChannelDetail detail) {
         if (detail != null) {
@@ -242,7 +254,7 @@ public final class KitChannelsCacheManager {
     /**
      * Method which provide the delete channel from cache
      *
-     * @param channel channel
+     * @param channel instance of the {@link MMXChannel}
      */
     public void delete(@Nullable final MMXChannel channel) {
         if (channel != null) {
@@ -253,11 +265,11 @@ public final class KitChannelsCacheManager {
     /**
      * Method which provide the delete channel from cache
      *
-     * @param id channel ID
+     * @param id {@link String} value of the {@link MMXChannel} Id
      */
     public void delete(@Nullable final String id) {
         if (TextUtils.isEmpty(id) == false) {
-            final int index = getChannePosition(id);
+            final int index = getChannelPosition(id);
             if (index != -1) {
                 synchronized (cache) {
                     if ((index >= 0) && (index < cache.size())) {

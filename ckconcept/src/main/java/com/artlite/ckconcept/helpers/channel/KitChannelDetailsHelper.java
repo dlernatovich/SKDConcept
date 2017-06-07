@@ -11,10 +11,7 @@ import android.text.format.DateUtils;
 import android.widget.ImageView;
 
 import com.artlite.bslibrary.managers.BSContextManager;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.Target;
+import com.artlite.ckconcept.managers.image.KitImageManager;
 import com.magnet.max.android.UserProfile;
 import com.magnet.mmx.client.api.ChannelDetail;
 import com.magnet.mmx.client.api.MMXChannel;
@@ -48,35 +45,7 @@ public final class KitChannelDetailsHelper extends KitChannelDetailsHelper_Users
         if (nullValidate(methodName, context, imageView, channelDetail) == true) {
             final String url = getChannelAvatar(channelDetail);
             final String ownerID = getOpositeUserID(channelDetail);
-            imageView.setImageDrawable(Cache.getInstance().getDrawable(ownerID));
-            Glide.with(context)
-                    .load(url)
-                    .centerCrop()
-                    .fitCenter()
-                    .listener(new RequestListener<String, GlideDrawable>() {
-                        @Override
-                        public boolean onException(Exception e,
-                                                   String model,
-                                                   Target<GlideDrawable> target,
-                                                   boolean isFirstResource) {
-                            onExecuteCallback(methodName, false, e, null, null);
-                            return false;
-                        }
-
-                        @Override
-                        public boolean onResourceReady(GlideDrawable resource,
-                                                       String model,
-                                                       Target<GlideDrawable> target,
-                                                       boolean isFromMemoryCache,
-                                                       boolean isFirstResource) {
-                            Cache.getInstance().setDrawable(ownerID, resource);
-                            if (imageView != null) {
-                                imageView.setImageDrawable(resource);
-                            }
-                            return false;
-                        }
-                    })
-                    .into(imageView);
+            KitImageManager.getInstance().load(imageView, url);
         }
     }
 

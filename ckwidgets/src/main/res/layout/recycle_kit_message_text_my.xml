@@ -3,10 +3,14 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="right"
-    android:layout_margin="@dimen/dimen_5"
+    android:layout_marginBottom="@dimen/dimen_5"
+    android:layout_marginLeft="@dimen/dimen_50"
+    android:layout_marginRight="@dimen/dimen_5"
+    android:layout_marginTop="@dimen/dimen_5"
     android:background="@drawable/bg_ck_message_me"
     android:backgroundTint="@color/color_ck_bubble_me"
     android:gravity="center_vertical|right"
+    android:maxWidth="@dimen/dimen_300"
     android:orientation="vertical">
 
     <com.artlite.bslibrary.ui.fonted.BSTextView

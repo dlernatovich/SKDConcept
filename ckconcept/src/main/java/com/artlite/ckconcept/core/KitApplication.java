@@ -10,7 +10,7 @@ import com.artlite.bslibrary.container.BSResourceContainer;
 import com.artlite.bslibrary.core.BSInstance;
 import com.artlite.bslibrary.helpers.log.BSLogHelper;
 import com.artlite.ckconcept.R;
-import com.artlite.ckconcept.managers.KitWidgetManager;
+import com.artlite.ckconcept.managers.widget.KitWidgetManager;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.magnet.max.android.Max;
 import com.magnet.max.android.config.MaxAndroidPropertiesConfig;

@@ -14,7 +14,7 @@ import com.artlite.bslibrary.managers.BSThreadManager;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.R;
 import com.artlite.ckconcept.callbacks.OnKitMessagesCallback;
-import com.artlite.ckconcept.managers.KitChannelsCacheManager;
+import com.artlite.ckconcept.managers.channel.KitChannelsCacheManager;
 import com.artlite.ckconcept.mvp.contracts.KitChannelsContract;
 import com.artlite.ckconcept.ui.recycle.channels.KitRecycleChannel;
 import com.magnet.mmx.client.api.ChannelDetail;
