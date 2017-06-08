@@ -1,10 +1,17 @@
 package com.artlite.ckwidgets.ui.details;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.artlite.bslibrary.helpers.intent.BSIntentHelper;
+import com.artlite.bslibrary.helpers.log.BSLogHelper;
+import com.artlite.ckconcept.helpers.image.KitImageHelper;
+import com.artlite.ckconcept.helpers.map.KitMapHelper;
+import com.artlite.ckconcept.helpers.message.KitMessageHelper;
 import com.artlite.ckconcept.ui.abs.details.KitBaseDetailsView;
 import com.artlite.ckwidgets.R;
 import com.magnet.mmx.client.api.MMXMessage;
@@ -14,6 +21,21 @@ import com.magnet.mmx.client.api.MMXMessage;
  */
 
 public final class KitDetailsMessageLocation extends KitBaseDetailsView<MMXMessage> {
+
+    /**
+     * Instance of the {@link ImageView}
+     */
+    private ImageView imageView;
+
+    /**
+     * {@link String} value of the latitude
+     */
+    private String latitude;
+
+    /**
+     * {@link String} value of the longitude
+     */
+    private String longitude;
 
     /**
      * Constructor which provide the create of the {@link KitBaseDetailsView} from the
@@ -40,6 +62,49 @@ public final class KitDetailsMessageLocation extends KitBaseDetailsView<MMXMessa
      */
     @Override
     protected void onCreateView() {
+        //Link interface
+        this.imageView = (ImageView) findViewById(R.id.image_map);
+        //Set click listener
+        setOnClickListeners(R.id.button_open);
+        //Setup interface
+        onInitInterface();
+    }
 
+    /**
+     * Method which provide the initialize of the interface
+     */
+    protected void onInitInterface() {
+        final MMXMessage message = getObject();
+        if (message != null) {
+            latitude = KitMessageHelper.getLatitude(message);
+            longitude = KitMessageHelper.getLongitude(message);
+            final String url = KitMapHelper.getPreviewLargeMap(latitude, longitude);
+            KitImageHelper.load(imageView, url);
+        }
+    }
+
+    /**
+     * Method which provide the onClick functional
+     *
+     * @param view instance of the {@link View}
+     */
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.button_open) {
+            showLocation();
+        }
+    }
+
+    /**
+     * Method which provide the location showing in the GoogleMaps
+     */
+    protected void showLocation() {
+        try {
+            Intent intent = BSIntentHelper.showLocation(Float.parseFloat(latitude),
+                    Float.parseFloat(longitude), 18);
+            getContext().startActivity(intent, null);
+        } catch (Exception ex) {
+            BSLogHelper.log(this, "void showLocation()", ex, null);
+        }
     }
 }

@@ -10,11 +10,9 @@ public enum KitWidgetType {
     //CHANNEL TYPE
     CHANNEL(createName("Channel")),
     //TEXT MESSAGE TYPE
-    MESSAGE_MY_TEXT(createName("Message_My_Text")),
-    MESSAGE_OTHER_TEXT(createName("Message_Other_Text")),
+    MESSAGE_TEXT(createName("Message_Text")),
     //LOCATION MESSAGE TYPE
-    MESSAGE_MY_LOCATION(createName("Message_My_Location")),
-    MESSAGE_OTHER_LOCATION(createName("Message_Other_Location"));
+    MESSAGE_LOCATION(createName("Message_Other_Location"));
 
     /**
      * {@link String} constants of the prefix for the {@link KitWidgetType}

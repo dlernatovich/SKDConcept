@@ -37,11 +37,7 @@ public final class KitDefinerMessageText extends KitBaseDefiner {
             if (message != null) {
                 final KitMessageType type = KitMessageHelper.getType(message);
                 if (type == KitMessageType.TEXT) {
-                    if (KitMessageHelper.isMy(message)) {
-                        return KitWidgetType.MESSAGE_MY_TEXT.getValue();
-                    } else {
-                        return KitWidgetType.MESSAGE_OTHER_TEXT.getValue();
-                    }
+                    return KitWidgetType.MESSAGE_TEXT.getValue();
                 }
             }
         }

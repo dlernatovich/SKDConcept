@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="right"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
     android:layout_margin="@dimen/dimen_5"
     android:background="@drawable/bg_ck_round_gray"
-    android:maxWidth="@dimen/dimen_300"
-    android:orientation="vertical">
+    android:clipChildren="true"
+    android:clipToPadding="true"
+    android:maxWidth="@dimen/dimen_300">
+
 
     <ImageView
         android:id="@+id/image_map"
         style="@style/styleCropImageCenter"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="@dimen/dimen_400"
+        android:cropToPadding="true" />
 
-</LinearLayout>
+    <com.artlite.bslibrary.ui.fonted.BSButton
+        android:id="@+id/button_open"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/dimen_5"
+        android:background="@drawable/bg_ck_round_gray"
+        android:text="Open in GoogleMap"
+        android:textStyle="bold"
+        android:textColor="@color/color_ck_accent"
+        android:textSize="@dimen/text_16" />
+
+</FrameLayout>

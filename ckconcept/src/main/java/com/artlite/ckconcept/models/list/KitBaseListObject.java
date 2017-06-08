@@ -20,6 +20,11 @@ public abstract class KitBaseListObject<T extends Parcelable> extends BaseObject
     private final Parcelable object;
 
     /**
+     * {@link String} value of the type
+     */
+    private String type;
+
+    /**
      * Constructor which provide the create the {@link KitBaseListObject} from the instance of the
      * {@link Object}
      *
@@ -37,6 +42,7 @@ public abstract class KitBaseListObject<T extends Parcelable> extends BaseObject
     public KitBaseListObject(Parcel source) {
         super(source);
         this.object = source.readParcelable(getClassLoader());
+        this.type = source.readString();
     }
 
     /**
@@ -73,6 +79,26 @@ public abstract class KitBaseListObject<T extends Parcelable> extends BaseObject
     public void writeToParcel(Parcel parcel, int flags) {
         super.writeToParcel(parcel, flags);
         parcel.writeParcelable(object, flags);
+        parcel.writeString((type == null) ? "" : type);
+    }
+
+    /**
+     * Method which provide the getting of the {@link String} value of the type
+     *
+     * @return {@link String} value of the type
+     */
+    @Nullable
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * Method which provide the setting of the {@link String} value of the type
+     *
+     * @param type
+     */
+    public void setType(@Nullable final String type) {
+        this.type = type;
     }
 
     /**

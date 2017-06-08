@@ -4,8 +4,8 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 
 import com.artlite.adapteredrecyclerview.events.RecycleEvent;
-import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.bslibrary.ui.view.BSView;
+import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.mvp.abs.view.KitBaseWidgetView;
 
@@ -32,7 +32,7 @@ public interface OnKitViewCallback {
      * @param index  current index
      * @param object current object
      */
-    void onItemClick(int index, @NonNull BaseObject object);
+    void onItemClick(int index, @NonNull KitBaseListObject object);
 
     /**
      * Method which provide the action when user doing the long press on item
@@ -40,7 +40,7 @@ public interface OnKitViewCallback {
      * @param index  index
      * @param object object
      */
-    void onItemLongClick(int index, @NonNull BaseObject object);
+    void onItemLongClick(int index, @NonNull KitBaseListObject object);
 
     /**
      * Method which provide the action listening
@@ -51,7 +51,7 @@ public interface OnKitViewCallback {
      */
     void onActionReceived(@NonNull RecycleEvent recycleEvent,
                           int index,
-                          @NonNull BaseObject object);
+                          @NonNull KitBaseListObject object);
 
     /**
      * Method which provide the action when menu item was press

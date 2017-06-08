@@ -120,7 +120,7 @@ public final class KitWidgetMessageLocation extends KitWidgetModel<MMXMessage> {
      */
     @Override
     public boolean isNeedHeaders() {
-        return false;
+        return true;
     }
 
     /**

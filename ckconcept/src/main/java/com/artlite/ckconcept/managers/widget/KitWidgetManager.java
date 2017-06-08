@@ -485,13 +485,17 @@ public final class KitWidgetManager extends BSBaseManager {
      * @return instance of the {@link BSView}
      */
     @NonNull
-    public static BaseObject getViewList(@Nullable final String type,
-                                         @Nullable final Parcelable object) {
+    public static KitBaseListObject getViewList(@Nullable final String type,
+                                                @Nullable final Parcelable object) {
         final OnKitCreatorFactory creator = getCreator(type);
         if (BSValidationHelper.validateNull(creator)) {
             final KitWidgetModel widget = creator.create(object);
             if (widget != null) {
-                return widget.getViewList(object);
+                final KitBaseListObject listObject = widget.getViewList(object);
+                if (listObject != null) {
+                    listObject.setType(type);
+                }
+                return listObject;
             }
         }
         return getUnsupportedWidget(object);
@@ -627,10 +631,11 @@ public final class KitWidgetManager extends BSBaseManager {
     /**
      * Method which provide the getting of the list item for my message widgets that isn't support
      *
+     * @param object instance of the {@link Object}
      * @return instance of the {@link KitBaseListObject}
      */
     @NonNull
-    private static KitBaseListObject getMessageUnsupportedMy() {
+    private static KitBaseListObject getMessageUnsupportedMy(@Nullable final Object object) {
         KitBaseListObject result = null;
         if (instance != null) {
             if (instance.unsupportedMyMessage == null) {
@@ -702,7 +707,7 @@ public final class KitWidgetManager extends BSBaseManager {
             final String currentId = User.getCurrentUserId();
             if ((message != null) && (currentId != null)) {
                 if (currentId.equals(message.getSender().getUserIdentifier())) {
-                    return getMessageUnsupportedMy();
+                    return getMessageUnsupportedMy(object);
                 }
             }
             return getMessageUnsupportedOther();

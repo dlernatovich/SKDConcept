@@ -186,7 +186,7 @@ public class KitChatView extends KitBaseWidgetView {
     @Nullable
     @Override
     public Integer getViewDropdown() {
-        return R.id.view_anchor;
+        return R.id.view_ck_anchor;
     }
 
     /**

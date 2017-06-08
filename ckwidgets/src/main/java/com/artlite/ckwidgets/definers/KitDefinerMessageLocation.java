@@ -37,11 +37,7 @@ public final class KitDefinerMessageLocation extends KitBaseDefiner {
             if (message != null) {
                 final KitMessageType type = KitMessageHelper.getType(message);
                 if (type == KitMessageType.MAP) {
-                    if (KitMessageHelper.isMy(message)) {
-                        return KitWidgetType.MESSAGE_MY_LOCATION.getValue();
-                    } else {
-                        return KitWidgetType.MESSAGE_OTHER_LOCATION.getValue();
-                    }
+                    return KitWidgetType.MESSAGE_LOCATION.getValue();
                 }
             }
         }

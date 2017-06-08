@@ -17,6 +17,7 @@ import com.artlite.ckconcept.callbacks.OnKitActionCallback;
 import com.artlite.ckconcept.callbacks.OnKitEventCallback;
 import com.artlite.ckconcept.callbacks.OnKitViewCallback;
 import com.artlite.ckconcept.managers.widget.KitWidgetManager;
+import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
 import com.artlite.ckconcept.ui.views.create.KitCreateWidgetView;
@@ -72,7 +73,7 @@ public abstract class KitBaseWidgetView extends BSView implements KitWidgetContr
     protected void onCreateView() {
         showProgress();
         getAdapteredView().init(getLayoutManager(getContext()),
-                KitBaseWidgetView.this, refreshCallback, pagingCallback);
+                this, refreshCallback, pagingCallback);
         getAdapteredView().setIsNeedResfresh(isNeedSwipeRefresh());
         getPresenter().getServerData(getContext(), 0, KitBaseWidgetView.this);
         if (getCreateButtonId() != null) {
@@ -294,8 +295,22 @@ public abstract class KitBaseWidgetView extends BSView implements KitWidgetContr
      */
     @Override
     public void onItemClick(int index, @NonNull BaseObject object) {
-        if (viewCallback != null) {
-            viewCallback.onItemClick(index, object);
+        if ((object != null) && (object instanceof KitBaseListObject)) {
+            final KitBaseListObject listObject = (KitBaseListObject) object;
+            final String type = listObject.getType();
+            if (type != null) {
+                if (KitWidgetManager.showViewDetails(getContext(),
+                        type,
+                        listObject.getObject(),
+                        null) == false) {
+                    if (viewCallback != null) {
+                        viewCallback.onItemClick(index, listObject);
+                    }
+                }
+
+            } else if (viewCallback != null) {
+                viewCallback.onItemClick(index, listObject);
+            }
         }
     }
 
@@ -307,8 +322,8 @@ public abstract class KitBaseWidgetView extends BSView implements KitWidgetContr
      */
     @Override
     public void onItemLongClick(int index, @NonNull BaseObject object) {
-        if (viewCallback != null) {
-            viewCallback.onItemLongClick(index, object);
+        if ((viewCallback != null) && (object != null) && (object instanceof KitBaseListObject)) {
+            viewCallback.onItemLongClick(index, (KitBaseListObject) object);
         }
     }
 
@@ -323,8 +338,8 @@ public abstract class KitBaseWidgetView extends BSView implements KitWidgetContr
     public void onActionReceived(@NonNull RecycleEvent recycleEvent,
                                  int index,
                                  @NonNull BaseObject object) {
-        if (viewCallback != null) {
-            viewCallback.onActionReceived(recycleEvent, index, object);
+        if ((viewCallback != null) && (object != null) && (object instanceof KitBaseListObject)) {
+            viewCallback.onActionReceived(recycleEvent, index, (KitBaseListObject) object);
         }
     }
 

@@ -38,7 +38,7 @@ dependencies {
     compile 'com.artlite:baseproject:1.0'
     compile 'com.artlite:adapteredrecyclerview:1.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.android.support:design:25.3.1'
+    compile 'com.android.support:design:23.0.0'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile('com.magnet.max.android:magnet-max-android-sdk:3.1.x-SNAPSHOT@aar') {
         transitive = true
