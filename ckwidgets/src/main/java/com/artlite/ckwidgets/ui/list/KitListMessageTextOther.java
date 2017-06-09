@@ -127,7 +127,7 @@ public final class KitListMessageTextOther extends KitBaseListObject<MMXMessage>
          */
         @Override
         protected int getLayoutId() {
-            return R.layout.recycle_kit_message_text_other;
+            return R.layout.recycle_ck_message_text_other;
         }
 
         /**

@@ -5,14 +5,14 @@ import android.support.annotation.Nullable;
 
 import com.artlite.ckconcept.factories.OnKitCreatorFactory;
 import com.artlite.ckconcept.models.widget.KitWidgetModel;
-import com.artlite.ckwidgets.widgets.KitWidgetMessageLocation;
+import com.artlite.ckwidgets.widgets.KitWidgetMessagePhoto;
 import com.magnet.mmx.client.api.MMXMessage;
 
 /**
- * Created by dlernatovich on 6/7/2017.
+ * Created by dlernatovich on 6/9/2017.
  */
 
-public final class KitCreatorMessageLocation implements OnKitCreatorFactory<MMXMessage> {
+public final class KitCreatorMessagePhoto implements OnKitCreatorFactory<MMXMessage> {
     /**
      * Method which provide the create {@link KitWidgetModel} from
      *
@@ -22,7 +22,7 @@ public final class KitCreatorMessageLocation implements OnKitCreatorFactory<MMXM
     @Nullable
     @Override
     public KitWidgetModel create(@Nullable MMXMessage object) {
-        return new KitWidgetMessageLocation(object);
+        return new KitWidgetMessagePhoto(object);
     }
 
     /**
@@ -33,6 +33,6 @@ public final class KitCreatorMessageLocation implements OnKitCreatorFactory<MMXM
     @NonNull
     @Override
     public KitWidgetModel createForRegistration() {
-        return new KitWidgetMessageLocation();
+        return new KitWidgetMessagePhoto();
     }
 }

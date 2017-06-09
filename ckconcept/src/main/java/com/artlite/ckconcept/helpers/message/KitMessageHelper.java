@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 
 import com.artlite.ckconcept.constants.KitMessageTags;
 import com.artlite.ckconcept.constants.KitMessageType;
+import com.magnet.max.android.Attachment;
 import com.magnet.max.android.User;
 import com.magnet.mmx.client.api.MMXMessage;
 import com.magnet.mmx.client.ext.ObjectIdentifier;
@@ -217,6 +218,30 @@ public final class KitMessageHelper {
             if (type == KitMessageType.MAP) {
                 return (message.getMetaData().containsKey(KitMessageTags.LATITUDE.getValue()))
                         ? message.getMetaData().get(KitMessageTags.LATITUDE.getValue()) : null;
+            }
+        }
+        return null;
+    }
+
+    //==============================================================================================
+    //                                      GET PHOTO
+    //==============================================================================================
+
+    /**
+     * Method which provide the getting of the photo link from
+     * the instance of the {@link MMXMessage}
+     *
+     * @param message instance of the {@link MMXMessage}
+     * @return {@link String} value of the photo URL
+     */
+    @Nullable
+    public static String getPhoto(@Nullable final MMXMessage message) {
+        if ((message != null) && (getType(message) == KitMessageType.PHOTO)) {
+            if (!message.getAttachments().isEmpty()) {
+                final Attachment attachment = message.getAttachments().get(0);
+                final String url = Attachment.createDownloadUrl(attachment.getAttachmentId(),
+                        User.getCurrentUserId());
+                return url;
             }
         }
         return null;

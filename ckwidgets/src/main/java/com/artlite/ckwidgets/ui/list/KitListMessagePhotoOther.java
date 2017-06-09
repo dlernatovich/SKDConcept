@@ -8,8 +8,6 @@ import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
-import com.artlite.ckconcept.constants.KitMessageType;
-import com.artlite.ckconcept.helpers.map.KitMapHelper;
 import com.artlite.ckconcept.helpers.message.KitMessageHelper;
 import com.artlite.ckconcept.managers.image.KitImageManager;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
@@ -17,20 +15,15 @@ import com.artlite.ckwidgets.R;
 import com.magnet.mmx.client.api.MMXMessage;
 
 /**
- * Created by dlernatovich on 6/7/2017.
+ * Created by dlernatovich on 6/9/2017.
  */
 
-public final class KitListMessageLocationMy extends KitBaseListObject<MMXMessage> {
+public final class KitListMessagePhotoOther extends KitBaseListObject<MMXMessage> {
 
     /**
-     * {@link String} value of the latitude
+     * {@link String} value of the photo URL
      */
-    private String latitude;
-
-    /**
-     * {@link String} value of the longitude
-     */
-    private String longitude;
+    private String url;
 
     /**
      * Constructor which provide the create the {@link KitBaseListObject} from the instance of the
@@ -38,7 +31,7 @@ public final class KitListMessageLocationMy extends KitBaseListObject<MMXMessage
      *
      * @param object instance of the {@link Object}
      */
-    public KitListMessageLocationMy(Parcelable object) {
+    public KitListMessagePhotoOther(Parcelable object) {
         super(object);
     }
 
@@ -47,24 +40,18 @@ public final class KitListMessageLocationMy extends KitBaseListObject<MMXMessage
      *
      * @param source instance of {@link Parcel}
      */
-    public KitListMessageLocationMy(Parcel source) {
+    public KitListMessagePhotoOther(Parcel source) {
         super(source);
     }
 
     /**
      * Method which provide the performing the action when the {@link Parcelable} was set
      *
-     * @param message instance of the {@link Object}
+     * @param object instance of the {@link Object}
      */
     @Override
-    public void onPerformInitialize(@Nullable MMXMessage message) {
-        if (message != null) {
-            final KitMessageType type = KitMessageHelper.getType(message);
-            if (type == KitMessageType.MAP) {
-                this.latitude = KitMessageHelper.getLatitude(message);
-                this.longitude = KitMessageHelper.getLongitude(message);
-            }
-        }
+    public void onPerformInitialize(@Nullable MMXMessage object) {
+        this.url = KitMessageHelper.getPhoto(object);
     }
 
     /**
@@ -75,7 +62,7 @@ public final class KitListMessageLocationMy extends KitBaseListObject<MMXMessage
     @NonNull
     @Override
     protected ClassLoader getClassLoader() {
-        return null;
+        return MMXMessage.class.getClassLoader();
     }
 
     /**
@@ -92,12 +79,12 @@ public final class KitListMessageLocationMy extends KitBaseListObject<MMXMessage
     /**
      * Inner recycle view class
      */
-    private static class RecycleView extends BaseRecyclerItem<KitListMessageLocationMy> {
+    private static class RecycleView extends BaseRecyclerItem<KitListMessagePhotoOther> {
 
         /**
          * Instance of the {@link ImageView}
          */
-        private ImageView imageView;
+        private ImageView image;
 
         /**
          * Default constructor
@@ -111,13 +98,11 @@ public final class KitListMessageLocationMy extends KitBaseListObject<MMXMessage
         /**
          * Method which provide the setting up for the current recycler item
          *
-         * @param object instance of the {@link KitListMessageLocationMy}
+         * @param object instance of the {@link KitListMessageTextMy}
          */
         @Override
-        public void setUp(@NonNull KitListMessageLocationMy object) {
-            final String link = KitMapHelper.getPreviewSmallMap(object.latitude,
-                    object.longitude);
-            KitImageManager.getInstance().load(imageView, link);
+        public void setUp(@NonNull KitListMessagePhotoOther object) {
+            KitImageManager.getInstance().load(image, object.url);
         }
 
         /**
@@ -127,15 +112,7 @@ public final class KitListMessageLocationMy extends KitBaseListObject<MMXMessage
          */
         @Override
         protected int getLayoutId() {
-            return R.layout.recycle_ck_message_location_my;
-        }
-
-        /**
-         * Method which provide the interface linking
-         */
-        @Override
-        protected void onLinkInterface() {
-            this.imageView = (ImageView) findViewById(R.id.image_map);
+            return R.layout.recycle_ck_message_photo_other;
         }
 
         /**
@@ -145,7 +122,15 @@ public final class KitListMessageLocationMy extends KitBaseListObject<MMXMessage
          */
         @Override
         protected int getClickedID() {
-            return R.id.container;
+            return R.id.content;
+        }
+
+        /**
+         * Method which provide the interface linking
+         */
+        @Override
+        protected void onLinkInterface() {
+            this.image = (ImageView) findViewById(R.id.image_data);
         }
 
         /**

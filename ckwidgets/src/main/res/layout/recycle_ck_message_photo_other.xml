@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="left"
+    android:id="@+id/content"
+    android:layout_marginBottom="@dimen/dimen_5"
+    android:layout_marginLeft="@dimen/dimen_5"
+    android:layout_marginRight="@dimen/dimen_50"
+    android:layout_marginTop="@dimen/dimen_5"
+    android:background="@drawable/bg_ck_message_other"
+    android:backgroundTint="@color/color_ck_bubble_other"
+    android:gravity="center_vertical|left"
+    android:maxWidth="@dimen/dimen_300"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/image_data"
+        style="@style/styleCropImageCenter"
+        android:layout_width="@dimen/dimen_150"
+        android:layout_height="@dimen/dimen_150" />
+
+</LinearLayout>

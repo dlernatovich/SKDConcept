@@ -12,7 +12,9 @@ public enum KitWidgetType {
     //TEXT MESSAGE TYPE
     MESSAGE_TEXT(createName("Message_Text")),
     //LOCATION MESSAGE TYPE
-    MESSAGE_LOCATION(createName("Message_Other_Location"));
+    MESSAGE_LOCATION(createName("Message_Location")),
+    //PHOTO MESSAGE TYPE
+    MESSAGE_PHOTO(createName("Message_Photo"));
 
     /**
      * {@link String} constants of the prefix for the {@link KitWidgetType}

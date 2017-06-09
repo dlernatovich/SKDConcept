@@ -11,6 +11,7 @@ import com.artlite.ckconcept.factories.OnKitListObjectFactory;
 import com.artlite.ckconcept.managers.widget.KitWidgetManager;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckwidgets.factories.KitCreatorMessageLocation;
+import com.artlite.ckwidgets.factories.KitCreatorMessagePhoto;
 import com.artlite.ckwidgets.factories.KitCreatorMessageText;
 import com.artlite.skdconcept.R;
 
@@ -29,6 +30,8 @@ public class CurrentApplication extends KitApplication {
         KitWidgetManager.register(KitWidgetType.MESSAGE_TEXT, new KitCreatorMessageText());
         //Register the message with type - location
         KitWidgetManager.register(KitWidgetType.MESSAGE_LOCATION, new KitCreatorMessageLocation());
+        //Register the message with type - photo
+        KitWidgetManager.register(KitWidgetType.MESSAGE_PHOTO, new KitCreatorMessagePhoto());
     }
 
     /**

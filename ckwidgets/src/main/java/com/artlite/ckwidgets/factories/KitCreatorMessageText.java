@@ -12,7 +12,7 @@ import com.magnet.mmx.client.api.MMXMessage;
  * Created by dlernatovich on 6/6/2017.
  */
 
-public final class KitCreatorMessageText implements OnKitCreatorFactory {
+public final class KitCreatorMessageText implements OnKitCreatorFactory<MMXMessage> {
     /**
      * Method which provide the create {@link KitWidgetModel} from
      *
@@ -21,8 +21,8 @@ public final class KitCreatorMessageText implements OnKitCreatorFactory {
      */
     @Nullable
     @Override
-    public KitWidgetModel create(@Nullable Object object) {
-        return new KitWidgetMessageText((MMXMessage) object);
+    public KitWidgetModel create(@Nullable MMXMessage object) {
+        return new KitWidgetMessageText(object);
     }
 
     /**

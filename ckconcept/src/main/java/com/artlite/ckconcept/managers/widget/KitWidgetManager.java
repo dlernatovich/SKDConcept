@@ -495,8 +495,8 @@ public final class KitWidgetManager extends BSBaseManager {
                 final KitBaseListObject listObject = widget.getViewList(object);
                 if (listObject != null) {
                     listObject.setType(type);
+                    return listObject;
                 }
-                return listObject;
             }
         }
         return getUnsupportedWidget(object);
