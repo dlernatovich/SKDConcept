@@ -13,6 +13,7 @@ import com.artlite.bslibrary.managers.BSEventManager;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.constants.KitWidgetType;
 import com.artlite.ckconcept.factories.OnKitCreatorFactory;
+import com.artlite.ckconcept.factories.OnKitListObjectFactory;
 import com.artlite.ckconcept.helpers.name.KitNameHelper;
 import com.artlite.ckconcept.models.define.KitBaseDefiner;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
@@ -60,17 +61,17 @@ public final class KitWidgetManager extends BSBaseManager {
     /**
      * Instance of the {@link KitBaseListObject}
      */
-    private KitBaseListObject unsupported;
+    private OnKitListObjectFactory unsupported;
 
     /**
      * Instance of the {@link KitBaseListObject}
      */
-    private KitBaseListObject unsupportedMyMessage;
+    private OnKitListObjectFactory unsupportedMyMessage;
 
     /**
      * Instance of the {@link KitBaseListObject}
      */
-    private KitBaseListObject unsupportedOtherMessage;
+    private OnKitListObjectFactory unsupportedOtherMessage;
 
     /**
      * Method which provide the initialization of {@link KitWidgetManager}
@@ -605,11 +606,10 @@ public final class KitWidgetManager extends BSBaseManager {
     private static KitBaseListObject getUnsupported() {
         KitBaseListObject result = null;
         if (instance != null) {
-            if (instance.unsupported == null) {
-                instance.unsupported = new KitListUnsupported();
-                result = instance.unsupported;
+            if (instance.unsupported != null) {
+                result = instance.unsupported.create(null);
             } else {
-                result = instance.unsupported;
+                result = new KitListUnsupported();
             }
         } else {
             result = new KitListUnsupported();
@@ -620,9 +620,9 @@ public final class KitWidgetManager extends BSBaseManager {
     /**
      * Method which provide the setting of the list item for widgets that isn't support
      *
-     * @param object instance of the {@link KitBaseListObject}
+     * @param object instance of the {@link OnKitListObjectFactory}
      */
-    public static void setUnsupported(@Nullable final KitBaseListObject object) {
+    public static void setUnsupported(@Nullable final OnKitListObjectFactory object) {
         if ((instance != null) && (object != null)) {
             instance.unsupported = object;
         }
@@ -635,17 +635,16 @@ public final class KitWidgetManager extends BSBaseManager {
      * @return instance of the {@link KitBaseListObject}
      */
     @NonNull
-    private static KitBaseListObject getMessageUnsupportedMy(@Nullable final Object object) {
+    private static KitBaseListObject getMessageUnsupportedMy(@NonNull final MMXMessage object) {
         KitBaseListObject result = null;
         if (instance != null) {
-            if (instance.unsupportedMyMessage == null) {
-                instance.unsupportedMyMessage = new KitListUnsupportedMessageMy();
-                result = instance.unsupportedMyMessage;
+            if (instance.unsupportedMyMessage != null) {
+                result = instance.unsupportedMyMessage.create(object);
             } else {
-                result = instance.unsupportedMyMessage;
+                result = new KitListUnsupportedMessageMy(object);
             }
         } else {
-            result = new KitListUnsupportedMessageMy();
+            result = new KitListUnsupportedMessageMy(object);
         }
         return result;
     }
@@ -653,9 +652,9 @@ public final class KitWidgetManager extends BSBaseManager {
     /**
      * Method which provide the setting of the list item for my message widgets that isn't support
      *
-     * @param object instance of the {@link KitBaseListObject}
+     * @param object instance of the {@link OnKitListObjectFactory}
      */
-    public static void setMessageUnsupportedMy(@Nullable final KitBaseListObject object) {
+    public static void setMessageUnsupportedMy(@Nullable final OnKitListObjectFactory object) {
         if ((instance != null) && (object != null)) {
             instance.unsupportedMyMessage = object;
         }
@@ -667,17 +666,16 @@ public final class KitWidgetManager extends BSBaseManager {
      * @return instance of the {@link KitBaseListObject}
      */
     @NonNull
-    private static KitBaseListObject getMessageUnsupportedOther() {
+    private static KitBaseListObject getMessageUnsupportedOther(@NonNull final MMXMessage object) {
         KitBaseListObject result = null;
         if (instance != null) {
-            if (instance.unsupportedOtherMessage == null) {
-                instance.unsupportedOtherMessage = new KitListUnsupportedMessageOther();
-                result = instance.unsupportedOtherMessage;
+            if (instance.unsupportedOtherMessage != null) {
+                result = instance.unsupportedOtherMessage.create(object);
             } else {
-                result = instance.unsupportedOtherMessage;
+                result = new KitListUnsupportedMessageOther(object);
             }
         } else {
-            result = new KitListUnsupportedMessageOther();
+            result = new KitListUnsupportedMessageOther(object);
         }
         return result;
     }
@@ -687,7 +685,7 @@ public final class KitWidgetManager extends BSBaseManager {
      *
      * @param object instance of the {@link KitBaseListObject}
      */
-    public static void setMessageUnsupportedOther(@Nullable final KitBaseListObject object) {
+    public static void setMessageUnsupportedOther(@Nullable final OnKitListObjectFactory object) {
         if ((instance != null) && (object != null)) {
             instance.unsupportedOtherMessage = object;
         }
@@ -707,10 +705,10 @@ public final class KitWidgetManager extends BSBaseManager {
             final String currentId = User.getCurrentUserId();
             if ((message != null) && (currentId != null)) {
                 if (currentId.equals(message.getSender().getUserIdentifier())) {
-                    return getMessageUnsupportedMy(object);
+                    return getMessageUnsupportedMy(message);
                 }
+                return getMessageUnsupportedOther(message);
             }
-            return getMessageUnsupportedOther();
         }
         return getUnsupported();
     }

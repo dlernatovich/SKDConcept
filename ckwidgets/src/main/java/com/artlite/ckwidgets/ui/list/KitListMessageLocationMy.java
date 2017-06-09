@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
@@ -39,14 +40,6 @@ public final class KitListMessageLocationMy extends KitBaseListObject<MMXMessage
      */
     public KitListMessageLocationMy(Parcelable object) {
         super(object);
-        final MMXMessage message = getObject();
-        if (message != null) {
-            final KitMessageType type = KitMessageHelper.getType(message);
-            if (type == KitMessageType.MAP) {
-                this.latitude = KitMessageHelper.getLatitude(message);
-                this.longitude = KitMessageHelper.getLongitude(message);
-            }
-        }
     }
 
     /**
@@ -56,6 +49,22 @@ public final class KitListMessageLocationMy extends KitBaseListObject<MMXMessage
      */
     public KitListMessageLocationMy(Parcel source) {
         super(source);
+    }
+
+    /**
+     * Method which provide the performing the action when the {@link Parcelable} was set
+     *
+     * @param message instance of the {@link Object}
+     */
+    @Override
+    public void onPerformInitialize(@Nullable MMXMessage message) {
+        if (message != null) {
+            final KitMessageType type = KitMessageHelper.getType(message);
+            if (type == KitMessageType.MAP) {
+                this.latitude = KitMessageHelper.getLatitude(message);
+                this.longitude = KitMessageHelper.getLongitude(message);
+            }
+        }
     }
 
     /**

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
 import com.artlite.ckconcept.R;
@@ -40,6 +41,16 @@ public final class KitListUnsupported extends KitBaseListObject<Parcelable> {
      */
     public KitListUnsupported(Parcel source) {
         super(source);
+    }
+
+    /**
+     * Method which provide the performing the action when the {@link Parcelable} was set
+     *
+     * @param object instance of the {@link Object}
+     */
+    @Override
+    public void onPerformInitialize(@Nullable Parcelable object) {
+
     }
 
     /**

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.widget.TextView;
 
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
@@ -38,11 +39,6 @@ public final class KitListMessageTextMy extends KitBaseListObject<MMXMessage> {
      */
     public KitListMessageTextMy(Parcelable object) {
         super(object);
-        final MMXMessage message = getObject();
-        if (message != null) {
-            userName = KitUserHelper.getFullName(message.getSender());
-            content = message.getMetaData().get(KitMessageTags.TEXT.getValue());
-        }
     }
 
     /**
@@ -52,6 +48,19 @@ public final class KitListMessageTextMy extends KitBaseListObject<MMXMessage> {
      */
     public KitListMessageTextMy(Parcel source) {
         super(source);
+    }
+
+    /**
+     * Method which provide the performing the action when the {@link Parcelable} was set
+     *
+     * @param message instance of the {@link Object}
+     */
+    @Override
+    public void onPerformInitialize(@Nullable MMXMessage message) {
+        if (message != null) {
+            userName = KitUserHelper.getFullName(message.getSender());
+            content = message.getMetaData().get(KitMessageTags.TEXT.getValue());
+        }
     }
 
     /**

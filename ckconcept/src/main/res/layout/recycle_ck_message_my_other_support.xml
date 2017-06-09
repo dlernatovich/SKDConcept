@@ -7,22 +7,63 @@
     android:background="@drawable/bg_ck_message_other"
     android:backgroundTint="@color/color_ck_bubble_other"
     android:gravity="center"
-    android:orientation="horizontal">
+    android:orientation="vertical">
 
-    <ImageView
-        android:layout_width="@dimen/dimen_30"
-        android:layout_height="@dimen/dimen_30"
-        android:src="@mipmap/ic_ck_unknown"
-        android:tint="@color/color_ck_accent" />
-
-    <com.artlite.bslibrary.ui.fonted.BSTextView
+    <LinearLayout
+        android:id="@+id/view_additional_information"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/dimen_5"
-        android:gravity="center_vertical"
-        android:text="@string/text_ck_widget_not_support"
-        android:textColor="@color/color_ck_accent"
-        android:textSize="@dimen/text_18"
-        android:textStyle="bold" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginBottom="@dimen/dimen_5"
+        android:background="@drawable/bg_ck_round_accent_no_margins"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/dimen_2"
+        android:paddingLeft="@dimen/dimen_5"
+        android:paddingRight="@dimen/dimen_5"
+        android:paddingTop="@dimen/dimen_2">
+
+        <ImageView
+            android:id="@+id/image_additional"
+            style="@style/styleFillImageCenter"
+            android:layout_width="@dimen/dimen_20"
+            android:layout_height="@dimen/dimen_20"
+            android:layout_marginRight="@dimen/dimen_5"
+            android:src="@drawable/ic_ck_checklist"
+            android:tint="@color/color_ck_bubble_me" />
+
+        <com.artlite.bslibrary.ui.fonted.BSTextView
+            android:id="@+id/label_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Checklist"
+            android:textAllCaps="true"
+            android:textColor="@color/color_ck_bubble_me"
+            android:textSize="@dimen/text_16"
+            android:textStyle="bold"
+            android:visibility="visible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/dimen_30"
+            android:layout_height="@dimen/dimen_30"
+            android:src="@mipmap/ic_ck_unknown"
+            android:tint="@color/color_ck_accent" />
+
+        <com.artlite.bslibrary.ui.fonted.BSTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dimen_5"
+            android:gravity="center_vertical"
+            android:text="@string/text_ck_widget_not_support"
+            android:textColor="@color/color_ck_accent"
+            android:textSize="@dimen/text_18"
+            android:textStyle="bold" />
+    </LinearLayout>
 
 </LinearLayout>

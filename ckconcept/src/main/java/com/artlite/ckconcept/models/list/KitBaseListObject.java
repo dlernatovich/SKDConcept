@@ -32,6 +32,7 @@ public abstract class KitBaseListObject<T extends Parcelable> extends BaseObject
      */
     public KitBaseListObject(Parcelable object) {
         this.object = object;
+        onPerformInitialize(getObject());
     }
 
     /**
@@ -43,7 +44,15 @@ public abstract class KitBaseListObject<T extends Parcelable> extends BaseObject
         super(source);
         this.object = source.readParcelable(getClassLoader());
         this.type = source.readString();
+        onPerformInitialize(getObject());
     }
+
+    /**
+     * Method which provide the performing the action when the {@link Parcelable} was set
+     *
+     * @param object instance of the {@link Object}
+     */
+    public abstract void onPerformInitialize(@Nullable final T object);
 
     /**
      * Method which provide the getting of the instance of the {@link Object}
@@ -64,6 +73,7 @@ public abstract class KitBaseListObject<T extends Parcelable> extends BaseObject
      * Method which provide the checking if {@link KitBaseListObject} is have of the object
      *
      * @return checking result
+     * @information also called from the default constructor
      */
     protected boolean isHaveObject() {
         return getObject() != null;

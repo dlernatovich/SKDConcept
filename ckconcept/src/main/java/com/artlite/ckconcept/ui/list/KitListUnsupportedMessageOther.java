@@ -4,16 +4,28 @@ import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
 import com.artlite.ckconcept.R;
+import com.artlite.ckconcept.constants.KitMessageType;
+import com.artlite.ckconcept.helpers.message.KitMessageHelper;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
+import com.magnet.mmx.client.api.MMXMessage;
 
 /**
  * Created by dlernatovich on 6/2/2017.
  */
 
-public final class KitListUnsupportedMessageOther extends KitBaseListObject<Parcelable> {
+public final class KitListUnsupportedMessageOther extends KitBaseListObject<MMXMessage> {
+
+    /**
+     * Instance of the {@link KitMessageType}
+     */
+    private KitMessageType type;
 
     /**
      * Constructor which provide the create the {@link KitBaseListObject} from the instance of the
@@ -40,6 +52,18 @@ public final class KitListUnsupportedMessageOther extends KitBaseListObject<Parc
      */
     public KitListUnsupportedMessageOther(Parcel source) {
         super(source);
+    }
+
+    /**
+     * Method which provide the performing the action when the {@link Parcelable} was set
+     *
+     * @param message instance of the {@link Object}
+     */
+    @Override
+    public void onPerformInitialize(@Nullable MMXMessage message) {
+        if (message != null) {
+            this.type = KitMessageHelper.getType(message);
+        }
     }
 
     /**
@@ -86,6 +110,21 @@ public final class KitListUnsupportedMessageOther extends KitBaseListObject<Parc
     private static final class RecycleView extends BaseRecyclerItem<KitListUnsupportedMessageOther> {
 
         /**
+         * Instance of the {@link View}
+         */
+        private View viewAdditional;
+
+        /**
+         * Instance of the {@link ImageView}
+         */
+        private ImageView imageAdditional;
+
+        /**
+         * Instance of the {@link TextView}
+         */
+        private TextView labelAdditional;
+
+        /**
          * Default constructor
          *
          * @param context instance of {@link Context}
@@ -101,7 +140,13 @@ public final class KitListUnsupportedMessageOther extends KitBaseListObject<Parc
          */
         @Override
         public void setUp(@NonNull KitListUnsupportedMessageOther support) {
-
+            if ((support.type == null) || (support.type == KitMessageType.UNKNOWN)) {
+                viewAdditional.setVisibility(GONE);
+            } else {
+                viewAdditional.setVisibility(VISIBLE);
+                imageAdditional.setImageResource(support.type.getIcon());
+                labelAdditional.setText(support.type.getText());
+            }
         }
 
         /**
@@ -112,6 +157,16 @@ public final class KitListUnsupportedMessageOther extends KitBaseListObject<Parc
         @Override
         protected int getLayoutId() {
             return R.layout.recycle_ck_message_my_other_support;
+        }
+
+        /**
+         * Method which provide the interface linking
+         */
+        @Override
+        protected void onLinkInterface() {
+            this.viewAdditional = findViewById(R.id.view_additional_information);
+            this.imageAdditional = (ImageView) findViewById(R.id.image_additional);
+            this.labelAdditional = (TextView) findViewById(R.id.label_type);
         }
 
         /**

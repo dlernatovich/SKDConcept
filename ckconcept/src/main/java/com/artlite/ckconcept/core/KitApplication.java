@@ -10,6 +10,7 @@ import com.artlite.bslibrary.container.BSResourceContainer;
 import com.artlite.bslibrary.core.BSInstance;
 import com.artlite.bslibrary.helpers.log.BSLogHelper;
 import com.artlite.ckconcept.R;
+import com.artlite.ckconcept.factories.OnKitListObjectFactory;
 import com.artlite.ckconcept.managers.widget.KitWidgetManager;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.magnet.max.android.Max;
@@ -68,25 +69,25 @@ public abstract class KitApplication extends Application {
     /**
      * Method which provide the getting of the list item for widgets that isn't support
      *
-     * @return instance of the {@link KitBaseListObject}
+     * @return instance of the {@link OnKitListObjectFactory}
      */
     @Nullable
-    protected abstract KitBaseListObject getWidgetUnsupported();
+    protected abstract OnKitListObjectFactory getWidgetUnsupported();
 
     /**
      * Method which provide the getting of the list item for my message widgets that isn't support
      *
-     * @return instance of the {@link KitBaseListObject}
+     * @return instance of the {@link OnKitListObjectFactory}
      */
     @Nullable
-    protected abstract KitBaseListObject getMessageUnsupportedMy();
+    protected abstract OnKitListObjectFactory getMessageUnsupportedMy();
 
     /**
      * Method which provide the getting of the list item for other message widgets that
      * isn't support
      *
-     * @return instance of the {@link KitBaseListObject}
+     * @return instance of the {@link OnKitListObjectFactory}
      */
     @Nullable
-    protected abstract KitBaseListObject getMessageUnsupportedOther();
+    protected abstract OnKitListObjectFactory getMessageUnsupportedOther();
 }

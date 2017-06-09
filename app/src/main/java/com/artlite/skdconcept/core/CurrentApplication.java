@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 
 import com.artlite.ckconcept.constants.KitWidgetType;
 import com.artlite.ckconcept.core.KitApplication;
+import com.artlite.ckconcept.factories.OnKitListObjectFactory;
 import com.artlite.ckconcept.managers.widget.KitWidgetManager;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckwidgets.factories.KitCreatorMessageLocation;
@@ -59,7 +60,7 @@ public class CurrentApplication extends KitApplication {
      */
     @Nullable
     @Override
-    protected KitBaseListObject getWidgetUnsupported() {
+    protected OnKitListObjectFactory getWidgetUnsupported() {
         return null;
     }
 
@@ -70,7 +71,7 @@ public class CurrentApplication extends KitApplication {
      */
     @Nullable
     @Override
-    protected KitBaseListObject getMessageUnsupportedMy() {
+    protected OnKitListObjectFactory getMessageUnsupportedMy() {
         return null;
     }
 
@@ -82,7 +83,7 @@ public class CurrentApplication extends KitApplication {
      */
     @Nullable
     @Override
-    protected KitBaseListObject getMessageUnsupportedOther() {
+    protected OnKitListObjectFactory getMessageUnsupportedOther() {
         return null;
     }
 }
