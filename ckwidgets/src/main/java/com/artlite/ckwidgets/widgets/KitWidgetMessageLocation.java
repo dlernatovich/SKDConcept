@@ -6,7 +6,9 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.artlite.bslibrary.ui.view.BSView;
+import com.artlite.ckconcept.constants.KitMessageType;
 import com.artlite.ckconcept.constants.KitWidgetPriority;
+import com.artlite.ckconcept.constants.KitWidgetType;
 import com.artlite.ckconcept.models.define.KitBaseDefiner;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
@@ -110,7 +112,13 @@ public final class KitWidgetMessageLocation extends KitWidgetModel<MMXMessage> {
     @Nullable
     @Override
     public List<KitMenuModel> getMenuHeaders() {
-        return null;
+        return Arrays.asList(
+                new KitMenuModel(KitMessageType.MAP.getText(),
+                        KitMessageType.MAP.getIcon(),
+                        KitWidgetMessageLocation.class,
+                        KitChatView.class,
+                        KitWidgetType.MESSAGE_LOCATION.getValue())
+        );
     }
 
     /**

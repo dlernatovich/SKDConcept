@@ -85,6 +85,7 @@ public class KitChatPresenter extends KitBaseWidgetPresenter {
     public void getServerData(@NonNull final Context context,
                               final int offset,
                               @Nullable final OnKitActionCallback callback) {
+        //FactoryManager.getCustomFactory()
         if (channel == null) {
             hideProgress();
         } else {

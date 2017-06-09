@@ -27,6 +27,7 @@ public class CurrentApplication extends KitApplication {
     @Override
     protected void registerWidgets() {
         //Register the message with type - text
+        // TODO: 6/9/2017 Move name to the creator
         KitWidgetManager.register(KitWidgetType.MESSAGE_TEXT, new KitCreatorMessageText());
         //Register the message with type - location
         KitWidgetManager.register(KitWidgetType.MESSAGE_LOCATION, new KitCreatorMessageLocation());

@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.artlite.ckconcept.R;
 import com.artlite.ckconcept.mvp.abs.view.KitBaseWidgetView;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
 import com.artlite.ckconcept.mvp.presenters.KitChatPresenter;
+import com.artlite.ckconcept.ui.views.chat.input.KitInputMsgView;
 import com.magnet.mmx.client.api.ChannelDetail;
 import com.magnet.mmx.client.api.MMXChannel;
 
@@ -39,6 +41,11 @@ public class KitChatView extends KitBaseWidgetView {
      * Instance of the {@link MMXChannel}
      */
     private MMXChannel channel;
+
+    /**
+     * Instance of the {@link KitInputMsgView}
+     */
+    private KitInputMsgView inputMsgView;
 
     /**
      * Constructor which provide the create {@link BSView} from
@@ -89,6 +96,14 @@ public class KitChatView extends KitBaseWidgetView {
     @Override
     protected void onCreateView() {
         this.recycleView = (AdapteredView) findViewById(R.id.view_ck_recycle_chat);
+        this.inputMsgView = (KitInputMsgView) findViewById(R.id.view_ck_input);
+        this.inputMsgView.setOnActionItemClickedListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem menuItem) {
+                showCreateList();
+                return true;
+            }
+        });
         super.onCreateView();
     }
 
@@ -186,7 +201,7 @@ public class KitChatView extends KitBaseWidgetView {
     @Nullable
     @Override
     public Integer getViewDropdown() {
-        return R.id.view_ck_anchor;
+        return null;
     }
 
     /**
