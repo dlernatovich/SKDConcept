@@ -5,15 +5,19 @@ import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.artlite.bslibrary.helpers.validation.BSValidationHelper;
 import com.artlite.ckconcept.constants.KitMessageTags;
 import com.artlite.ckconcept.constants.KitMessageType;
 import com.magnet.max.android.Attachment;
 import com.magnet.max.android.User;
+import com.magnet.mmx.client.api.ChannelDetail;
+import com.magnet.mmx.client.api.MMXChannel;
 import com.magnet.mmx.client.api.MMXMessage;
 import com.magnet.mmx.client.ext.ObjectIdentifier;
 import com.magnet.mmx.client.ext.poll.MMXChecklist;
 import com.magnet.mmx.client.ext.poll.MMXPoll;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -243,6 +247,48 @@ public final class KitMessageHelper {
                         User.getCurrentUserId());
                 return url;
             }
+        }
+        return null;
+    }
+
+    //==============================================================================================
+    //                                      SEND MESSAGE
+    //==============================================================================================
+
+    /**
+     * Method which provide the sending of the {@link String} value of the message inside the
+     * instance of the {@link ChannelDetail}
+     *
+     * @param channel instance of the {@link ChannelDetail}
+     * @param message {@link String} value of the message
+     */
+    public static void sendMessage(@Nullable final ChannelDetail channel,
+                                   @Nullable final String message) {
+        if (BSValidationHelper.validateNull(channel, message)) {
+            if (channel.getChannel() != null) {
+                sendMessage(channel.getChannel(), message);
+            }
+        }
+    }
+
+    /**
+     * Method which provide the sending of the {@link String} value of the message inside the
+     * instance of the {@link ChannelDetail}
+     *
+     * @param channel instance of the {@link ChannelDetail}
+     * @param message {@link String} value of the message
+     */
+    @Nullable
+    public static MMXMessage sendMessage(@Nullable final MMXChannel channel,
+                                         @Nullable final String message) {
+        if (BSValidationHelper.validateNull(channel, message)) {
+            final Map<String, String> content = new HashMap<>();
+            final MMXMessage messageObject = new MMXMessage.Builder()
+                    .channel(channel).metaData(content).build();
+            content.put(KitMessageTags.TYPE.getValue(), KitMessageType.TEXT.getValue());
+            content.put(KitMessageTags.TEXT.getValue(), message);
+            messageObject.send(null);
+            return messageObject;
         }
         return null;
     }

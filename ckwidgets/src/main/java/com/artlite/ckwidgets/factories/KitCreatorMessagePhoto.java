@@ -3,6 +3,7 @@ package com.artlite.ckwidgets.factories;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.artlite.ckconcept.constants.KitWidgetType;
 import com.artlite.ckconcept.factories.OnKitCreatorFactory;
 import com.artlite.ckconcept.models.widget.KitWidgetModel;
 import com.artlite.ckwidgets.widgets.KitWidgetMessagePhoto;
@@ -34,5 +35,16 @@ public final class KitCreatorMessagePhoto implements OnKitCreatorFactory<MMXMess
     @Override
     public KitWidgetModel createForRegistration() {
         return new KitWidgetMessagePhoto();
+    }
+
+    /**
+     * Method which provide the getting of the {@link String} value of the widget type
+     *
+     * @return {@link String} value of the widget type
+     */
+    @Nullable
+    @Override
+    public String getType() {
+        return KitWidgetType.MESSAGE_PHOTO.getValue();
     }
 }

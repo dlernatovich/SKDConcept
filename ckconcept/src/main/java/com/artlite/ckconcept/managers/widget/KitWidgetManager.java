@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.bslibrary.helpers.validation.BSValidationHelper;
 import com.artlite.bslibrary.managers.BSBaseManager;
 import com.artlite.bslibrary.managers.BSEventManager;
@@ -137,6 +136,19 @@ public final class KitWidgetManager extends BSBaseManager {
     }
 
     /**
+     * Method which provide the register of the {@link OnKitCreatorFactory}
+     *
+     * @param creator instance of the {@link OnKitCreatorFactory}
+     * @return registering result
+     */
+    public static boolean register(@Nullable final OnKitCreatorFactory creator) {
+        if ((creator != null) && (creator.getType() != null)) {
+            return register(creator.getType(), creator);
+        }
+        return false;
+    }
+
+    /**
      * Method which provide the register of the {@link OnKitCreatorFactory} by type
      *
      * @param type    instance of the {@link KitWidgetType}
@@ -253,19 +265,19 @@ public final class KitWidgetManager extends BSBaseManager {
      */
     protected synchronized static void addDefiner(KitBaseDefiner definer) {
         if (BSValidationHelper.validateNull(instance, definer)) {
-            final Class callerClass = definer.getCallerClass();
+            final Class objectClass = definer.getObjectClass();
             final Map<Class, List<KitBaseDefiner>> definers = instance.getDefiners();
-            if (definers.containsKey(callerClass)) {
-                List<KitBaseDefiner> items = definers.get(definer.getCallerClass());
+            if (definers.containsKey(objectClass)) {
+                List<KitBaseDefiner> items = definers.get(definer.getObjectClass());
                 if (items == null) {
                     items = new ArrayList<>();
                 }
                 items.add(definer);
-                definers.put(callerClass, items);
+                definers.put(objectClass, items);
             } else {
                 List<KitBaseDefiner> items = new ArrayList<>();
                 items.add(definer);
-                definers.put(callerClass, items);
+                definers.put(objectClass, items);
             }
         }
     }
@@ -469,12 +481,37 @@ public final class KitWidgetManager extends BSBaseManager {
      * Method which provide the getting view for display details
      *
      * @param object instance of {@link Object}
+     * @return instance of the {@link BSView}
+     */
+    @Nullable
+    public static KitBaseListObject getViewList(@Nullable final Parcelable object) {
+        String type = null;
+        if (object != null) {
+            final Class objectClass = object.getClass();
+            final List<KitBaseDefiner> definers = getDefiners(objectClass);
+            if (BSValidationHelper.validateEmpty(definers)) {
+                for (KitBaseDefiner definer : definers) {
+                    final String definedType = definer.define(object);
+                    if (BSValidationHelper.validateEmpty(definedType)) {
+                        type = definedType;
+                        break;
+                    }
+                }
+            }
+        }
+        return getViewList(type, object);
+    }
+
+    /**
+     * Method which provide the getting view for display details
+     *
+     * @param object instance of {@link Object}
      * @param type   instance of {@link Class}
      * @return instance of the {@link BSView}
      */
     @Nullable
-    public static BaseObject getViewList(@Nullable final Class type,
-                                         @Nullable final Parcelable object) {
+    public static KitBaseListObject getViewList(@Nullable final Class type,
+                                                @Nullable final Parcelable object) {
         return getViewList(KitNameHelper.getClassType(type), object);
     }
 

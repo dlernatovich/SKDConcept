@@ -5,11 +5,14 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.bslibrary.helpers.validation.BSValidationHelper;
 import com.artlite.bslibrary.managers.BSThreadManager;
 import com.artlite.ckconcept.callbacks.OnKitActionCallback;
+import com.artlite.ckconcept.callbacks.OnKitMessagesCallback;
+import com.artlite.ckconcept.comparators.KitComparatorMessages;
 import com.artlite.ckconcept.helpers.callback.KitCallbackHelper;
+import com.artlite.ckconcept.helpers.message.KitMessageHelper;
+import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckconcept.mvp.abs.presenter.KitBaseWidgetPresenter;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
 import com.artlite.ckconcept.ui.views.chat.KitChatView;
@@ -18,7 +21,10 @@ import com.magnet.mmx.client.api.MMXChannel;
 import com.magnet.mmx.client.api.MMXMessage;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Class which provide the presenter functional for the {@link KitChatView}
@@ -34,6 +40,11 @@ public class KitChatPresenter extends KitBaseWidgetPresenter {
      * Instance of the {@link MMXChannel}
      */
     private MMXChannel channel;
+
+    /**
+     * {@link List} of the {@link MMXMessage}
+     */
+    private Set<MMXMessage> messages = new HashSet<>();
 
     /**
      * Constructor which provide to create the {@link KitBaseWidgetPresenter} from
@@ -142,12 +153,13 @@ public class KitChatPresenter extends KitBaseWidgetPresenter {
                                       @NonNull final List<MMXMessage> messages,
                                       final int offset,
                                       @Nullable final OnKitActionCallback callback) {
-        final List<BaseObject> items = new ArrayList<>();
+        final List<KitBaseListObject> items = new ArrayList<>();
         BSThreadManager.execute(new BSThreadManager.OnExecutionCallback() {
             @Override
             public void onBackground() {
-                for (MMXMessage message : messages) {
-                    final BaseObject object = getObject(getType(message), message);
+                final List<MMXMessage> listObjects = getMessages(offset, messages);
+                for (MMXMessage message : listObjects) {
+                    final KitBaseListObject object = getObject(message);
                     if (object != null) {
                         items.add(object);
                     }
@@ -156,10 +168,25 @@ public class KitChatPresenter extends KitBaseWidgetPresenter {
 
             @Override
             public void onMain() {
-                KitCallbackHelper.onSuccess(callback, context, offset, items);
+                KitCallbackHelper.onSuccess(callback, context, offset, items, false);
                 hideProgress();
             }
         });
+    }
+
+    /**
+     * Method which provide the getting of the {@link List} of the {@link MMXMessage}
+     *
+     * @param offset   {@link Integer} value of the offset
+     * @param messages {@link List} of the {@link MMXMessage}
+     * @return {@link List} of the {@link MMXMessage}
+     */
+    protected List<MMXMessage> getMessages(int offset,
+                                           @Nullable final List<MMXMessage> messages) {
+        this.messages.addAll(messages);
+        final List<MMXMessage> result = new ArrayList<>((offset == 0) ? this.messages : messages);
+        Collections.sort(result, Collections.reverseOrder(new KitComparatorMessages()));
+        return result;
     }
 
     /**
@@ -201,6 +228,41 @@ public class KitChatPresenter extends KitBaseWidgetPresenter {
             });
         }
     }
+
+    /**
+     * Method which provide the text message sending
+     *
+     * @param message {@link String} value of the message
+     */
+    public void sendMessage(@Nullable String message) {
+        final MMXMessage messageObject = KitMessageHelper.sendMessage(channel, message);
+    }
+
+    //==============================================================================================
+    //                                      CALLBACKS
+    //==============================================================================================
+
+    /**
+     * Instance of the {@link OnKitMessagesCallback}
+     */
+    private final OnKitMessagesCallback messagesCallback =
+            new OnKitMessagesCallback() {
+                @Override
+                public boolean onMessageReceived(MMXMessage message) {
+                    final KitWidgetContract.View view = getView();
+                    if (BSValidationHelper.validateNull(channel, message, view)) {
+                        final String channelId = channel.getId();
+                        final String otherChannelId = message.getChannel().getId();
+                        if (BSValidationHelper.validateEmpty(channelId, otherChannelId)) {
+                            if (channelId.equalsIgnoreCase(otherChannelId)) {
+                                messages.add(message);
+                                view.reloadData();
+                            }
+                        }
+                    }
+                    return false;
+                }
+            };
 
 
 }

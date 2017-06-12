@@ -5,11 +5,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.artlite.adapteredrecyclerview.core.AdapteredView;
-import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
 import com.artlite.ckconcept.helpers.name.KitNameHelper;
 import com.artlite.ckconcept.managers.widget.KitWidgetManager;
 import com.artlite.ckconcept.models.define.KitBaseDefiner;
+import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
 
 import java.util.List;
@@ -60,12 +60,25 @@ public abstract class KitBaseWidgetPresenter implements KitWidgetContract.Presen
     /**
      * Method which provide to getting of the {@link BaseRecyclerItem} by type
      *
+     * @param object instance of {@link Object}
+     * @return instance of the {@link BaseRecyclerItem}
+     */
+    @Override
+    @Nullable
+    public KitBaseListObject getObject(@Nullable final Parcelable object) {
+        return KitWidgetManager.getViewList(object);
+    }
+
+    /**
+     * Method which provide to getting of the {@link BaseRecyclerItem} by type
+     *
      * @param type   {@link String} value of type
      * @param object instance of {@link Object}
      * @return instance of the {@link BaseRecyclerItem}
      */
+    @Override
     @Nullable
-    public BaseObject getObject(@Nullable final String type, @Nullable final Parcelable object) {
+    public KitBaseListObject getObject(@Nullable final String type, @Nullable final Parcelable object) {
         return KitWidgetManager.getViewList(type, object);
     }
 
@@ -95,24 +108,5 @@ public abstract class KitBaseWidgetPresenter implements KitWidgetContract.Presen
                 adapteredView.hideRefresh();
             }
         }
-    }
-
-    /**
-     * Method which provide the getting of the class type from the {@link Object}
-     *
-     * @param object instance of {@link Object}
-     * @return {@link String} value of the type
-     */
-    @Nullable
-    @Override
-    public String getType(@NonNull Object object) {
-        final List<KitBaseDefiner> definers = KitWidgetManager.getDefiners(getViewClass());
-        for (KitBaseDefiner definer : definers) {
-            final String type = definer.define(object);
-            if ((type != null) && (!type.isEmpty())) {
-                return type;
-            }
-        }
-        return null;
     }
 }

@@ -104,6 +104,14 @@ public class KitChatView extends KitBaseWidgetView {
                 return true;
             }
         });
+        this.inputMsgView.setOnSendClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final String text = inputMsgView.getText();
+                sendMessage(text);
+                inputMsgView.clearText();
+            }
+        });
         super.onCreateView();
     }
 
@@ -212,7 +220,8 @@ public class KitChatView extends KitBaseWidgetView {
      * @param error   instance of {@link Throwable}
      */
     @Override
-    public void onServerError(@NonNull Context context, int offset, @NonNull Throwable error) {
+    public void onServerError(@NonNull Context context, int offset,
+                              @NonNull Throwable error) {
 
     }
 
@@ -246,6 +255,17 @@ public class KitChatView extends KitBaseWidgetView {
     public void setChannel(@Nullable final ChannelDetail channel) {
         if (channel != null) {
             setChannel(channel.getChannel());
+        }
+    }
+
+    /**
+     * Method which provide the sending of the text message
+     *
+     * @param message {@link String} value of the message
+     */
+    public void sendMessage(@Nullable final String message) {
+        if (presenter != null) {
+            presenter.sendMessage(message);
         }
     }
 }

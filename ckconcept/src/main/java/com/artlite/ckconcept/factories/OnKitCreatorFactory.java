@@ -27,4 +27,11 @@ public interface OnKitCreatorFactory<T> {
      */
     @NonNull
     KitWidgetModel createForRegistration();
+
+    /**
+     * Method which provide the getting of the {@link String} value of the widget type
+     * @return {@link String} value of the widget type
+     */
+    @Nullable
+    String getType();
 }

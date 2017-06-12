@@ -87,7 +87,7 @@ public abstract class KitBaseWidgetView extends BSView implements KitWidgetContr
      * @param items {@link List} of the {@link BaseRecyclerItem}
      */
     @Override
-    public void setItems(@NonNull List<BaseObject> items) {
+    public void setItems(@NonNull List<KitBaseListObject> items) {
         final AdapteredView view = getAdapteredView();
         if (view != null) {
             view.set(items);
@@ -99,7 +99,7 @@ public abstract class KitBaseWidgetView extends BSView implements KitWidgetContr
      *
      * @param items {@link List} of the {@link BaseRecyclerItem}
      */
-    public void addItems(@NonNull List<BaseObject> items) {
+    public void addItems(@NonNull List<KitBaseListObject> items) {
         final AdapteredView view = getAdapteredView();
         if (view != null) {
             view.add(items);
@@ -111,9 +111,9 @@ public abstract class KitBaseWidgetView extends BSView implements KitWidgetContr
      */
     @Override
     public void showProgress() {
-        final AdapteredView adapteredView = getAdapteredView();
-        if (adapteredView != null) {
-            adapteredView.showRefresh();
+        final AdapteredView view = getAdapteredView();
+        if (view != null) {
+            view.showRefresh();
         }
     }
 
@@ -137,13 +137,22 @@ public abstract class KitBaseWidgetView extends BSView implements KitWidgetContr
     @Override
     public void onDataReceived(@NonNull Context context,
                                int offset,
-                               @NonNull List<BaseObject> items) {
+                               @NonNull List<KitBaseListObject> items,
+                               boolean isNeedForceSet) {
         hideProgress();
-        if (offset == 0) {
+        if ((offset == 0) || (isNeedForceSet)) {
             setItems(items);
         } else {
             addItems(items);
         }
+    }
+
+    /**
+     * Method which provide the data reloading
+     */
+    @Override
+    public void reloadData() {
+        getPresenter().getServerData(getContext(), 0, this);
     }
 
     /**

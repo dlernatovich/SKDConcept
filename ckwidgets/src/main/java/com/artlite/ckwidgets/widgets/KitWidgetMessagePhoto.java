@@ -154,7 +154,7 @@ public final class KitWidgetMessagePhoto extends KitWidgetModel<MMXMessage> {
     public List<KitBaseDefiner> getDefiners() {
         return Arrays.asList(
                 new KitBaseDefiner[]{
-                        new KitDefinerMessagePhoto(KitChatView.class)
+                        new KitDefinerMessagePhoto(MMXMessage.class)
                 }
         );
     }

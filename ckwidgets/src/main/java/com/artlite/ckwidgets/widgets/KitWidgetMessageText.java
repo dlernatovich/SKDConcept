@@ -119,7 +119,7 @@ public final class KitWidgetMessageText extends KitWidgetModel<MMXMessage> {
     public List<KitBaseDefiner> getDefiners() {
         return Arrays.asList(
                 new KitBaseDefiner[]{
-                        new KitDefinerMessageText(KitChatView.class)
+                        new KitDefinerMessageText(MMXMessage.class)
                 }
         );
     }

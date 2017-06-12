@@ -1,12 +1,22 @@
 package com.artlite.skdconcept.ui.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.ActionBar;
 
+import com.artlite.adapteredrecyclerview.events.RecycleEvent;
 import com.artlite.bslibrary.annotations.FindViewBy;
+import com.artlite.bslibrary.helpers.intent.BSIntentHelper;
 import com.artlite.bslibrary.managers.BSTransferManager;
 import com.artlite.bslibrary.ui.activity.BSActivity;
+import com.artlite.bslibrary.ui.view.BSView;
+import com.artlite.ckconcept.callbacks.OnKitViewCallback;
+import com.artlite.ckconcept.constants.KitWidgetType;
+import com.artlite.ckconcept.models.list.KitBaseListObject;
+import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.ui.views.chat.KitChatView;
 import com.artlite.skdconcept.R;
 import com.magnet.mmx.client.api.ChannelDetail;
@@ -44,6 +54,7 @@ public class DetailsActivity extends BSActivity {
         setTitle("Conversation details");
         channel = BSTransferManager.get(this);
         chatView.setChannel(channel);
+        chatView.setOnViewCallback(viewCallback);
     }
 
     /**
@@ -65,4 +76,77 @@ public class DetailsActivity extends BSActivity {
     protected boolean isNeedBackButton() {
         return true;
     }
+
+    //==============================================================================================
+    //                                      CALLBACKS
+    //==============================================================================================
+
+    /**
+     * Instance of the {@link OnKitViewCallback}
+     */
+    private final OnKitViewCallback viewCallback = new OnKitViewCallback() {
+        /**
+         * Method which provide the action when {@link BSView.Event} received
+         *
+         * @param context instance of {@link Context}
+         * @param view    instance of the {@link BSView}
+         * @param event   instance of the {@link BSView.Event}
+         */
+        @Override
+        public void onCreateEventReceived(@NonNull Context context,
+                                          @NonNull BSView view,
+                                          @NonNull BSView.Event event) {
+
+        }
+
+        /**
+         * Method which provide the action when user press on the channel object
+         *
+         * @param index  current index
+         * @param object current object
+         */
+        @Override
+        public void onItemClick(int index,
+                                @NonNull KitBaseListObject object) {
+
+        }
+
+        /**
+         * Method which provide the action when user doing the long press on item
+         *
+         * @param index  index
+         * @param object object
+         */
+        @Override
+        public void onItemLongClick(int index,
+                                    @NonNull KitBaseListObject object) {
+
+        }
+
+        /**
+         * Method which provide the action listening
+         *
+         * @param recycleEvent event
+         * @param index        index
+         * @param object       object
+         */
+        @Override
+        public void onActionReceived(@NonNull RecycleEvent recycleEvent,
+                                     int index,
+                                     @NonNull KitBaseListObject object) {
+
+        }
+
+        /**
+         * Method which provide the action when menu item was press
+         *
+         * @param object instance of the {@link KitMenuModel}
+         */
+        @Override
+        public void onMenuItemClick(@NonNull KitMenuModel object) {
+            if (object.getType().equalsIgnoreCase(KitWidgetType.MESSAGE_PHOTO.getValue())) {
+                startActivityForPickImage();
+            }
+        }
+    };
 }

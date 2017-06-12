@@ -10,11 +10,11 @@ import android.support.v7.widget.RecyclerView;
 
 import com.artlite.adapteredrecyclerview.callbacks.OnAdapteredBaseCallback;
 import com.artlite.adapteredrecyclerview.core.AdapteredView;
-import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.callbacks.OnKitActionCallback;
 import com.artlite.ckconcept.callbacks.OnKitEventCallback;
+import com.artlite.ckconcept.models.list.KitBaseListObject;
 
 import java.util.List;
 
@@ -42,14 +42,14 @@ public interface KitWidgetContract {
          *
          * @param items {@link List} of the {@link BaseRecyclerItem}
          */
-        void setItems(@NonNull List<BaseObject> items);
+        void setItems(@NonNull List<KitBaseListObject> items);
 
         /**
          * Method which provide the adding of the {@link List} of the {@link BaseRecyclerItem}
          *
          * @param items {@link List} of the {@link BaseRecyclerItem}
          */
-        void addItems(@NonNull List<BaseObject> items);
+        void addItems(@NonNull List<KitBaseListObject> items);
 
         /**
          * Method which provide the getting of the instance of the {@link Presenter}
@@ -149,6 +149,11 @@ public interface KitWidgetContract {
          * Method which provide the show of the creation list
          */
         void showCreateList();
+
+        /**
+         * Method which provide the data reloading
+         */
+        void reloadData();
     }
 
     interface Presenter {
@@ -175,15 +180,6 @@ public interface KitWidgetContract {
         View getView();
 
         /**
-         * Method which provide the getting of the class type from the {@link Object}
-         *
-         * @param object instance of {@link Object}
-         * @return {@link String} value of the type
-         */
-        @Nullable
-        String getType(@NonNull final Object object);
-
-        /**
          * Method which provide the getting of the {@link String} type from
          *
          * @param aClass instance of {@link Class}
@@ -195,12 +191,21 @@ public interface KitWidgetContract {
         /**
          * Method which provide to getting of the {@link BaseRecyclerItem} by type
          *
+         * @param object instance of {@link Object}
+         * @return instance of the {@link BaseRecyclerItem}
+         */
+        @Nullable
+        KitBaseListObject getObject(@Nullable final Parcelable object);
+
+        /**
+         * Method which provide to getting of the {@link BaseRecyclerItem} by type
+         *
          * @param type   {@link String} value of type
          * @param object instance of {@link Object}
          * @return instance of the {@link BaseRecyclerItem}
          */
         @Nullable
-        BaseObject getObject(@Nullable final String type, @Nullable final Parcelable object);
+        KitBaseListObject getObject(@Nullable final String type, @Nullable final Parcelable object);
 
         /**
          * Method which provide the show of the progress

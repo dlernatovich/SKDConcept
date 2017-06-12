@@ -37,7 +37,7 @@ public abstract class KitBaseDefiner {
      * @return instance of the {@link Class}
      */
     @NonNull
-    public Class getCallerClass() {
+    public Class getObjectClass() {
         return callerClass;
     }
 }

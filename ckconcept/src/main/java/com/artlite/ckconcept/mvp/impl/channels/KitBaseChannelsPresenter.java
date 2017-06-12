@@ -21,6 +21,9 @@ import java.util.TimerTask;
 
 public abstract class KitBaseChannelsPresenter implements KitChannelsContract.Presenter {
 
+    /**
+     * Instance of the {@link KitChannelsContract.View}
+     */
     private final KitChannelsContract.View view;
 
     /**

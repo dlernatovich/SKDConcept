@@ -19,6 +19,7 @@ import com.artlite.ckconcept.ui.views.chat.KitChatView;
 import com.artlite.ckwidgets.definers.KitDefinerMessageLocation;
 import com.artlite.ckwidgets.ui.details.KitDetailsMessageLocation;
 import com.artlite.ckwidgets.ui.list.KitListMessageLocationMy;
+import com.magnet.mmx.client.api.MMXChannel;
 import com.magnet.mmx.client.api.MMXMessage;
 
 import java.util.Arrays;
@@ -141,7 +142,7 @@ public final class KitWidgetMessageLocation extends KitWidgetModel<MMXMessage> {
     public List<KitBaseDefiner> getDefiners() {
         return Arrays.asList(
                 new KitBaseDefiner[]{
-                        new KitDefinerMessageLocation(KitChatView.class)
+                        new KitDefinerMessageLocation(MMXMessage.class)
                 }
         );
     }

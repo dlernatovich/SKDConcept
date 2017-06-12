@@ -61,7 +61,7 @@ public final class LoginActivity extends BSActivity implements OnKitLoginCallbac
      */
     @Override
     public void onLoginSuccess(@Nullable User user) {
-        startActivity(MainActivity.class);
+        startActivity(ChannelsActivity.class);
     }
 
     /**

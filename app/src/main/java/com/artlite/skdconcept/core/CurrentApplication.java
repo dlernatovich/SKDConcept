@@ -5,7 +5,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
-import com.artlite.ckconcept.constants.KitWidgetType;
 import com.artlite.ckconcept.core.KitApplication;
 import com.artlite.ckconcept.factories.OnKitListObjectFactory;
 import com.artlite.ckconcept.managers.widget.KitWidgetManager;
@@ -28,11 +27,11 @@ public class CurrentApplication extends KitApplication {
     protected void registerWidgets() {
         //Register the message with type - text
         // TODO: 6/9/2017 Move name to the creator
-        KitWidgetManager.register(KitWidgetType.MESSAGE_TEXT, new KitCreatorMessageText());
+        KitWidgetManager.register(new KitCreatorMessageText());
         //Register the message with type - location
-        KitWidgetManager.register(KitWidgetType.MESSAGE_LOCATION, new KitCreatorMessageLocation());
+        KitWidgetManager.register(new KitCreatorMessageLocation());
         //Register the message with type - photo
-        KitWidgetManager.register(KitWidgetType.MESSAGE_PHOTO, new KitCreatorMessagePhoto());
+        KitWidgetManager.register(new KitCreatorMessagePhoto());
     }
 
     /**
