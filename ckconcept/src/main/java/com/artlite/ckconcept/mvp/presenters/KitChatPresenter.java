@@ -1,10 +1,13 @@
 package com.artlite.ckconcept.mvp.presenters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.artlite.bslibrary.helpers.log.BSLogHelper;
 import com.artlite.bslibrary.helpers.validation.BSValidationHelper;
 import com.artlite.bslibrary.managers.BSThreadManager;
 import com.artlite.ckconcept.callbacks.OnKitActionCallback;
@@ -80,7 +83,23 @@ public class KitChatPresenter extends KitBaseWidgetPresenter {
                            @Nullable final MMXChannel channel,
                            @Nullable final OnKitActionCallback callback) {
         this.channel = channel;
-        onReceiveMessages(context, channel, 0, callback);
+        if (this.channel != null) {
+            final String methodName = "void setChannelInactive()";
+            this.channel.setActive(new MMXChannel.OnFinishedListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    BSLogHelper.log(KitChatPresenter.this, methodName, null, channel + " - active");
+                    onReceiveMessages(context, channel, 0, callback);
+                }
+
+                @Override
+                public void onFailure(MMXChannel.FailureCode failureCode, Throwable throwable) {
+                    BSLogHelper.log(KitChatPresenter.this, methodName, null,
+                            channel + " - active (error)");
+                    onReceiveMessages(context, channel, 0, callback);
+                }
+            });
+        }
     }
 
     /**
@@ -200,6 +219,28 @@ public class KitChatPresenter extends KitBaseWidgetPresenter {
         return KitChatView.class;
     }
 
+    /**
+     * Method which provide the setting the channel in active
+     */
+    public void setChannelInactive() {
+        final String methodName = "void setChannelInactive()";
+        if (channel != null) {
+            channel.setInActive(new MMXChannel.OnFinishedListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    BSLogHelper.log(KitChatPresenter.this, methodName, null,
+                            channel + " - inactive");
+                }
+
+                @Override
+                public void onFailure(MMXChannel.FailureCode failureCode, Throwable throwable) {
+                    BSLogHelper.log(KitChatPresenter.this, methodName, null,
+                            channel + " - inactive (error)");
+                }
+            });
+        }
+    }
+
     //==============================================================================================
     //                                  GET DATA METHODS
     //==============================================================================================
@@ -229,13 +270,35 @@ public class KitChatPresenter extends KitBaseWidgetPresenter {
         }
     }
 
+    //==============================================================================================
+    //                                     SEND MESSAGE
+    //==============================================================================================
+
     /**
      * Method which provide the text message sending
      *
      * @param message {@link String} value of the message
      */
     public void sendMessage(@Nullable String message) {
-        final MMXMessage messageObject = KitMessageHelper.sendMessage(channel, message);
+        KitMessageHelper.sendMessage(channel, message);
+    }
+
+    /**
+     * Method which provide the text message sending
+     *
+     * @param bitmap {@link String} value of the message
+     */
+    public void sendMessage(@Nullable Bitmap bitmap) {
+        KitMessageHelper.sendMessage(channel, bitmap);
+    }
+
+    /**
+     * Method which provide the sending of the text message
+     *
+     * @param location {@link String} value of the message
+     */
+    public void sendMessage(@Nullable final Location location) {
+        KitMessageHelper.sendMessage(channel, location);
     }
 
     //==============================================================================================

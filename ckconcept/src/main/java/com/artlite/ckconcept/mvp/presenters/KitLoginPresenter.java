@@ -12,6 +12,7 @@ import com.artlite.ckconcept.mvp.contracts.KitLoginContract;
 import com.magnet.max.android.ApiCallback;
 import com.magnet.max.android.ApiError;
 import com.magnet.max.android.User;
+import com.magnet.mmx.client.api.MMX;
 
 /**
  * Created by dlernatovich on 23.05.2017.
@@ -41,6 +42,7 @@ public class KitLoginPresenter implements KitLoginContract.Presenter {
         User.resumeSession(new ApiCallback<Boolean>() {
             @Override
             public void success(Boolean aBoolean) {
+                MMX.start();
                 if (getView() != null) {
                     getView().onLoginSuccess(User.getCurrentUser());
                 }
@@ -93,6 +95,7 @@ public class KitLoginPresenter implements KitLoginContract.Presenter {
                         if (getView() != null) {
                             hideProgress();
                             getView().onLoginSuccess(User.getCurrentUser());
+                            MMX.start();
                         }
                     }
 

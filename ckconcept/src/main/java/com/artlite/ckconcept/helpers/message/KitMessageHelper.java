@@ -1,11 +1,16 @@
 package com.artlite.ckconcept.helpers.message;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.location.Location;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.artlite.bslibrary.helpers.bitmap.BSBitmapHelper;
+import com.artlite.bslibrary.helpers.log.BSLogHelper;
 import com.artlite.bslibrary.helpers.validation.BSValidationHelper;
+import com.artlite.bslibrary.managers.BSThreadManager;
 import com.artlite.ckconcept.constants.KitMessageTags;
 import com.artlite.ckconcept.constants.KitMessageType;
 import com.magnet.max.android.Attachment;
@@ -261,14 +266,17 @@ public final class KitMessageHelper {
      *
      * @param channel instance of the {@link ChannelDetail}
      * @param message {@link String} value of the message
+     * @return instance of the {@link MMXMessage}
      */
-    public static void sendMessage(@Nullable final ChannelDetail channel,
-                                   @Nullable final String message) {
+    @Nullable
+    public static MMXMessage sendMessage(@Nullable final ChannelDetail channel,
+                                         @Nullable final String message) {
         if (BSValidationHelper.validateNull(channel, message)) {
             if (channel.getChannel() != null) {
-                sendMessage(channel.getChannel(), message);
+                return sendMessage(channel.getChannel(), message);
             }
         }
+        return null;
     }
 
     /**
@@ -277,6 +285,7 @@ public final class KitMessageHelper {
      *
      * @param channel instance of the {@link ChannelDetail}
      * @param message {@link String} value of the message
+     * @return instance of the {@link MMXMessage}
      */
     @Nullable
     public static MMXMessage sendMessage(@Nullable final MMXChannel channel,
@@ -289,6 +298,200 @@ public final class KitMessageHelper {
             content.put(KitMessageTags.TEXT.getValue(), message);
             messageObject.send(null);
             return messageObject;
+        }
+        return null;
+    }
+
+    /**
+     * Method which provide the sending of the photo message from the instance of the
+     * {@link ChannelDetail}
+     *
+     * @param channel instance of the {@link ChannelDetail}
+     * @param bitmap  instance of the {@link Bitmap}
+     * @return instance of the {@link MMXMessage}
+     */
+    public static MMXMessage sendMessage(@Nullable final ChannelDetail channel,
+                                         @Nullable final Bitmap bitmap) {
+        if (BSValidationHelper.validateNull(channel, bitmap)) {
+            return sendMessage(channel.getChannel(), bitmap);
+        }
+        return null;
+    }
+
+    /**
+     * Method which provide the sending of the photo message from the instance of the
+     * {@link ChannelDetail}
+     *
+     * @param channel instance of the {@link MMXChannel}
+     * @param bitmap  instance of the {@link Bitmap}
+     * @return instance of the {@link MMXMessage}
+     */
+    public static MMXMessage sendMessage(@Nullable final MMXChannel channel,
+                                         @Nullable final Bitmap bitmap) {
+        final String methodName = " MMXMessage sendMessage(MMXChannel, Bitmap)";
+        if (BSValidationHelper.validateNull(channel, bitmap)) {
+            BSThreadManager.background(new BSThreadManager.OnThreadCallback() {
+                @Override
+                public void onExecute() {
+                    final Bitmap scaled = BSBitmapHelper.scale(bitmap, 600, 600);
+                    final Attachment attachment = new Attachment(scaled, "image/jpeg");
+                    attachment.upload(new Attachment.UploadListener() {
+                        @Override
+                        public void onStart(Attachment attachment) {
+                            BSLogHelper.log(this, methodName + " -> onStart", null, attachment);
+                        }
+
+                        @Override
+                        public void onComplete(Attachment attachment) {
+                            BSLogHelper.log(this, methodName + " -> onComplete", null, attachment);
+                            sendMessage(channel, attachment);
+                        }
+
+                        @Override
+                        public void onError(Attachment attachment, Throwable throwable) {
+                            BSLogHelper.log(this, methodName + " -> onError", null, attachment);
+                        }
+                    });
+                }
+            });
+        }
+        return null;
+    }
+
+    /**
+     * Method which provide the sending of the photo message from the instance of the
+     * {@link ChannelDetail}
+     *
+     * @param channel    instance of the {@link MMXChannel}
+     * @param attachment instance of the {@link Attachment}
+     * @return instance of the {@link MMXMessage}
+     */
+    private static void sendMessage(@NonNull final MMXChannel channel,
+                                    @NonNull final Attachment attachment) {
+        BSThreadManager.background(new BSThreadManager.OnThreadCallback() {
+            @Override
+            public void onExecute() {
+                final MMXMessage message = new MMXMessage.Builder()
+                        .attachments(attachment)
+                        .metaData(KitMessageTags.TYPE.getValue(), KitMessageType.PHOTO.getValue())
+                        .channel(channel)
+                        .build();
+                message.send(null);
+            }
+        });
+    }
+
+    /**
+     * Method which provide the sending of of the {@link MMXMessage} from
+     * instance of the {@link Location} and instance of the {@link ChannelDetail}
+     *
+     * @param channel  instance of the {@link ChannelDetail}
+     * @param location instance of the {@link Location}
+     * @return instance of the {@link MMXMessage}
+     */
+    @Nullable
+    public MMXMessage sendMessage(@Nullable final ChannelDetail channel,
+                                  @Nullable final Location location) {
+        if (BSValidationHelper.validateNull(channel, location)) {
+            return sendMessage(channel.getChannel(), location);
+        }
+        return null;
+    }
+
+    /**
+     * Method which provide the sending of of the {@link MMXMessage} from
+     * instance of the {@link Location} and instance of the {@link MMXChannel}
+     *
+     * @param channel  instance of the {@link MMXChannel}
+     * @param location instance of the {@link Location}
+     * @return instance of the {@link MMXMessage}
+     */
+    @Nullable
+    public static MMXMessage sendMessage(@Nullable final MMXChannel channel,
+                                         @Nullable final Location location) {
+        if (BSValidationHelper.validateNull(channel, location)) {
+            return sendMessage(channel, location.getLatitude(), location.getLongitude());
+        }
+        return null;
+    }
+
+    /**
+     * Method which provide the sending of of the {@link MMXMessage} from
+     * the latitude, longitude and instance of the {@link ChannelDetail}
+     *
+     * @param channel   instance of the {@link ChannelDetail}
+     * @param latitude  {@link Integer} value of the latitude
+     * @param longitude {@link Integer} value of the longitude
+     * @return instance of the {@link MMXMessage}
+     */
+    public static MMXMessage sendMessage(@Nullable final ChannelDetail channel,
+                                         double latitude,
+                                         double longitude) {
+        if (BSValidationHelper.validateNull(channel)) {
+            return sendMessage(channel.getChannel(), latitude, longitude);
+        }
+        return null;
+    }
+
+    /**
+     * Method which provide the sending of of the {@link MMXMessage} from
+     * the latitude, longitude and instance of the {@link MMXChannel}
+     *
+     * @param channel   instance of the {@link MMXChannel}
+     * @param latitude  {@link Integer} value of the latitude
+     * @param longitude {@link Integer} value of the longitude
+     * @return instance of the {@link MMXMessage}
+     */
+    public static MMXMessage sendMessage(@Nullable final MMXChannel channel,
+                                         double latitude,
+                                         double longitude) {
+        if (channel != null) {
+            final String strLatitude = String.valueOf(latitude);
+            final String strLongitude = String.valueOf(longitude);
+            return sendMessage(channel, strLatitude, strLongitude);
+        }
+        return null;
+    }
+
+    /**
+     * Method which provide the sending of of the {@link MMXMessage} from
+     * the latitude, longitude and instance of the {@link ChannelDetail}
+     *
+     * @param channel   instance of the {@link ChannelDetail}
+     * @param latitude  {@link Integer} value of the latitude
+     * @param longitude {@link Integer} value of the longitude
+     * @return instance of the {@link MMXMessage}
+     */
+    public static MMXMessage sendMessage(@Nullable final ChannelDetail channel,
+                                         String latitude,
+                                         String longitude) {
+        if (BSValidationHelper.validateNull(channel)) {
+            return sendMessage(channel.getChannel(), latitude, longitude);
+        }
+        return null;
+    }
+
+    /**
+     * Method which provide the sending of of the {@link MMXMessage} from
+     * the latitude, longitude and instance of the {@link MMXChannel}
+     *
+     * @param channel   instance of the {@link MMXChannel}
+     * @param latitude  {@link Integer} value of the latitude
+     * @param longitude {@link Integer} value of the longitude
+     * @return instance of the {@link MMXMessage}
+     */
+    public static MMXMessage sendMessage(@Nullable final MMXChannel channel,
+                                         String latitude,
+                                         String longitude) {
+        if (BSValidationHelper.validateEmpty(channel, latitude, longitude)) {
+            final MMXMessage message = new MMXMessage.Builder()
+                    .metaData(KitMessageTags.TYPE.getValue(), KitMessageType.MAP.getValue())
+                    .metaData(KitMessageTags.LATITUDE.getValue(), latitude)
+                    .metaData(KitMessageTags.LONGITUDE.getValue(), longitude)
+                    .channel(channel)
+                    .build();
+            message.send(null);
+            return message;
         }
         return null;
     }

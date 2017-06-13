@@ -13,6 +13,7 @@ import com.artlite.adapteredrecyclerview.events.RecycleEvent;
 import com.artlite.adapteredrecyclerview.models.BaseObject;
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
 import com.artlite.bslibrary.ui.view.BSView;
+import com.artlite.ckconcept.R;
 import com.artlite.ckconcept.callbacks.OnKitActionCallback;
 import com.artlite.ckconcept.callbacks.OnKitEventCallback;
 import com.artlite.ckconcept.callbacks.OnKitViewCallback;
@@ -75,6 +76,8 @@ public abstract class KitBaseWidgetView extends BSView implements KitWidgetContr
         getAdapteredView().init(getLayoutManager(getContext()),
                 this, refreshCallback, pagingCallback);
         getAdapteredView().setIsNeedResfresh(isNeedSwipeRefresh());
+        getAdapteredView().setRefreshColoursRes(R.color.color_ck_background,
+                R.color.color_ck_accent);
         getPresenter().getServerData(getContext(), 0, KitBaseWidgetView.this);
         if (getCreateButtonId() != null) {
             findViewById(getCreateButtonId()).setOnClickListener(createWidgetCallback);

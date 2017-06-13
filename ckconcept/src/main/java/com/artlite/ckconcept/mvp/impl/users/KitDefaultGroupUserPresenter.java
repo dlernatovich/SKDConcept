@@ -126,7 +126,7 @@ public class KitDefaultGroupUserPresenter extends KitBaseGroupUserPresenter {
      */
     @Override
     public int getSearchHintColor() {
-        return android.R.color.darker_gray;
+        return R.color.color_ck_accent;
     }
 
     /**
@@ -136,7 +136,7 @@ public class KitDefaultGroupUserPresenter extends KitBaseGroupUserPresenter {
      */
     @Override
     public int getSearchTextColor() {
-        return android.R.color.black;
+        return R.color.color_ck_accent;
     }
 
     /**

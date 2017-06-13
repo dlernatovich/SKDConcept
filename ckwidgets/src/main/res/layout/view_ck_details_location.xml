@@ -9,6 +9,13 @@
     android:clipToPadding="true"
     android:maxWidth="@dimen/dimen_300">
 
+    <ProgressBar
+        android:layout_width="@dimen/dimen_30"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/color_ck_accent"
+        android:progressTint="@color/color_ck_accent"
+        android:layout_height="@dimen/dimen_30" />
+
 
     <ImageView
         android:id="@+id/image_map"
@@ -25,8 +32,8 @@
         android:layout_margin="@dimen/dimen_5"
         android:background="@drawable/bg_ck_round_gray"
         android:text="Open in GoogleMap"
-        android:textStyle="bold"
         android:textColor="@color/color_ck_accent"
-        android:textSize="@dimen/text_16" />
+        android:textSize="@dimen/text_16"
+        android:textStyle="bold" />
 
 </FrameLayout>

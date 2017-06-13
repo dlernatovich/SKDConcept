@@ -18,8 +18,8 @@
             android:hint="User name or Email"
             android:lines="1"
             android:text=""
-            android:textColor="@android:color/black"
-            android:textColorHint="@android:color/holo_blue_dark"
+            android:textColor="@color/color_ck_text_main"
+            android:textColorHint="@color/color_ck_accent"
             android:textSize="@dimen/text_16" />
 
         <View
@@ -35,8 +35,8 @@
             android:inputType="textPassword"
             android:lines="1"
             android:text=""
-            android:textColor="@android:color/black"
-            android:textColorHint="@android:color/holo_blue_dark"
+            android:textColor="@color/color_ck_text_main"
+            android:textColorHint="@color/color_ck_accent"
             android:textSize="@dimen/text_16" />
 
         <com.artlite.bslibrary.ui.fonted.BSButton
@@ -46,7 +46,7 @@
             android:background="@android:color/transparent"
             android:gravity="center"
             android:text="Sign In"
-            android:textColor="@android:color/holo_blue_dark"
+            android:textColor="@color/color_ck_accent"
             android:textSize="@dimen/text_14"
             android:textStyle="bold" />
     </LinearLayout>
@@ -61,18 +61,18 @@
         android:visibility="visible">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/dimen_5"
-            android:background="@drawable/bg_ck_round_gray_transparent"
+            android:background="@drawable/bg_ck_round_gray"
             android:gravity="center"
             android:orientation="horizontal">
 
             <ProgressBar
                 android:layout_width="@dimen/dimen_30"
                 android:layout_height="@dimen/dimen_30"
-                android:progressTint="@android:color/holo_blue_dark" />
+                android:indeterminateTint="@color/color_ck_accent"
+                android:progressTint="@color/color_ck_accent" />
 
             <com.artlite.bslibrary.ui.fonted.BSTextView
                 android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
                 android:layout_marginLeft="@dimen/dimen_5"
                 android:gravity="center"
                 android:text="@string/text_ck_please_wait"
-                android:textColor="@android:color/holo_blue_dark"
+                android:textColor="@color/color_ck_accent"
                 android:textSize="@dimen/text_16" />
 
         </LinearLayout>

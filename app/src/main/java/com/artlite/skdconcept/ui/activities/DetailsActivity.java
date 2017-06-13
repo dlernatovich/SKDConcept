@@ -1,7 +1,8 @@
 package com.artlite.skdconcept.ui.activities;
 
 import android.content.Context;
-import android.content.Intent;
+import android.graphics.Bitmap;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,12 +10,12 @@ import android.support.v7.app.ActionBar;
 
 import com.artlite.adapteredrecyclerview.events.RecycleEvent;
 import com.artlite.bslibrary.annotations.FindViewBy;
-import com.artlite.bslibrary.helpers.intent.BSIntentHelper;
 import com.artlite.bslibrary.managers.BSTransferManager;
 import com.artlite.bslibrary.ui.activity.BSActivity;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.callbacks.OnKitViewCallback;
 import com.artlite.ckconcept.constants.KitWidgetType;
+import com.artlite.ckconcept.managers.location.KitLocationManager;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.ui.views.chat.KitChatView;
@@ -55,6 +56,16 @@ public class DetailsActivity extends BSActivity {
         channel = BSTransferManager.get(this);
         chatView.setChannel(channel);
         chatView.setOnViewCallback(viewCallback);
+        KitLocationManager.getInstance().startLocationMonitoring(this);
+    }
+
+    /**
+     * Method which provide the action when the view is destroy
+     */
+    @Override
+    protected void onDestroy() {
+        chatView.onDestroyView();
+        super.onDestroy();
     }
 
     /**
@@ -146,7 +157,26 @@ public class DetailsActivity extends BSActivity {
         public void onMenuItemClick(@NonNull KitMenuModel object) {
             if (object.getType().equalsIgnoreCase(KitWidgetType.MESSAGE_PHOTO.getValue())) {
                 startActivityForPickImage();
+            } else if (object.getType().equalsIgnoreCase(KitWidgetType.MESSAGE_LOCATION.getValue())) {
+                final Location location = KitLocationManager.getInstance().getLocation();
+                if (location != null) {
+                    if(chatView != null){
+                        chatView.sendMessage(location);
+                    }
+                }
             }
         }
     };
+
+    /**
+     * Method which provide the on activity results with the image content
+     *
+     * @param bitmap instance of the {@link Bitmap}
+     */
+    @Override
+    protected void onActivityImageResults(@NonNull Bitmap bitmap) {
+        if (chatView != null) {
+            chatView.sendMessage(bitmap);
+        }
+    }
 }

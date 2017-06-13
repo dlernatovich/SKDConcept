@@ -1,6 +1,8 @@
 package com.artlite.ckconcept.ui.views.chat;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -113,6 +115,15 @@ public class KitChatView extends KitBaseWidgetView {
             }
         });
         super.onCreateView();
+    }
+
+    /**
+     * Method which provide the action when
+     */
+    public void onDestroyView() {
+        if (presenter != null) {
+            presenter.setChannelInactive();
+        }
     }
 
     /**
@@ -258,6 +269,10 @@ public class KitChatView extends KitBaseWidgetView {
         }
     }
 
+    //==============================================================================================
+    //                                     SEND MESSAGE
+    //==============================================================================================
+
     /**
      * Method which provide the sending of the text message
      *
@@ -266,6 +281,28 @@ public class KitChatView extends KitBaseWidgetView {
     public void sendMessage(@Nullable final String message) {
         if (presenter != null) {
             presenter.sendMessage(message);
+        }
+    }
+
+    /**
+     * Method which provide the sending of the text message
+     *
+     * @param bitmap {@link String} value of the message
+     */
+    public void sendMessage(@Nullable final Bitmap bitmap) {
+        if (presenter != null) {
+            presenter.sendMessage(bitmap);
+        }
+    }
+
+    /**
+     * Method which provide the sending of the text message
+     *
+     * @param location {@link String} value of the message
+     */
+    public void sendMessage(@Nullable final Location location) {
+        if (presenter != null) {
+            presenter.sendMessage(location);
         }
     }
 }

@@ -4,6 +4,7 @@ import android.support.annotation.ColorRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.artlite.ckconcept.R;
 import com.artlite.ckconcept.mvp.contracts.KitGroupContactContract;
 import com.magnet.max.android.User;
 import com.magnet.max.android.api.group.MMXUserGroup;
@@ -108,7 +109,7 @@ public abstract class KitBaseGroupUserPresenter implements KitGroupContactContra
      */
     @ColorRes
     public int getRefreshColor() {
-        return android.R.color.black;
+        return R.color.color_ck_accent;
     }
 
     /**
@@ -118,7 +119,7 @@ public abstract class KitBaseGroupUserPresenter implements KitGroupContactContra
      */
     @ColorRes
     public int getRefreshBackgroundColor() {
-        return android.R.color.white;
+        return R.color.color_ck_background;
     }
 
     /**
