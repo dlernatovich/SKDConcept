@@ -5,7 +5,6 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RawRes;
-import android.support.multidex.MultiDex;
 
 import com.artlite.bslibrary.container.BSResourceContainer;
 import com.artlite.bslibrary.core.BSInstance;
@@ -21,17 +20,6 @@ import com.magnet.max.android.config.MaxAndroidPropertiesConfig;
  */
 
 public abstract class KitApplication extends Application {
-
-    /**
-     * Method which provide the attaching of the base context
-     *
-     * @param context instance of the {@link Context}
-     */
-    @Override
-    protected void attachBaseContext(Context context) {
-        super.attachBaseContext(context);
-        MultiDex.install(this);
-    }
 
     /**
      * Method which provide the action when the {@link Application} is created

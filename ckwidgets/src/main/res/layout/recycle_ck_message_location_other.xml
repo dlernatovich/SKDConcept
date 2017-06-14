@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/container"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="left"
-    android:id="@+id/content"
     android:layout_marginBottom="@dimen/dimen_5"
     android:layout_marginLeft="@dimen/dimen_5"
     android:layout_marginRight="@dimen/dimen_50"
@@ -16,13 +16,13 @@
 
     <ProgressBar
         android:layout_width="@dimen/dimen_30"
+        android:layout_height="@dimen/dimen_30"
         android:layout_gravity="center"
         android:indeterminateTint="@color/color_ck_accent"
-        android:progressTint="@color/color_ck_accent"
-        android:layout_height="@dimen/dimen_30" />
+        android:progressTint="@color/color_ck_accent" />
 
     <ImageView
-        android:id="@+id/image_data"
+        android:id="@+id/image_map"
         style="@style/styleCropImageCenter"
         android:layout_width="@dimen/dimen_150"
         android:layout_height="@dimen/dimen_150" />

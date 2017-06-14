@@ -9,6 +9,7 @@ import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.constants.KitMessageType;
 import com.artlite.ckconcept.constants.KitWidgetPriority;
 import com.artlite.ckconcept.constants.KitWidgetType;
+import com.artlite.ckconcept.helpers.message.KitMessageHelper;
 import com.artlite.ckconcept.models.define.KitBaseDefiner;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
@@ -19,7 +20,7 @@ import com.artlite.ckconcept.ui.views.chat.KitChatView;
 import com.artlite.ckwidgets.definers.KitDefinerMessageLocation;
 import com.artlite.ckwidgets.ui.details.KitDetailsMessageLocation;
 import com.artlite.ckwidgets.ui.list.KitListMessageLocationMy;
-import com.magnet.mmx.client.api.MMXChannel;
+import com.artlite.ckwidgets.ui.list.KitListMessageLocationOther;
 import com.magnet.mmx.client.api.MMXMessage;
 
 import java.util.Arrays;
@@ -79,7 +80,15 @@ public final class KitWidgetMessageLocation extends KitWidgetModel<MMXMessage> {
     @Nullable
     @Override
     public KitBaseListObject getViewList(@Nullable Parcelable object) {
-        return new KitListMessageLocationMy(object);
+        if ((object != null) && (object instanceof MMXMessage)) {
+            final MMXMessage message = (MMXMessage) object;
+            if (KitMessageHelper.isMy(message)) {
+                return new KitListMessageLocationMy(object);
+            } else {
+                return new KitListMessageLocationOther(object);
+            }
+        }
+        return null;
     }
 
     /**

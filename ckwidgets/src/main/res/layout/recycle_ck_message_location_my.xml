@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/container"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -14,10 +14,17 @@
     android:maxWidth="@dimen/dimen_300"
     android:orientation="vertical">
 
+    <ProgressBar
+        android:layout_width="@dimen/dimen_30"
+        android:layout_height="@dimen/dimen_30"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/color_ck_accent_inner"
+        android:progressTint="@color/color_ck_accent_inner" />
+
     <ImageView
         android:id="@+id/image_map"
         style="@style/styleCropImageCenter"
         android:layout_width="@dimen/dimen_150"
         android:layout_height="@dimen/dimen_150" />
 
-</LinearLayout>
+</FrameLayout>
