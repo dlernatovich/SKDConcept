@@ -9,8 +9,8 @@ import android.widget.ImageView;
 
 import com.artlite.bslibrary.helpers.intent.BSIntentHelper;
 import com.artlite.bslibrary.helpers.log.BSLogHelper;
+import com.artlite.bslibrary.helpers.map.BSMapHelper;
 import com.artlite.ckconcept.helpers.image.KitImageHelper;
-import com.artlite.ckconcept.helpers.map.KitMapHelper;
 import com.artlite.ckconcept.helpers.message.KitMessageHelper;
 import com.artlite.ckconcept.ui.abs.details.KitBaseDetailsView;
 import com.artlite.ckwidgets.R;
@@ -78,7 +78,7 @@ public final class KitDetailsMessageLocation extends KitBaseDetailsView<MMXMessa
         if (message != null) {
             latitude = KitMessageHelper.getLatitude(message);
             longitude = KitMessageHelper.getLongitude(message);
-            final String url = KitMapHelper.getPreviewLargeMap(latitude, longitude);
+            final String url = BSMapHelper.getPreviewLargeMap(latitude, longitude);
             KitImageHelper.load(imageView, url);
         }
     }

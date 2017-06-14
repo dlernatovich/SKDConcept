@@ -8,8 +8,8 @@ import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
 import com.artlite.adapteredrecyclerview.models.BaseRecyclerItem;
+import com.artlite.bslibrary.helpers.map.BSMapHelper;
 import com.artlite.ckconcept.constants.KitMessageType;
-import com.artlite.ckconcept.helpers.map.KitMapHelper;
 import com.artlite.ckconcept.helpers.message.KitMessageHelper;
 import com.artlite.ckconcept.managers.image.KitImageManager;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
@@ -115,7 +115,7 @@ public final class KitListMessageLocationMy extends KitBaseListObject<MMXMessage
          */
         @Override
         public void setUp(@NonNull KitListMessageLocationMy object) {
-            final String link = KitMapHelper.getPreviewSmallMap(object.latitude,
+            final String link = BSMapHelper.getPreviewSmallMap(object.latitude,
                     object.longitude);
             KitImageManager.getInstance().load(imageView, link);
         }

@@ -383,6 +383,9 @@ public final class KitWidgetManager extends BSBaseManager {
     public static BSView getViewCreate(@Nullable final Context context,
                                        @Nullable final String type,
                                        @Nullable final Object object) {
+        if (object == null) {
+            return null;
+        }
         final OnKitCreatorFactory creator = getCreator(type);
         if (BSValidationHelper.validateNull(creator, context)) {
             final KitWidgetModel widget = creator.create(object);
@@ -463,6 +466,9 @@ public final class KitWidgetManager extends BSBaseManager {
     public static BSView getViewDetails(@Nullable final Context context,
                                         @Nullable final String type,
                                         @Nullable final Parcelable object) {
+        if (object == null) {
+            return null;
+        }
         final OnKitCreatorFactory creator = getCreator(type);
         if (BSValidationHelper.validateNull(creator, context)) {
             final KitWidgetModel widget = creator.create(object);
@@ -525,6 +531,9 @@ public final class KitWidgetManager extends BSBaseManager {
     @NonNull
     public static KitBaseListObject getViewList(@Nullable final String type,
                                                 @Nullable final Parcelable object) {
+        if (object == null) {
+            return null;
+        }
         final OnKitCreatorFactory creator = getCreator(type);
         if (BSValidationHelper.validateNull(creator)) {
             final KitWidgetModel widget = creator.create(object);
