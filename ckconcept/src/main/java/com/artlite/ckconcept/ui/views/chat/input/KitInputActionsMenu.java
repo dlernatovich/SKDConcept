@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Class which provide the action menu for the {@link KitInputMsgView}
+ * Class which provide the action menu for the {@link KitInputMessageView}
  */
 class KitInputActionsMenu implements Menu {
 
@@ -56,6 +56,13 @@ class KitInputActionsMenu implements Menu {
         return item;
     }
 
+    /**
+     * Method which provide the adding of the {@link MenuItem} from the {@link String} value of
+     * the title
+     *
+     * @param titleRes {@link Integer} value of the title resource
+     * @return instance of the {@link MenuItem}
+     */
     @Override
     public MenuItem add(int titleRes) {
         InputActionsMenuItem item = new InputActionsMenuItem();
@@ -64,6 +71,15 @@ class KitInputActionsMenu implements Menu {
         return item;
     }
 
+    /**
+     * Method which provide the adding of the {@link MenuItem} from
+     *
+     * @param groupId {@link Integer} value of the group ID
+     * @param itemId  {@link Integer} value of the item ID
+     * @param order   {@link Integer} value of the order
+     * @param title   {@link CharSequence} value of the title
+     * @return integer value of the {@link MenuItem}
+     */
     @Override
     public MenuItem add(int groupId, int itemId, int order, CharSequence title) {
         InputActionsMenuItem item = new InputActionsMenuItem(itemId);
@@ -72,6 +88,15 @@ class KitInputActionsMenu implements Menu {
         return item;
     }
 
+    /**
+     * Method which provide the adding of the {@link MenuItem} from
+     *
+     * @param groupId  {@link Integer} value of the group ID
+     * @param itemId   {@link Integer} value of the item ID
+     * @param order    {@link Integer} value of the order
+     * @param titleRes {@link Integer} value of the title resource
+     * @return integer value of the {@link MenuItem}
+     */
     @Override
     public MenuItem add(int groupId, int itemId, int order, int titleRes) {
         InputActionsMenuItem item = new InputActionsMenuItem(itemId);
@@ -80,110 +105,244 @@ class KitInputActionsMenu implements Menu {
         return item;
     }
 
+    /**
+     * Method which provide the adding of the {@link SubMenu}
+     *
+     * @param title {@link CharSequence} of the title
+     * @return instance of the {@link SubMenu}
+     */
     @Override
     public SubMenu addSubMenu(CharSequence title) {
         // Not supported
         return null;
     }
 
+    /**
+     * Method which provide the adding of the {@link SubMenu}
+     *
+     * @param titleRes {@link Integer} value of the title resource
+     * @return instance of the {@link SubMenu}
+     */
     @Override
     public SubMenu addSubMenu(int titleRes) {
         // Not supported
         return null;
     }
 
+    /**
+     * Method which provide the adding of the {@link SubMenu} from
+     *
+     * @param groupId {@link Integer} value of the group ID
+     * @param itemId  {@link Integer} value of the item ID
+     * @param order   {@link Integer} value of the order
+     * @param title   {@link CharSequence} of the title
+     * @return instance of the {@link SubMenu}
+     */
     @Override
     public SubMenu addSubMenu(int groupId, int itemId, int order, CharSequence title) {
         // Not supported
         return null;
     }
 
+    /**
+     * Method which provide the adding of the {@link SubMenu} from
+     *
+     * @param groupId  {@link Integer} value of the group ID
+     * @param itemId   {@link Integer} value of the item ID
+     * @param order    {@link Integer} value of the order
+     * @param titleRes {@link Integer} value of the title resource
+     * @return instance of the {@link SubMenu}
+     */
     @Override
     public SubMenu addSubMenu(int groupId, int itemId, int order, int titleRes) {
         // Not supported
         return null;
     }
 
+    /**
+     * Method which provide the adding of the intent option
+     *
+     * @param groupId          {@link Integer} value of the group ID
+     * @param itemId           {@link Integer} value of the item ID
+     * @param order            {@link Integer} value of the order
+     * @param caller           instance of the {@link ComponentName}
+     * @param specifics        {@link Intent} array of the specifics
+     * @param intent           instance of the {@link Intent}
+     * @param flags            {@link Integer} value of the flags
+     * @param outSpecificItems {@link MenuItem} array
+     * @return {@link Integer} value of the options
+     */
     @Override
-    public int addIntentOptions(int groupId, int itemId, int order, ComponentName caller, Intent[] specifics, Intent intent, int flags, MenuItem[] outSpecificItems) {
+    public int addIntentOptions(int groupId,
+                                int itemId,
+                                int order,
+                                ComponentName caller,
+                                Intent[] specifics,
+                                Intent intent,
+                                int flags,
+                                MenuItem[] outSpecificItems) {
         // Not supported
         return 0;
     }
 
+    /**
+     * Method which provide the remove item
+     *
+     * @param id {@link Integer} value of the ID
+     */
     @Override
     public void removeItem(int id) {
         // Not supported
     }
 
+    /**
+     * Method which provide the removing group
+     *
+     * @param groupId {@link Integer} value of the group ID
+     */
     @Override
     public void removeGroup(int groupId) {
         // Not supported
     }
 
+    /**
+     * Method which provide the clearing functional
+     */
     @Override
     public void clear() {
         // Not supported
     }
 
+    /**
+     * Method which provide the setting the group checkable
+     *
+     * @param group     {@link Integer} value of the group ID
+     * @param checkable {@link Boolean} value if checkable
+     * @param exclusive {@link Boolean} value if exclusive
+     */
     @Override
     public void setGroupCheckable(int group, boolean checkable, boolean exclusive) {
         // Not supported
     }
 
+    /**
+     * Method which provide the setting of the group visible
+     *
+     * @param group   {@link Integer} value of the group ID
+     * @param visible {@link Boolean} value if visible
+     */
     @Override
     public void setGroupVisible(int group, boolean visible) {
         // Not supported
     }
 
+    /**
+     * Method which provide the setting group enabled
+     *
+     * @param group   {@link Integer} value of the group ID
+     * @param enabled {@link Boolean} value if enabled
+     */
     @Override
     public void setGroupEnabled(int group, boolean enabled) {
         // Not supported
     }
 
+    /**
+     * Method which provide the checking if current item has visible items
+     *
+     * @return {@link Boolean} value if current item have visible group
+     */
     @Override
     public boolean hasVisibleItems() {
         return true;
     }
 
+    /**
+     * Method which provide the finding of the {@link MenuItem}
+     *
+     * @param id {@link Integer} value of the ID
+     * @return instance of the {@link MenuItem}
+     */
     @Override
     public MenuItem findItem(int id) {
         // Not supported
         return null;
     }
 
+    /**
+     * Method which provide the getting of the size
+     *
+     * @return {@link Integer} value of the size
+     */
     @Override
     public int size() {
         return mItems.size();
     }
 
+    /**
+     * Method which provide the getting og the {@link MenuItem}
+     *
+     * @param index {@link Integer} value of the index
+     * @return instance of the {@link MenuItem}
+     */
     @Override
     public MenuItem getItem(int index) {
         return mItems.get(index);
     }
 
+    /**
+     * Method which provide the closing of the {@link MenuItem}
+     */
     @Override
     public void close() {
         // Not supported
     }
 
+    /**
+     * Method which provide the shortcut performing
+     *
+     * @param keyCode {@link Integer} value of the key code
+     * @param event   instance of the {@link KeyEvent}
+     * @param flags   {@link Integer} value of the flags
+     * @return {@link Boolean} value if shortcut performed
+     */
     @Override
     public boolean performShortcut(int keyCode, KeyEvent event, int flags) {
         // Not supported
         return false;
     }
 
+    /**
+     * Method which provide the checking if current object is shortcut key
+     *
+     * @param keyCode {@link Integer} value of the key code
+     * @param event   instance of the {@link KeyEvent}
+     * @return {@link Boolean} value of the checking
+     */
     @Override
     public boolean isShortcutKey(int keyCode, KeyEvent event) {
         // Not supported
         return false;
     }
 
+    /**
+     * Method which provide the performing of the identifier action
+     *
+     * @param id    {@link Integer} value of the ID
+     * @param flags {@link Integer} value of the flags
+     * @return {@link Boolean} value if performed
+     */
     @Override
     public boolean performIdentifierAction(int id, int flags) {
         // Not supported
         return false;
     }
 
+    /**
+     * Method which provide the setting of the qwerty mode
+     *
+     * @param isQwerty {@link Boolean} value if qwerty
+     */
     @Override
     public void setQwertyMode(boolean isQwerty) {
         // Not supported

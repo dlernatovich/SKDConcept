@@ -53,6 +53,9 @@ public class ChannelsActivity extends BSActivity implements KitChannelsContract.
         if (item.getItemId() == R.id.menu_item_create_channel) {
             startActivity(CreateChannelActivity.class);
             return true;
+        } else if (item.getItemId() == R.id.menu_item_universal_view) {
+            startActivity(UniversalViewActivity.class);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

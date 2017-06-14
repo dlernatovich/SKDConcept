@@ -27,10 +27,19 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.activities.DetailsActivity"
-            android:label="@string/title_activity_details_ativity" />
+            android:configChanges="orientation"
+            android:label="@string/title_activity_details_ativity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.activities.CreateChannelActivity"
-            android:label="@string/app_name" />
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activities.UniversalViewActivity"
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

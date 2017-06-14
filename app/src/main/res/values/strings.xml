@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">SKDConcept</string>
     <string name="title_activity_details_ativity">DetailsAtivity</string>
+    <string name="text_universal">Universal</string>
 </resources>

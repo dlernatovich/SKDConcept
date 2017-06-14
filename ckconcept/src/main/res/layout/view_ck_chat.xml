@@ -31,7 +31,7 @@
         android:layout_gravity="left"
         android:background="@android:color/transparent" />
 
-    <com.artlite.ckconcept.ui.views.chat.input.KitInputMsgView
+    <com.artlite.ckconcept.ui.views.chat.input.KitInputMessageView
         android:id="@+id/view_ck_input"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

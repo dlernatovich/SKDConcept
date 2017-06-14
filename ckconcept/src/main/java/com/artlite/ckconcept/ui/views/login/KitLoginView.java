@@ -7,6 +7,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.EditText;
 
+import com.artlite.bslibrary.helpers.preference.BSSharedPreferenceHelper;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.R;
 import com.artlite.ckconcept.callbacks.OnKitLoginCallback;
@@ -19,6 +20,11 @@ import com.magnet.max.android.User;
  */
 
 public class KitLoginView extends BSView implements KitLoginContract.View {
+
+    /**
+     * {@link String} constants of the {@link android.content.SharedPreferences} key
+     */
+    private static final String K_SP_LOGIN_KEY = KitLoginView.class.getSimpleName() + ": [SP] LOGIN";
 
     /**
      * Instance of the {@link EditText}
@@ -93,9 +99,13 @@ public class KitLoginView extends BSView implements KitLoginContract.View {
      */
     @Override
     protected void onCreateView() {
+        final String login = BSSharedPreferenceHelper.getString(getContext(), K_SP_LOGIN_KEY);
         loginEdit = (EditText) findViewById(R.id.edit_login);
         passwordEdit = (EditText) findViewById(R.id.edit_password);
         progressView = findViewById(R.id.view_progress);
+        if ((login != null) && (!login.equalsIgnoreCase("null"))) {
+            getLoginEdit().setText(login);
+        }
         setOnClickListeners(R.id.button_sign_in);
         presenter = new KitLoginPresenter(this);
         presenter.resume();
@@ -124,6 +134,8 @@ public class KitLoginView extends BSView implements KitLoginContract.View {
      */
     @Override
     public void onLoginSuccess(@Nullable User user) {
+        BSSharedPreferenceHelper.save(getContext(), getLoginEdit().getText().toString().trim(),
+                K_SP_LOGIN_KEY);
         if (loginCallback != null) {
             loginCallback.onLoginSuccess(user);
         }

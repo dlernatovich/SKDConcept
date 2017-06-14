@@ -78,7 +78,9 @@ public abstract class KitBaseWidgetView extends BSView implements KitWidgetContr
         getAdapteredView().setIsNeedResfresh(isNeedSwipeRefresh());
         getAdapteredView().setRefreshColoursRes(R.color.color_ck_background,
                 R.color.color_ck_accent);
-        getPresenter().getServerData(getContext(), 0, KitBaseWidgetView.this);
+        if (getPresenter() != null) {
+            getPresenter().getServerData(getContext(), 0, KitBaseWidgetView.this);
+        }
         if (getCreateButtonId() != null) {
             findViewById(getCreateButtonId()).setOnClickListener(createWidgetCallback);
         }
@@ -106,6 +108,18 @@ public abstract class KitBaseWidgetView extends BSView implements KitWidgetContr
         final AdapteredView view = getAdapteredView();
         if (view != null) {
             view.add(items);
+        }
+    }
+
+    /**
+     * Method which provide the removing of the items
+     *
+     * @param objects {@link List} of the {@link BaseRecyclerItem}
+     */
+    public void removeItems(@Nullable final List<KitBaseListObject> objects) {
+        final AdapteredView view = getAdapteredView();
+        if ((view != null) && (objects != null) && (!objects.isEmpty())) {
+            view.delete(objects.toArray(new KitBaseListObject[0]));
         }
     }
 

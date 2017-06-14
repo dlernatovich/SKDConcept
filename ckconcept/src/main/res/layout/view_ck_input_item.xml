@@ -7,4 +7,4 @@
     android:layout_height="wrap_content"
     android:padding="8dp"
     android:src="@drawable/ic_ck_input_attach"
-    android:tint="@color/input_action_button_tint" />
+    android:tint="@color/color_ck_accent" />

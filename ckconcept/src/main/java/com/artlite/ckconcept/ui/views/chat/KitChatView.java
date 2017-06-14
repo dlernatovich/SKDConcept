@@ -19,7 +19,7 @@ import com.artlite.ckconcept.R;
 import com.artlite.ckconcept.mvp.abs.view.KitBaseWidgetView;
 import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
 import com.artlite.ckconcept.mvp.presenters.KitChatPresenter;
-import com.artlite.ckconcept.ui.views.chat.input.KitInputMsgView;
+import com.artlite.ckconcept.ui.views.chat.input.KitInputMessageView;
 import com.magnet.mmx.client.api.ChannelDetail;
 import com.magnet.mmx.client.api.MMXChannel;
 
@@ -45,9 +45,9 @@ public class KitChatView extends KitBaseWidgetView {
     private MMXChannel channel;
 
     /**
-     * Instance of the {@link KitInputMsgView}
+     * Instance of the {@link KitInputMessageView}
      */
-    private KitInputMsgView inputMsgView;
+    private KitInputMessageView inputMsgView;
 
     /**
      * Constructor which provide the create {@link BSView} from
@@ -98,7 +98,7 @@ public class KitChatView extends KitBaseWidgetView {
     @Override
     protected void onCreateView() {
         this.recycleView = (AdapteredView) findViewById(R.id.view_ck_recycle_chat);
-        this.inputMsgView = (KitInputMsgView) findViewById(R.id.view_ck_input);
+        this.inputMsgView = (KitInputMessageView) findViewById(R.id.view_ck_input);
         this.inputMsgView.setOnActionItemClickedListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {

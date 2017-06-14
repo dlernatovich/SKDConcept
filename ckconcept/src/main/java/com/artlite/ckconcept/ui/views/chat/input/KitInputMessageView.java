@@ -36,7 +36,7 @@ import com.artlite.ckconcept.R;
  * View providing a text input field, a row of icons for actions (e.g Attach, etc) and a Send button.
  */
 
-public class KitInputMsgView extends FrameLayout {
+public class KitInputMessageView extends FrameLayout {
 
     public interface OnTypingListener {
         void onTyping();
@@ -56,22 +56,22 @@ public class KitInputMsgView extends FrameLayout {
 
     private long lastTypingNotification; // Keep track of last notification time for throttling
 
-    public KitInputMsgView(Context context) {
+    public KitInputMessageView(Context context) {
         super(context);
     }
 
-    public KitInputMsgView(Context context, AttributeSet attrs) {
+    public KitInputMessageView(Context context, AttributeSet attrs) {
         super(context, attrs);
         parseAttributes(attrs);
     }
 
-    public KitInputMsgView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public KitInputMessageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         parseAttributes(attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public KitInputMsgView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public KitInputMessageView(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         parseAttributes(attrs);
     }
@@ -166,10 +166,10 @@ public class KitInputMsgView extends FrameLayout {
     }
 
     private void parseAttributes(@NonNull AttributeSet attrs) {
-        TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.KitInputMsgView, 0, 0);
+        TypedArray a = getContext().getTheme().obtainStyledAttributes(attrs, R.styleable.KitInputMessageView, 0, 0);
 
         try {
-            int menuRes = a.getResourceId(R.styleable.KitInputMsgView_actionMenu, -1);
+            int menuRes = a.getResourceId(R.styleable.KitInputMessageView_actionMenu, -1);
             if (menuRes != -1) {
                 setActions(menuRes);
             }
