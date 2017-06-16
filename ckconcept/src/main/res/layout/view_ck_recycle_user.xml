@@ -32,6 +32,7 @@
 
             <com.artlite.bslibrary.ui.fonted.BSTextView
                 android:id="@+id/label_short_name"
+                style="@style/style_plain"
                 android:layout_width="@dimen/dimen_50"
                 android:layout_height="@dimen/dimen_50"
                 android:layout_gravity="center"
@@ -39,7 +40,6 @@
                 android:maxLength="2"
                 android:text="NA"
                 android:textColor="@color/color_ck_text_users_avatar"
-                android:textSize="@dimen/text_20"
                 android:textStyle="bold" />
 
             <de.hdodenhof.circleimageview.CircleImageView
@@ -51,13 +51,14 @@
 
         <com.artlite.bslibrary.ui.fonted.BSTextView
             android:id="@+id/label_user_name"
+            style="@style/style_h1"
             android:layout_width="@dimen/dimen_0"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center_vertical"
             android:text="User Name"
-            android:textColor="@color/color_ck_text_users_name"
-            android:textSize="@dimen/text_20" />
+            android:textStyle="normal"
+            android:textColor="@color/color_ck_text_users_name" />
 
         <ImageView
             android:id="@+id/image_blocked"

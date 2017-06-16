@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">CKConcept</string>
+    <string name="text_cancel">Cancel</string>
+    <!--Messages type-->
+    <string name="text_ck_unknown">Unknown</string>
+    <string name="text_ck_text">Message</string>
+    <string name="text_ck_photo">Photo</string>
+    <string name="text_ck_location">Location</string>
+    <string name="text_ck_video">Video</string>
+    <string name="text_ck_pool">Answer</string>
+    <string name="text_ck_answer">Answer</string>
+    <string name="text_ck_code">Code</string>
+    <string name="text_ch_no_messages">No messages</string>
+    <string name="text_ch_checklist">Checklist</string>
+    <string name="text_ck_question">Survey</string>
+    <string name="text_ck_error_empty_login">User name or email can\'t be empty</string>
+    <string name="text_ck_error_empty_password">Password can\'t be empty</string>
+    <string name="text_ck_please_wait">Please wait</string>
+    <string name="text_ck_groups">Groups</string>
+    <string name="text_ck_header_no_groups">No groups</string>
+
+    <!--Input Messages View-->
+    <string name="text_ck_input_prompt_message">Write a message</string>
+    <string name="text_ck_manage">Manage</string>
+    <string name="text_ck_widget_not_support">This widget isn\'t support</string>
+</resources>

@@ -24,15 +24,13 @@
         </FrameLayout>
 
         <com.artlite.bslibrary.ui.fonted.BSTextView
-
             android:id="@+id/label_group_name"
+            style="@style/style_h1"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:text="User Name"
-            android:textColor="@color/color_ck_text_groups_name"
-            android:textSize="@dimen/text_18"
-            android:textStyle="bold" />
+            android:textColor="@color/color_ck_text_groups_name" />
 
     </LinearLayout>
 

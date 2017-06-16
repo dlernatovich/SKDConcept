@@ -40,6 +40,7 @@
         android:id="@+id/label_user_name"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:layout_gravity="center"
         android:gravity="center"
         android:text="Dmitry\nLernatovich"
         android:textColor="@color/color_ck_text_users_selected_name"

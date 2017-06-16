@@ -13,9 +13,10 @@
 
     <android.support.v7.widget.SearchView
         android:id="@+id/search_view"
+        style="@style/style_plain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:defaultQueryHint="Enter search query here..." />
+        app:defaultQueryHint="@string/text_enter_query_here" />
 
     <com.artlite.adapteredrecyclerview.core.AdapteredView
         android:id="@+id/all_user_list"

@@ -8,8 +8,8 @@
 
     <LinearLayout
         android:id="@+id/input_actions_container"
-        android:layout_marginTop="@dimen/dimen_5"
-        android:layout_marginBottom="@dimen/dimen_5"
+        android:layout_marginTop="@dimen/dimen_2"
+        android:layout_marginBottom="@dimen/dimen_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
@@ -17,8 +17,9 @@
         android:orientation="horizontal" />
 
     <EditText
-        android:layout_marginTop="@dimen/dimen_5"
-        android:layout_marginBottom="@dimen/dimen_5"
+        style="@style/style_plain"
+        android:layout_marginTop="@dimen/dimen_2"
+        android:layout_marginBottom="@dimen/dimen_2"
         android:id="@+id/input_edit_text"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -32,8 +33,8 @@
         android:textColor="@android:color/black" />
 
     <FrameLayout
-        android:layout_marginTop="@dimen/dimen_5"
-        android:layout_marginBottom="@dimen/dimen_5"
+        android:layout_marginTop="@dimen/dimen_2"
+        android:layout_marginBottom="@dimen/dimen_2"
         android:layout_marginRight="@dimen/dimen_5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">

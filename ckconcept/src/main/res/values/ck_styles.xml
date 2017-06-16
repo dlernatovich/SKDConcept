@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="style_h1">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_20</item>
+    </style>
+
+    <style name="style_h2">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_18</item>
+    </style>
+
+    <style name="style_h3">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_16</item>
+    </style>
+
+    <style name="style_plain">
+        <item name="android:textSize">@dimen/text_18</item>
+    </style>
+
+    <style name="style_button">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/color_ck_accent</item>
+        <item name="android:textSize">@dimen/text_16</item>
+    </style>
+
+</resources>

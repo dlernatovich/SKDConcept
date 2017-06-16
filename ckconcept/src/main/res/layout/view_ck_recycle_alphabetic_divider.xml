@@ -8,6 +8,7 @@
 
     <com.artlite.bslibrary.ui.fonted.BSTextView
         android:id="@+id/label_text"
+        style="@style/style_h1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -15,8 +16,6 @@
         android:paddingLeft="@dimen/dimen_8"
         android:text="A"
         android:textColor="@color/color_ck_text_alphabetic"
-        android:textSize="@dimen/text_20"
-        android:textStyle="bold"
         app:textAllCaps="true" />
 
 </LinearLayout>
