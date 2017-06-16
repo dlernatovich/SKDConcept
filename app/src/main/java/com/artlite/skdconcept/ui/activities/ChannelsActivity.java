@@ -14,7 +14,7 @@ import com.artlite.ckconcept.ui.views.channels.KitChannelsView;
 import com.artlite.skdconcept.R;
 import com.magnet.mmx.client.api.ChannelDetail;
 
-public class ChannelsActivity extends BSActivity implements KitChannelsContract.OnChannelClickListener {
+public final class ChannelsActivity extends BSActivity implements KitChannelsContract.OnChannelClickListener {
 
     /**
      * Instance of the {@link KitChannelsView}

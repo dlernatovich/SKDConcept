@@ -22,7 +22,7 @@ import com.artlite.ckconcept.ui.views.chat.KitChatView;
 import com.artlite.skdconcept.R;
 import com.magnet.mmx.client.api.ChannelDetail;
 
-public class DetailsActivity extends BSActivity {
+public final class DetailsActivity extends BSActivity {
 
     /**
      * Instance of the {@link ChannelDetail}
