@@ -506,26 +506,6 @@ public final class UniversalViewActivity extends BSActivity {
             }
         });
     }
-
-    /**
-     * Method which provide the defining if need to override of the transition animation
-     *
-     * @return defining results
-     */
-    @Override
-    protected boolean isOverrideTransitionAnimation() {
-        return true;
-    }
-
-    /**
-     * Method which provide the checking if need back button into {@link ActionBar}
-     *
-     * @return checking if need back button into {@link ActionBar}
-     */
-    @Override
-    protected boolean isNeedBackButton() {
-        return true;
-    }
 }
 ```
 
