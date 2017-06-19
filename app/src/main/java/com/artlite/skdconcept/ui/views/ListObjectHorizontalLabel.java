@@ -16,7 +16,7 @@ import com.artlite.skdconcept.models.LabelObject;
  * Created by dlernatovich on 14.06.2017.
  */
 
-public final class ListObjectLabel extends KitBaseListObject<LabelObject> {
+public final class ListObjectHorizontalLabel extends KitBaseListObject<LabelObject> {
 
     /**
      * {@link String} value of text
@@ -29,7 +29,7 @@ public final class ListObjectLabel extends KitBaseListObject<LabelObject> {
      *
      * @param object instance of the {@link Object}
      */
-    public ListObjectLabel(Parcelable object) {
+    public ListObjectHorizontalLabel(Parcelable object) {
         super(object);
     }
 
@@ -38,7 +38,7 @@ public final class ListObjectLabel extends KitBaseListObject<LabelObject> {
      *
      * @param source instance of {@link Parcel}
      */
-    public ListObjectLabel(Parcel source) {
+    public ListObjectHorizontalLabel(Parcel source) {
         super(source);
     }
 
@@ -77,7 +77,7 @@ public final class ListObjectLabel extends KitBaseListObject<LabelObject> {
     /**
      * Instance of the {@link RecycleView}
      */
-    private static class RecycleView extends BaseRecyclerItem<ListObjectLabel> {
+    private static class RecycleView extends BaseRecyclerItem<ListObjectHorizontalLabel> {
 
         /**
          * Instance of the {@link BSTextView}
@@ -96,12 +96,12 @@ public final class ListObjectLabel extends KitBaseListObject<LabelObject> {
 
         /**
          * Method which provide the setting up {@link RecycleView} fro the instance of the
-         * {@link ListObjectLabel}
+         * {@link ListObjectHorizontalLabel}
          *
-         * @param object instance of the {@link ListObjectLabel}
+         * @param object instance of the {@link ListObjectHorizontalLabel}
          */
         @Override
-        public void setUp(@NonNull ListObjectLabel object) {
+        public void setUp(@NonNull ListObjectHorizontalLabel object) {
             this.labelText.setText(object.text);
         }
 
@@ -112,7 +112,7 @@ public final class ListObjectLabel extends KitBaseListObject<LabelObject> {
          */
         @Override
         protected int getLayoutId() {
-            return R.layout.recycle_label_object;
+            return R.layout.recycle_label_object_horizontal;
         }
 
         /**

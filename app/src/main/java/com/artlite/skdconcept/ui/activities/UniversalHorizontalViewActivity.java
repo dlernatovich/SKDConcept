@@ -11,7 +11,7 @@ import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckconcept.ui.views.universal.KitUniversalWidgetView;
 import com.artlite.skdconcept.R;
 import com.artlite.skdconcept.models.LabelObject;
-import com.artlite.skdconcept.ui.views.ListObjectLabel;
+import com.artlite.skdconcept.ui.views.ListObjectHorizontalLabel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.List;
  * Created by dlernatovich on 14.06.2017.
  */
 
-public final class UniversalViewActivity extends BSActivity {
+public final class UniversalHorizontalViewActivity extends BSActivity {
 
     /**
      * Instance of the {@link KitUniversalWidgetView}
@@ -35,7 +35,7 @@ public final class UniversalViewActivity extends BSActivity {
      */
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_universal;
+        return R.layout.activity_universal_horizontal;
     }
 
     /**
@@ -54,7 +54,7 @@ public final class UniversalViewActivity extends BSActivity {
             public void onExecute() {
                 for (int i = 0; i < 100; i++) {
                     final LabelObject object = new LabelObject();
-                    final KitBaseListObject listObject = new ListObjectLabel(object);
+                    final KitBaseListObject listObject = new ListObjectHorizontalLabel(object);
                     objects.add(listObject);
                 }
                 widgetView.setItems(objects);

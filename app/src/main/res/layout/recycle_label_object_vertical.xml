@@ -6,9 +6,17 @@
 
     <com.artlite.bslibrary.ui.fonted.BSTextView
         android:id="@+id/label_text"
+        style="@style/style_plain"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/dimen_5"
+        android:textColor="@color/color_ck_text_main"
         android:textSize="@dimen/text_18" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dimen_1"
+        android:layout_gravity="right"
+        android:background="@color/color_ck_accent" />
 
 </LinearLayout>

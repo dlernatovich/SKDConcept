@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="text_header">Header</string>
-    <string name="text_sign_in">Sign In</string>
-    <string name="text_enter_query_here">Enter query here</string>
-</resources>

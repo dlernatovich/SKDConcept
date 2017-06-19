@@ -9,6 +9,10 @@
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/menu_item_universal_view"
-        android:title="Universal view" />
+        android:id="@+id/menu_item_universal_view_vertical"
+        android:title="Universal Vertical view" />
+
+    <item
+        android:id="@+id/menu_item_universal_view_horizontal"
+        android:title="Universal Horizontal view" />
 </menu>

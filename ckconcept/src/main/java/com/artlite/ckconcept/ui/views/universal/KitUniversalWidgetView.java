@@ -1,6 +1,7 @@
 package com.artlite.ckconcept.ui.views.universal;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
@@ -23,6 +24,11 @@ import com.artlite.ckconcept.mvp.contracts.KitWidgetContract;
  */
 
 public final class KitUniversalWidgetView extends KitBaseWidgetView {
+
+    /**
+     * {@link Integer} value of the orientation
+     */
+    private int orientation;
 
     /**
      * Instance of {@link AdapteredView}
@@ -67,6 +73,19 @@ public final class KitUniversalWidgetView extends KitBaseWidgetView {
     @Override
     protected int getLayoutId() {
         return R.layout.view_ck_universal;
+    }
+
+    /**
+     * Method which provide the {@link AttributeSet} initialize
+     *
+     * @param attributes instance of the {@link AttributeSet}
+     */
+    @Override
+    protected void onInitAttributes(@NonNull AttributeSet attributes) {
+        TypedArray attr = getContext().getTheme().obtainStyledAttributes(attributes,
+                R.styleable.KitUniversalWidgetView, 0, 0);
+        this.orientation = attr.getInt(R.styleable.KitUniversalWidgetView_listOrientation, 0);
+        attr.recycle();
     }
 
     /**
@@ -126,7 +145,10 @@ public final class KitUniversalWidgetView extends KitBaseWidgetView {
     @NonNull
     @Override
     public RecyclerView.LayoutManager getLayoutManager(@NonNull Context context) {
-        return new GridLayoutManager(getContext(), 1);
+        return new GridLayoutManager(getContext(), 1,
+                (this.orientation == 0)
+                        ? GridLayoutManager.VERTICAL : GridLayoutManager.HORIZONTAL,
+                false);
     }
 
     /**
