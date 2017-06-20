@@ -202,13 +202,8 @@ public abstract class KitBaseWidgetView extends BSView implements KitWidgetContr
         final KitCreateWidgetView createWidgetView = new KitCreateWidgetView(getContext(),
                 KitBaseWidgetView.this);
         final List<KitMenuModel> objects = KitWidgetManager.getCreateMenus(getCurrentClass());
-        if (getCreateWidgetLayout() != null) {
-            for (KitMenuModel model : objects) {
-                model.setRecycleLayout(getCreateWidgetLayout());
-            }
-        }
         final Integer dropdownId = getViewDropdown();
-        createWidgetView.setObjects(objects);
+        createWidgetView.setObjects(objects, getCreateWidgetLayout());
         if (!objects.isEmpty()) {
             if (dropdownId != null) {
                 final View dropdown = findViewById(dropdownId);
