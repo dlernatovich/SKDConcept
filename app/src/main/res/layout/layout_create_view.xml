@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_ck_round_blue"
+    android:layout_margin="@dimen/dimen_5"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/image_menu"
+        android:layout_width="@dimen/dimen_50"
+        android:tint="@color/color_ck_accent_inner"
+        android:layout_height="@dimen/dimen_50"
+        android:layout_gravity="center" />
+
+    <com.artlite.bslibrary.ui.fonted.BSTextView
+        android:textColor="@color/color_ck_accent_inner"
+        android:id="@+id/label_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+
+</LinearLayout>

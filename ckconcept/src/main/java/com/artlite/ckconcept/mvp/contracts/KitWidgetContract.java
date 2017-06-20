@@ -75,6 +75,7 @@ public interface KitWidgetContract {
          *
          * @return {@link Integer} value of the layout ID for create widget list
          * REQUIRED
+         * @+id/content as any {@link android.view.View} for click functional
          * @+id/image_menu as {@link android.widget.ImageView}
          * @+id/label_header as {@link android.widget.TextView}
          * @warning Keep null if you don't need to override the list items interface
