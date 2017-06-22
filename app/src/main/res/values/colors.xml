@@ -3,4 +3,36 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+    <!--MAIN COLORS FOR FAST CUSTOMIZATION-->
+    <!--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
+
+    <!--&lt;!&ndash;Accent color&ndash;&gt;-->
+    <!--<color name="color_ck_accent">#424242</color>-->
+    <!--&lt;!&ndash;Color inside the accent objects/text&ndash;&gt;-->
+    <!--<color name="color_ck_accent_inner">#ffffff</color>-->
+    <!--&lt;!&ndash;Background colors&ndash;&gt;-->
+    <!--<color name="color_ck_background">#000000</color>-->
+    <!--&lt;!&ndash;Color for common text&ndash;&gt;-->
+    <!--<color name="color_ck_text_main">#ffffff</color>-->
+    <!--&lt;!&ndash;Color for description text&ndash;&gt;-->
+    <!--<color name="color_ck_text_description">#ffffff</color>-->
+    <!--&lt;!&ndash;Color for the divider line in the list&ndash;&gt;-->
+    <!--<color name="color_ck_list_line">#ffffff</color>-->
+    <!--&lt;!&ndash;Color for highlight of the selected item&ndash;&gt;-->
+    <!--<color name="color_ck_list_highlight">#212121</color>-->
+    <!--&lt;!&ndash;Color for unread mark&ndash;&gt;-->
+    <!--<color name="color_ck_unread_mark">#1565c0</color>-->
+    <!--&lt;!&ndash;Color for the divider headers&ndash;&gt;-->
+    <!--<color name="color_ck_header_divider">#fdfdfd</color>-->
+    <!--&lt;!&ndash;Colors for bubbles&ndash;&gt;-->
+    <!--&lt;!&ndash;Bubble other&ndash;&gt;-->
+    <!--<color name="color_ck_bubble_other">#616161</color>-->
+    <!--<color name="color_ck_bubble_other_text">@color/color_ck_text_main</color>-->
+    <!--&lt;!&ndash;Bubble me&ndash;&gt;-->
+    <!--<color name="color_ck_bubble_me">@color/color_ck_accent</color>-->
+    <!--<color name="color_ck_bubble_me_text">@color/color_ck_accent_inner</color>-->
+    <!--<color name="color_ck_warning">#FFF44336</color>-->
+
 </resources>

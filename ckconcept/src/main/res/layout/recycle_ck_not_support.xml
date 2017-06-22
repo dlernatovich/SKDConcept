@@ -11,7 +11,7 @@
         android:layout_width="@dimen/dimen_30"
         android:layout_height="@dimen/dimen_30"
         android:src="@mipmap/ic_ck_unknown"
-        android:tint="@color/accent" />
+        android:tint="@color/color_ck_accent" />
 
     <com.artlite.bslibrary.ui.fonted.BSTextView
         style="@style/style_h1"
@@ -20,6 +20,6 @@
         android:layout_marginLeft="@dimen/dimen_5"
         android:gravity="center_vertical"
         android:text="@string/text_ck_widget_not_support"
-        android:textColor="@color/accent" />
+        android:textColor="@color/color_ck_accent" />
 
 </LinearLayout>

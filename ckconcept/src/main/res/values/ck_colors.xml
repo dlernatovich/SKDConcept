@@ -25,16 +25,16 @@
     <!--Color for the divider line in the list-->
     <color name="color_ck_list_line">#aaa</color>
     <!--Color for highlight of the selected item-->
-    <color name="color_ck_list_highlight">#aaa</color>
+    <color name="color_ck_list_highlight">#bdbdbd</color>
     <!--Color for unread mark-->
     <color name="color_ck_unread_mark">#f57c00</color>
-    <!--Color for the divider headers-->
-    <color name="color_ck_header_divider">#f7f7f7</color>
     <!--Colors for bubbles-->
     <!--Bubble other-->
-    <color name="color_ck_bubble_other">#E5E5E9</color>
+    <color name="color_ck_bubble_other">#d7ccc8</color>
+    <color name="color_ck_bubble_other_text">@color/color_ck_text_main</color>
     <!--Bubble me-->
     <color name="color_ck_bubble_me">@color/color_ck_accent</color>
+    <color name="color_ck_bubble_me_text">@color/color_ck_accent_inner</color>
     <color name="color_ck_warning">#FFF44336</color>
 
     <!--\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\-->
@@ -67,13 +67,13 @@
     <color name="color_ck_background_groups_list">@color/color_ck_background</color>
     <color name="color_ck_background_groups_view">@color/color_ck_background</color>
     <color name="color_ck_background_groups_avatar_view">@color/color_ck_accent</color>
-    <color name="color_ck_background_groups_divider_header">@color/color_ck_header_divider</color>
+    <color name="color_ck_background_groups_divider_header">@color/color_ck_accent</color>
     <color name="color_ck_background_no_groups">@color/color_ck_background</color>
     <!--Text colors-->
     <color name="color_ck_text_groups_name">@color/color_ck_text_main</color>
-    <color name="color_ck_text_groups_header">@color/color_ck_text_main</color>
-    <color name="color_ck_text_groups_header_button">@color/color_ck_accent</color>
-    <color name="color_ck_text_no_groups">@color/color_ck_text_description</color>
+    <color name="color_ck_text_groups_header">@color/color_ck_accent_inner</color>
+    <color name="color_ck_text_groups_header_button">@color/color_ck_accent_inner</color>
+    <color name="color_ck_text_no_groups">@color/color_ck_accent</color>
 
     <!--\\\\\\\\\\\\\\\-->
     <!--USERS LIST VIEW-->
@@ -98,9 +98,9 @@
     <!--\\\\\\\\\\\\\\\\\\-->
 
     <!--Backgrounds-->
-    <color name="color_ck_background_alphabetic_background">@color/color_ck_header_divider</color>
+    <color name="color_ck_background_alphabetic_background">@color/color_ck_accent</color>
     <!--Text colors-->
-    <color name="color_ck_text_alphabetic">#757575</color>
+    <color name="color_ck_text_alphabetic">@color/color_ck_accent_inner</color>
 
     <!--\\\\\\\\\-->
     <!--CHAT VIEW-->

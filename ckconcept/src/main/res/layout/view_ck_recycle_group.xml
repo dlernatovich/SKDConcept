@@ -15,12 +15,20 @@
             android:layout_height="match_parent"
             android:layout_margin="8dp">
 
-            <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+            <FrameLayout
+                android:layout_width="@dimen/dimen_50"
+                android:layout_height="@dimen/dimen_50"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_ck_user_group_tinted"
-                android:tint="@color/color_ck_background_groups_avatar_view" />
+                android:background="@drawable/bg_ck_accent_circle"
+                android:backgroundTint="@color/color_ck_accent_inner">
+
+                <ImageView
+                    android:layout_width="@dimen/dimen_50"
+                    android:layout_height="@dimen/dimen_50"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_ck_user_group_tinted"
+                    android:tint="@color/color_ck_background_groups_avatar_view" />
+            </FrameLayout>
         </FrameLayout>
 
         <com.artlite.bslibrary.ui.fonted.BSTextView

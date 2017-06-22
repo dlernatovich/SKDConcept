@@ -33,28 +33,35 @@
             android:layout_height="match_parent"
             android:layout_margin="5dp">
 
-            <ImageView
-                android:id="@+id/image_group"
+            <FrameLayout
                 android:layout_width="@dimen/dimen_50"
-                android:layout_height="@dimen/dimen_50"
-                android:layout_gravity="center"
-                android:minHeight="@dimen/dimen_50"
-                android:src="@drawable/ic_ck_user_group_tinted"
-                android:tint="@color/color_ck_background_channels_avatar_view" />
+                android:background="@drawable/bg_ck_accent_circle"
+                android:backgroundTint="@color/color_ck_accent_inner"
+                android:layout_height="@dimen/dimen_50">
+
+                <ImageView
+                    android:id="@+id/image_group"
+                    android:layout_width="@dimen/dimen_50"
+                    android:layout_height="@dimen/dimen_50"
+                    android:layout_gravity="center"
+                    android:minHeight="@dimen/dimen_50"
+                    android:src="@drawable/ic_ck_user_group_tinted"
+                    android:tint="@color/color_ck_background_channels_avatar_view" />
+            </FrameLayout>
 
             <FrameLayout
                 android:id="@+id/view_circle_name"
                 android:layout_width="@dimen/dimen_50"
                 android:layout_height="@dimen/dimen_50"
-                android:layout_gravity="center"
-                android:background="@drawable/bg_ck_accent_circle"
-                android:backgroundTint="@color/color_ck_background_channels_avatar_view">
+                android:layout_gravity="center">
 
                 <com.artlite.bslibrary.ui.fonted.BSTextView
                     android:id="@+id/label_short_name"
                     style="@style/style_plain"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/bg_ck_accent_circle"
+                    android:backgroundTint="@color/color_ck_background_channels_avatar_view"
                     android:gravity="center"
                     android:maxLength="2"
                     android:text="NA"

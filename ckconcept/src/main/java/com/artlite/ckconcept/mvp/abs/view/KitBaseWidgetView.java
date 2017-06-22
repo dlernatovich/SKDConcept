@@ -76,8 +76,8 @@ public abstract class KitBaseWidgetView extends BSView implements KitWidgetContr
         getAdapteredView().init(getLayoutManager(getContext()),
                 this, refreshCallback, pagingCallback);
         getAdapteredView().setIsNeedResfresh(isNeedSwipeRefresh());
-        getAdapteredView().setRefreshColoursRes(R.color.color_ck_background,
-                R.color.color_ck_accent);
+        getAdapteredView().setRefreshColoursRes(R.color.color_ck_accent,
+                R.color.color_ck_accent_inner);
         if (getPresenter() != null) {
             getPresenter().getServerData(getContext(), 0, KitBaseWidgetView.this);
         }

@@ -156,7 +156,7 @@ public final class KitListUnsupportedMessageOther extends KitBaseListObject<MMXM
          */
         @Override
         protected int getLayoutId() {
-            return R.layout.recycle_ck_message_my_other_support;
+            return R.layout.recycle_ck_message_other_not_support;
         }
 
         /**

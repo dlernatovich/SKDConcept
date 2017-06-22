@@ -18,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="User"
-        android:textColor="@color/color_ck_accent" />
+        android:textColor="@color/color_ck_bubble_other_text" />
 
     <com.artlite.bslibrary.ui.fonted.BSTextView
         android:id="@+id/label_content"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dimen_5"
         android:text="This the text for the message"
-        android:textColor="@color/color_ck_accent" />
+        android:textColor="@color/color_ck_bubble_other_text" />
 
 
 </LinearLayout>

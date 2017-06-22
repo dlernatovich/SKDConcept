@@ -104,7 +104,7 @@ public class KitDefaultChannelsPresenter extends KitBaseChannelsPresenter {
     @Override
     @ColorRes
     public int getRefreshColor() {
-        return R.color.color_ck_accent;
+        return R.color.color_ck_accent_inner;
     }
 
     /**
@@ -115,7 +115,7 @@ public class KitDefaultChannelsPresenter extends KitBaseChannelsPresenter {
     @Override
     @ColorRes
     public int getRefreshColorBackground() {
-        return R.color.color_ck_background;
+        return R.color.color_ck_accent;
     }
 
     /**

@@ -109,7 +109,7 @@ public abstract class KitBaseGroupUserPresenter implements KitGroupContactContra
      */
     @ColorRes
     public int getRefreshColor() {
-        return R.color.color_ck_accent;
+        return R.color.color_ck_accent_inner;
     }
 
     /**
@@ -119,7 +119,7 @@ public abstract class KitBaseGroupUserPresenter implements KitGroupContactContra
      */
     @ColorRes
     public int getRefreshBackgroundColor() {
-        return R.color.color_ck_background;
+        return R.color.color_ck_accent;
     }
 
     /**
