@@ -44,6 +44,14 @@ public final class KitDetailsMessagePhoto extends KitBaseDetailsView<MMXMessage>
     }
 
     /**
+     * Method which provide the interface linking
+     */
+    @Override
+    protected void onLinkInterface() {
+
+    }
+
+    /**
      * Method which provide the functional after {@link View} creation
      */
     @Override

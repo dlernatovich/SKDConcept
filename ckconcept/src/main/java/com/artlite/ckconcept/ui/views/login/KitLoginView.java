@@ -95,6 +95,14 @@ public class KitLoginView extends BSView implements KitLoginContract.View {
     }
 
     /**
+     * Method which provide the interface linking
+     */
+    @Override
+    protected void onLinkInterface() {
+
+    }
+
+    /**
      * Method which provide the action when view is create
      */
     @Override

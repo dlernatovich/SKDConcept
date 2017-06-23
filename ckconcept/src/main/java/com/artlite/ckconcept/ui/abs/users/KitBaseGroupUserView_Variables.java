@@ -6,6 +6,7 @@ import android.util.AttributeSet;
 
 import com.artlite.adapteredrecyclerview.core.AdapteredView;
 import com.artlite.adapteredrecyclerview.models.BaseObject;
+import com.artlite.bslibrary.ui.view.BSSearchView;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.mvp.contracts.KitGroupContactContract;
 import com.artlite.ckconcept.ui.recycle.users.KitRecycleGroupHeader;
@@ -45,7 +46,7 @@ abstract class KitBaseGroupUserView_Variables extends BSView {
     //Group management callback
     protected KitBaseGroupUserView.OnManageGroupCallback manageGroupCallback;
     //Search
-    protected SearchView searchView;
+    protected BSSearchView searchView;
     protected String searchQuery;
     //Letter divider functional variable
     protected String previousLetter;

@@ -10,6 +10,7 @@ import android.text.TextUtils;
 import android.util.AttributeSet;
 
 import com.artlite.adapteredrecyclerview.core.AdapteredView;
+import com.artlite.bslibrary.ui.view.BSSearchView;
 import com.artlite.ckconcept.R;
 import com.artlite.ckconcept.mvp.contracts.KitGroupContactContract;
 import com.artlite.ckconcept.ui.recycle.users.KitRecycleGroupHeader;
@@ -49,7 +50,7 @@ public abstract class KitBaseGroupUserView extends KitBaseGroupUserView_View {
     protected void onLinkInterface() {
         selectedAdapteredList = (AdapteredView) findViewById(R.id.selected_user_list);
         allAdapteredView = (AdapteredView) findViewById(R.id.all_user_list);
-        searchView = (SearchView) findViewById(R.id.search_view);
+        searchView = (BSSearchView) findViewById(R.id.search_view);
     }
 
     @Override
@@ -69,8 +70,7 @@ public abstract class KitBaseGroupUserView extends KitBaseGroupUserView_View {
         selectedAdapteredList.init(new GridLayoutManager(getContext(),
                 1, LinearLayoutManager.HORIZONTAL, false));
         //Search
-        searchView.setOnCloseListener(searchCloseListener);
-        searchView.setOnQueryTextListener(searchSubmitListener);
+        searchView.setSearchCallback(searchCallback);
         //Call default view methods
         view.onCreateView();
     }

@@ -93,6 +93,14 @@ public class KitChatView extends KitBaseWidgetView {
     }
 
     /**
+     * Method which provide the interface linking
+     */
+    @Override
+    protected void onLinkInterface() {
+
+    }
+
+    /**
      * Method which provide the creating of the {@link View}
      */
     @Override

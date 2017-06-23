@@ -72,6 +72,14 @@ public final class KitCreateWidgetView extends BSView {
     }
 
     /**
+     * Method which provide the interface linking
+     */
+    @Override
+    protected void onLinkInterface() {
+
+    }
+
+    /**
      * Method which provide the creating of the {@link View}
      */
     @Override

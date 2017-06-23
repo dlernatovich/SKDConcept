@@ -11,6 +11,7 @@ import com.artlite.adapteredrecyclerview.callbacks.OnAdapteredPagingCallback;
 import com.artlite.adapteredrecyclerview.callbacks.OnAdapteredRefreshCallback;
 import com.artlite.adapteredrecyclerview.events.RecycleEvent;
 import com.artlite.adapteredrecyclerview.models.BaseObject;
+import com.artlite.bslibrary.ui.view.BSSearchView;
 import com.artlite.ckconcept.mvp.contracts.KitGroupContactContract;
 import com.artlite.ckconcept.ui.recycle.users.KitRecycleGroup;
 import com.artlite.ckconcept.ui.recycle.users.KitRecycleGroupHeader;
@@ -159,35 +160,23 @@ abstract class KitBaseGroupUserView_Callbacks extends KitBaseGroupUserView_Varia
     //========================================================================================
 
     /**
-     * Class which provide the listening when user close search
+     * Instance of the {@link BSSearchView.OnSearchCallback}
      */
-    protected final SearchView.OnCloseListener searchCloseListener = new SearchView.OnCloseListener() {
+    protected final BSSearchView.OnSearchCallback searchCallback = new BSSearchView.OnSearchCallback() {
         @Override
-        public boolean onClose() {
+        public void onSearch(String s) {
+            searchQuery = s;
+            if (allRefreshCallback != null) {
+                allRefreshCallback.onRefreshData();
+            }
+        }
+
+        @Override
+        public void onCancel() {
             searchQuery = null;
             if (allRefreshCallback != null) {
                 allRefreshCallback.onRefreshData();
             }
-            return false;
-        }
-    };
-
-    /**
-     * Class which provide listening when user press search button
-     */
-    protected final SearchView.OnQueryTextListener searchSubmitListener = new SearchView.OnQueryTextListener() {
-        @Override
-        public boolean onQueryTextSubmit(String query) {
-            searchQuery = query;
-            if (allRefreshCallback != null) {
-                allRefreshCallback.onRefreshData();
-            }
-            return false;
-        }
-
-        @Override
-        public boolean onQueryTextChange(String newText) {
-            return false;
         }
     };
 

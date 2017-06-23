@@ -11,12 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/dimen_90" />
 
-    <android.support.v7.widget.SearchView
+    <com.artlite.bslibrary.ui.view.BSSearchView
+        android:layout_margin="@dimen/dimen_5"
         android:id="@+id/search_view"
-        style="@style/style_plain"
+        app:searchTextSize="@dimen/dimen_18"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:defaultQueryHint="@string/text_enter_query_here" />
+        app:defaultQueryHint="@string/text_enter_query_here"
+        app:generalTint="@color/color_ck_accent"
+        app:searchBackground="@drawable/bg_ck_round_gray" />
 
     <com.artlite.adapteredrecyclerview.core.AdapteredView
         android:id="@+id/all_user_list"

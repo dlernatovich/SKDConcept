@@ -76,6 +76,14 @@ public final class KitUniversalWidgetView extends KitBaseWidgetView {
     }
 
     /**
+     * Method which provide the interface linking
+     */
+    @Override
+    protected void onLinkInterface() {
+
+    }
+
+    /**
      * Method which provide the {@link AttributeSet} initialize
      *
      * @param attributes instance of the {@link AttributeSet}
