@@ -49,7 +49,7 @@ interface KitInterface<T> {
      */
     @Nullable
     KitBaseDetailsView getViewDetails(@NonNull Context context,
-                                      @Nullable final Object object);
+                                      @Nullable final T object);
 
     /**
      * Method which provide the checking if widget need to have of the details view
@@ -64,7 +64,7 @@ interface KitInterface<T> {
      * @return instance of the {@link BSView}
      */
     @Nullable
-    KitBaseListObject getViewList(@Nullable final Object object);
+    KitBaseListObject getViewList(@Nullable final T object);
 
     //==============================================================================================
     //                                CREATION MENU HEADER

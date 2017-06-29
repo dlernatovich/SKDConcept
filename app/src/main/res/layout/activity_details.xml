@@ -6,7 +6,7 @@
     android:background="@color/color_ck_background"
     tools:context="com.artlite.skdconcept.ui.activities.DetailsActivity">
 
-    <com.artlite.skdconcept.ui.views.OverridedChatView
+    <com.artlite.ckconcept.ui.views.chat.KitChatView
         android:id="@+id/view_chat"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

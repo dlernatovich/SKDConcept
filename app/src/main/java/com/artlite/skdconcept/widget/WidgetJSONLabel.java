@@ -74,13 +74,10 @@ public class WidgetJSONLabel extends KitWidgetModel<String> {
      */
     @Nullable
     @Override
-    public KitBaseListObject getViewList(@Nullable Object object) {
-        if (object instanceof String) {
-            String json = (String) object;
-            if (BSJsonHelper.isKindOfClass(json, LabelObject.class)) {
-                LabelObject labelObject = BSJsonHelper.fromJson(json, LabelObject.class);
-                return new ListObjectVerticalLabel(labelObject);
-            }
+    public KitBaseListObject getViewList(@Nullable String object) {
+        if (BSJsonHelper.isKindOfClass(object, LabelObject.class)) {
+            LabelObject labelObject = BSJsonHelper.fromJson(object, LabelObject.class);
+            return new ListObjectVerticalLabel(labelObject);
         }
         return null;
     }

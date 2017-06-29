@@ -78,16 +78,12 @@ public final class KitWidgetMessageLocation extends KitWidgetModel<MMXMessage> {
      */
     @Nullable
     @Override
-    public KitBaseListObject getViewList(@Nullable Object object) {
-        if ((object != null) && (object instanceof MMXMessage)) {
-            final MMXMessage message = (MMXMessage) object;
-            if (KitMessageHelper.isMy(message)) {
-                return new KitListMessageLocationMy(message);
-            } else {
-                return new KitListMessageLocationOther(message);
-            }
+    public KitBaseListObject getViewList(@Nullable MMXMessage object) {
+        if (KitMessageHelper.isMy(object)) {
+            return new KitListMessageLocationMy(object);
+        } else {
+            return new KitListMessageLocationOther(object);
         }
-        return null;
     }
 
     /**
@@ -100,8 +96,8 @@ public final class KitWidgetMessageLocation extends KitWidgetModel<MMXMessage> {
     @Nullable
     @Override
     public KitBaseDetailsView getViewDetails(@NonNull Context context,
-                                             @Nullable Object object) {
-        return new KitDetailsMessageLocation(context, (MMXMessage) object);
+                                             @Nullable MMXMessage object) {
+        return new KitDetailsMessageLocation(context, object);
     }
 
     /**

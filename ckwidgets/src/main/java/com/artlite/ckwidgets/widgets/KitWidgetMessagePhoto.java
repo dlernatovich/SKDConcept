@@ -1,7 +1,6 @@
 package com.artlite.ckwidgets.widgets;
 
 import android.content.Context;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -81,8 +80,8 @@ public final class KitWidgetMessagePhoto extends KitWidgetModel<MMXMessage> {
     @Nullable
     @Override
     public KitBaseDetailsView getViewDetails(@NonNull Context context,
-                                             @Nullable Object object) {
-        return new KitDetailsMessagePhoto(context, (MMXMessage) object);
+                                             @Nullable MMXMessage object) {
+        return new KitDetailsMessagePhoto(context, object);
     }
 
     /**
@@ -103,19 +102,12 @@ public final class KitWidgetMessagePhoto extends KitWidgetModel<MMXMessage> {
      */
     @Nullable
     @Override
-    public KitBaseListObject getViewList(@Nullable Object object) {
-        if ((object != null) && (object instanceof MMXMessage)) {
-            final MMXMessage message = (MMXMessage) object;
-            final KitMessageType type = KitMessageHelper.getType(message);
-            if (type == KitMessageType.PHOTO) {
-                if (KitMessageHelper.isMy(message)) {
-                    return new KitListMessagePhotoMy(message);
-                } else {
-                    return new KitListMessagePhotoOther(message);
-                }
-            }
+    public KitBaseListObject getViewList(@Nullable MMXMessage object) {
+        if (KitMessageHelper.isMy(object)) {
+            return new KitListMessagePhotoMy(object);
+        } else {
+            return new KitListMessagePhotoOther(object);
         }
-        return null;
     }
 
     /**

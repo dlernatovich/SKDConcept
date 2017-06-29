@@ -1,7 +1,6 @@
 package com.artlite.ckwidgets.widgets;
 
 import android.content.Context;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -13,8 +12,6 @@ import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.models.widget.KitWidgetModel;
 import com.artlite.ckconcept.ui.abs.create.KitBaseCreateView;
-import com.artlite.ckconcept.ui.abs.details.KitBaseDetailsView;
-import com.artlite.ckconcept.ui.views.chat.KitChatView;
 import com.artlite.ckwidgets.definers.KitDefinerMessageText;
 import com.artlite.ckwidgets.ui.list.KitListMessageTextMy;
 import com.artlite.ckwidgets.ui.list.KitListMessageTextOther;
@@ -76,16 +73,12 @@ public final class KitWidgetMessageText extends KitWidgetModel<MMXMessage> {
      */
     @Nullable
     @Override
-    public KitBaseListObject getViewList(@Nullable Object object) {
-        if (object instanceof MMXMessage) {
-            final MMXMessage message = (MMXMessage) object;
-            if (KitMessageHelper.isMy(message)) {
-                return new KitListMessageTextMy(message);
-            } else {
-                return new KitListMessageTextOther(message);
-            }
+    public KitBaseListObject getViewList(@Nullable MMXMessage object) {
+        if (KitMessageHelper.isMy(object)) {
+            return new KitListMessageTextMy(object);
+        } else {
+            return new KitListMessageTextOther(object);
         }
-        return null;
     }
 
     /**

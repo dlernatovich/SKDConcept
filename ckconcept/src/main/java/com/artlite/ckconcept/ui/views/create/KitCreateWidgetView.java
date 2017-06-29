@@ -10,7 +10,6 @@ import android.view.View;
 import com.artlite.adapteredrecyclerview.callbacks.OnAdapteredBaseCallback;
 import com.artlite.adapteredrecyclerview.core.AdapteredView;
 import com.artlite.adapteredrecyclerview.events.RecycleEvent;
-import com.artlite.adapteredrecyclerview.ui.views.AdapteredRecyclerView;
 import com.artlite.bslibrary.annotations.FindLibraryViewBy;
 import com.artlite.bslibrary.ui.view.BSView;
 import com.artlite.ckconcept.R;
@@ -112,18 +111,7 @@ public final class KitCreateWidgetView extends BSView {
      * @param layoutId {@link Integer} value of the layout ID
      */
     public void setObjects(@Nullable final List<KitMenuModel> objects,
-                           @LayoutRes int layoutId) {
-        setObjects(objects, Integer.valueOf(layoutId));
-    }
-
-    /**
-     * Method which provide the setting of the list of the {@link KitMenuModel}
-     *
-     * @param objects  {@link List} of the {@link KitMenuModel}
-     * @param layoutId {@link Integer} value of the layout ID
-     */
-    protected void setObjects(@Nullable final List<KitMenuModel> objects,
-                              @Nullable @LayoutRes Integer layoutId) {
+                           @Nullable @LayoutRes Integer layoutId) {
         if (recycleView != null) {
             if (layoutId != null) {
                 for (KitMenuModel model : objects) {
