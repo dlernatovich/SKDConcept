@@ -80,8 +80,9 @@ public final class KitWidgetMessagePhoto extends KitWidgetModel<MMXMessage> {
      */
     @Nullable
     @Override
-    public KitBaseDetailsView getViewDetails(@NonNull Context context, @Nullable Parcelable object) {
-        return new KitDetailsMessagePhoto(context, object);
+    public KitBaseDetailsView getViewDetails(@NonNull Context context,
+                                             @Nullable Object object) {
+        return new KitDetailsMessagePhoto(context, (MMXMessage) object);
     }
 
     /**
@@ -102,7 +103,7 @@ public final class KitWidgetMessagePhoto extends KitWidgetModel<MMXMessage> {
      */
     @Nullable
     @Override
-    public KitBaseListObject getViewList(@Nullable Parcelable object) {
+    public KitBaseListObject getViewList(@Nullable Object object) {
         if ((object != null) && (object instanceof MMXMessage)) {
             final MMXMessage message = (MMXMessage) object;
             final KitMessageType type = KitMessageHelper.getType(message);

@@ -59,6 +59,9 @@ public final class ChannelsActivity extends BSActivity implements KitChannelsCon
         } else if (item.getItemId() == R.id.menu_item_universal_view_horizontal) {
             startActivity(UniversalHorizontalViewActivity.class);
             return true;
+        } else if (item.getItemId() == R.id.menu_item_json) {
+            startActivity(JSONActivity.class);
+            return true;
         }
         return super.onOptionsItemSelected(item);
     }

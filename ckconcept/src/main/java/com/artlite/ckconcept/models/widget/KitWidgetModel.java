@@ -57,7 +57,8 @@ public abstract class KitWidgetModel<T> implements KitInterface<T> {
      */
     @Nullable
     @Override
-    public KitBaseDetailsView getViewDetails(@NonNull Context context, @Nullable Parcelable object) {
+    public KitBaseDetailsView getViewDetails(@NonNull Context context,
+                                             @Nullable Object object) {
         return null;
     }
 

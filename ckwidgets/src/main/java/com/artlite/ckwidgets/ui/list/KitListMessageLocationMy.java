@@ -1,5 +1,6 @@
 package com.artlite.ckwidgets.ui.list;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -20,6 +21,7 @@ import com.magnet.mmx.client.api.MMXMessage;
  * Created by dlernatovich on 6/7/2017.
  */
 
+@SuppressLint("ParcelCreator")
 public final class KitListMessageLocationMy extends KitBaseListObject<MMXMessage> {
 
     /**

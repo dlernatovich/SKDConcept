@@ -15,4 +15,8 @@
     <item
         android:id="@+id/menu_item_universal_view_horizontal"
         android:title="Universal Horizontal view" />
+
+    <item
+        android:id="@+id/menu_item_json"
+        android:title="JSON Activity" />
 </menu>

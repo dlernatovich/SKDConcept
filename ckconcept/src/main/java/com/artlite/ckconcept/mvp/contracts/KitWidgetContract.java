@@ -196,7 +196,7 @@ public interface KitWidgetContract {
          * @return instance of the {@link BaseRecyclerItem}
          */
         @Nullable
-        KitBaseListObject getObject(@Nullable final Parcelable object);
+        KitBaseListObject getObject(@Nullable final Object object);
 
         /**
          * Method which provide to getting of the {@link BaseRecyclerItem} by type
@@ -206,7 +206,7 @@ public interface KitWidgetContract {
          * @return instance of the {@link BaseRecyclerItem}
          */
         @Nullable
-        KitBaseListObject getObject(@Nullable final String type, @Nullable final Parcelable object);
+        KitBaseListObject getObject(@Nullable final String type, @Nullable final Object object);
 
         /**
          * Method which provide the show of the progress

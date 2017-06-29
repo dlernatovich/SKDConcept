@@ -412,7 +412,7 @@ public final class KitWidgetManager extends BSBaseManager {
     @Nullable
     public static boolean showViewDetails(@Nullable final Context context,
                                           @Nullable final String type,
-                                          @Nullable final Parcelable object,
+                                          @Nullable final Object object,
                                           @Nullable final BSView.OnDialogCallback callback) {
         final BSView view = getViewDetails(context, type, object);
         if (view != null) {
@@ -434,7 +434,7 @@ public final class KitWidgetManager extends BSBaseManager {
     @Nullable
     public static boolean showViewDetails(@Nullable final Context context,
                                           @Nullable final Class type,
-                                          @Nullable final Parcelable object,
+                                          @Nullable final Object object,
                                           @Nullable final BSView.OnDialogCallback callback) {
         return showViewDetails(context, KitNameHelper.getClassType(type), object, callback);
     }
@@ -450,7 +450,7 @@ public final class KitWidgetManager extends BSBaseManager {
     @Nullable
     public static BSView getViewDetails(@Nullable final Context context,
                                         @Nullable final Class type,
-                                        @Nullable final Parcelable object) {
+                                        @Nullable final Object object) {
         return getViewDetails(context, KitNameHelper.getClassType(type), object);
     }
 
@@ -465,7 +465,7 @@ public final class KitWidgetManager extends BSBaseManager {
     @Nullable
     public static BSView getViewDetails(@Nullable final Context context,
                                         @Nullable final String type,
-                                        @Nullable final Parcelable object) {
+                                        @Nullable final Object object) {
         if (object == null) {
             return null;
         }
@@ -490,7 +490,7 @@ public final class KitWidgetManager extends BSBaseManager {
      * @return instance of the {@link BSView}
      */
     @Nullable
-    public static KitBaseListObject getViewList(@Nullable final Parcelable object) {
+    public static KitBaseListObject getViewList(@Nullable final Object object) {
         String type = null;
         if (object != null) {
             final Class objectClass = object.getClass();
@@ -517,7 +517,7 @@ public final class KitWidgetManager extends BSBaseManager {
      */
     @Nullable
     public static KitBaseListObject getViewList(@Nullable final Class type,
-                                                @Nullable final Parcelable object) {
+                                                @Nullable final Object object) {
         return getViewList(KitNameHelper.getClassType(type), object);
     }
 
@@ -530,7 +530,7 @@ public final class KitWidgetManager extends BSBaseManager {
      */
     @NonNull
     public static KitBaseListObject getViewList(@Nullable final String type,
-                                                @Nullable final Parcelable object) {
+                                                @Nullable final Object object) {
         if (object == null) {
             return null;
         }

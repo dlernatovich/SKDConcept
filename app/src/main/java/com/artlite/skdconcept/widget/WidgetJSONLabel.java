@@ -1,40 +1,36 @@
-package com.artlite.ckwidgets.widgets;
+package com.artlite.skdconcept.widget;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import com.artlite.bslibrary.helpers.json.BSJsonHelper;
 import com.artlite.bslibrary.ui.view.BSView;
-import com.artlite.ckconcept.constants.KitMessageType;
 import com.artlite.ckconcept.constants.KitWidgetPriority;
-import com.artlite.ckconcept.constants.KitWidgetType;
-import com.artlite.ckconcept.helpers.message.KitMessageHelper;
+import com.artlite.ckconcept.factories.OnKitCreatorFactory;
 import com.artlite.ckconcept.models.define.KitBaseDefiner;
 import com.artlite.ckconcept.models.list.KitBaseListObject;
 import com.artlite.ckconcept.models.menu.KitMenuModel;
 import com.artlite.ckconcept.models.widget.KitWidgetModel;
 import com.artlite.ckconcept.ui.abs.create.KitBaseCreateView;
-import com.artlite.ckconcept.ui.abs.details.KitBaseDetailsView;
-import com.artlite.ckconcept.ui.views.chat.KitChatView;
-import com.artlite.ckwidgets.definers.KitDefinerMessageLocation;
-import com.artlite.ckwidgets.ui.details.KitDetailsMessageLocation;
-import com.artlite.ckwidgets.ui.list.KitListMessageLocationMy;
-import com.artlite.ckwidgets.ui.list.KitListMessageLocationOther;
-import com.magnet.mmx.client.api.MMXMessage;
+import com.artlite.skdconcept.models.LabelObject;
+import com.artlite.skdconcept.ui.views.ListObjectVerticalLabel;
 
 import java.util.Arrays;
 import java.util.List;
 
 /**
- * Widget which provide the representation of the {@link MMXMessage} with location type
+ * Created by dlernatovich on 29.06.2017.
  */
 
-public final class KitWidgetMessageLocation extends KitWidgetModel<MMXMessage> {
+public class WidgetJSONLabel extends KitWidgetModel<String> {
+
+    public static final String K_TYPE = "JSONWidgetType:LabelObject";
 
     /**
      * Constructor which provide the create of the {@link KitWidgetModel}
      */
-    public KitWidgetMessageLocation() {
+    public WidgetJSONLabel() {
         super();
     }
 
@@ -44,7 +40,7 @@ public final class KitWidgetMessageLocation extends KitWidgetModel<MMXMessage> {
      *
      * @param object instance of {@link Object}
      */
-    public KitWidgetMessageLocation(@Nullable final MMXMessage object) {
+    public WidgetJSONLabel(@Nullable final String object) {
         super(object);
     }
 
@@ -79,39 +75,14 @@ public final class KitWidgetMessageLocation extends KitWidgetModel<MMXMessage> {
     @Nullable
     @Override
     public KitBaseListObject getViewList(@Nullable Object object) {
-        if ((object != null) && (object instanceof MMXMessage)) {
-            final MMXMessage message = (MMXMessage) object;
-            if (KitMessageHelper.isMy(message)) {
-                return new KitListMessageLocationMy(message);
-            } else {
-                return new KitListMessageLocationOther(message);
+        if (object instanceof String) {
+            String json = (String) object;
+            if (BSJsonHelper.isKindOfClass(json, LabelObject.class)) {
+                LabelObject labelObject = BSJsonHelper.fromJson(json, LabelObject.class);
+                return new ListObjectVerticalLabel(labelObject);
             }
         }
         return null;
-    }
-
-    /**
-     * Method which provide the getting view for details
-     *
-     * @param context instance of {@link Context}
-     * @param object
-     * @return instance of the {@link BSView}
-     */
-    @Nullable
-    @Override
-    public KitBaseDetailsView getViewDetails(@NonNull Context context,
-                                             @Nullable Object object) {
-        return new KitDetailsMessageLocation(context, (MMXMessage) object);
-    }
-
-    /**
-     * Method which provide the checking if widget need to have of the details view
-     *
-     * @return checking if widget need to have of the create view
-     */
-    @Override
-    public boolean isNeedDetailsView() {
-        return true;
     }
 
     /**
@@ -122,13 +93,7 @@ public final class KitWidgetMessageLocation extends KitWidgetModel<MMXMessage> {
     @Nullable
     @Override
     public List<KitMenuModel> getMenuHeaders() {
-        return Arrays.asList(
-                new KitMenuModel(KitMessageType.MAP.getText(),
-                        KitMessageType.MAP.getIcon(),
-                        KitWidgetMessageLocation.class,
-                        KitChatView.class,
-                        KitWidgetType.MESSAGE_LOCATION.getValue())
-        );
+        return null;
     }
 
     /**
@@ -138,7 +103,7 @@ public final class KitWidgetMessageLocation extends KitWidgetModel<MMXMessage> {
      */
     @Override
     public boolean isNeedHeaders() {
-        return true;
+        return false;
     }
 
     /**
@@ -151,7 +116,7 @@ public final class KitWidgetMessageLocation extends KitWidgetModel<MMXMessage> {
     public List<KitBaseDefiner> getDefiners() {
         return Arrays.asList(
                 new KitBaseDefiner[]{
-                        new KitDefinerMessageLocation(MMXMessage.class)
+                        new JSONDefiner(String.class)
                 }
         );
     }
@@ -174,6 +139,77 @@ public final class KitWidgetMessageLocation extends KitWidgetModel<MMXMessage> {
     @NonNull
     @Override
     public KitWidgetPriority getPriority() {
-        return KitWidgetPriority.MIDDLE;
+        return KitWidgetPriority.HIGH;
+    }
+
+    /**
+     * Definer class
+     */
+    private static class JSONDefiner extends KitBaseDefiner {
+
+        /**
+         * Default constructor for the {@link KitBaseDefiner}
+         *
+         * @param callerClass instance of the {@link Class}
+         */
+        public JSONDefiner(@NonNull Class callerClass) {
+            super(callerClass);
+        }
+
+        /**
+         * Method which provide the define functional for the {@link Object}
+         *
+         * @param object instance of the {@link Object}
+         */
+        @Nullable
+        @Override
+        public String define(@Nullable Object object) {
+            if (object instanceof String) {
+                String json = (String) object;
+                if (json != null) {
+                    if (BSJsonHelper.isKindOfClass(json, LabelObject.class)) {
+                        return K_TYPE;
+                    }
+                }
+            }
+            return null;
+        }
+    }
+
+    public static final class Creator implements OnKitCreatorFactory<String> {
+
+        /**
+         * Method which provide the create {@link KitWidgetModel} from
+         *
+         * @param object instance of {@link Object}
+         * @return instance of {@link KitWidgetModel}
+         */
+        @Nullable
+        @Override
+        public KitWidgetModel create(@Nullable String object) {
+            return new WidgetJSONLabel(object);
+        }
+
+        /**
+         * Method which provide the create of the {@link KitWidgetModel} for first initialization
+         *
+         * @return instance of the {@link KitWidgetModel}
+         */
+        @NonNull
+        @Override
+        public KitWidgetModel createForRegistration() {
+            return new WidgetJSONLabel();
+        }
+
+        /**
+         * Method which provide the getting of the {@link String} value of the widget type
+         *
+         * @return {@link String} value of the widget type
+         */
+        @Nullable
+        @Override
+        public String getType() {
+            return K_TYPE;
+        }
     }
 }

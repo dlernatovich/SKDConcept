@@ -76,13 +76,13 @@ public final class KitWidgetMessageText extends KitWidgetModel<MMXMessage> {
      */
     @Nullable
     @Override
-    public KitBaseListObject getViewList(@Nullable Parcelable object) {
+    public KitBaseListObject getViewList(@Nullable Object object) {
         if (object instanceof MMXMessage) {
             final MMXMessage message = (MMXMessage) object;
             if (KitMessageHelper.isMy(message)) {
-                return new KitListMessageTextMy(object);
+                return new KitListMessageTextMy(message);
             } else {
-                return new KitListMessageTextOther(object);
+                return new KitListMessageTextOther(message);
             }
         }
         return null;

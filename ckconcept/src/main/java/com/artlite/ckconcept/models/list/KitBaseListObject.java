@@ -17,7 +17,7 @@ public abstract class KitBaseListObject<T extends Parcelable> extends BaseObject
     /**
      * Instance of the {@link Object}
      */
-    private final Parcelable object;
+    private Object object;
 
     /**
      * {@link String} value of the type
@@ -30,9 +30,11 @@ public abstract class KitBaseListObject<T extends Parcelable> extends BaseObject
      *
      * @param object instance of the {@link Object}
      */
-    public KitBaseListObject(Parcelable object) {
+    public KitBaseListObject(Object object) {
         this.object = object;
-        onPerformInitialize(getObject());
+        if (getObject() != null) {
+            onPerformInitialize(getObject());
+        }
     }
 
     /**
@@ -42,7 +44,9 @@ public abstract class KitBaseListObject<T extends Parcelable> extends BaseObject
      */
     public KitBaseListObject(Parcel source) {
         super(source);
-        this.object = source.readParcelable(getClassLoader());
+        if (getClassLoader() != null) {
+            this.object = source.readParcelable(getClassLoader());
+        }
         this.type = source.readString();
         onPerformInitialize(getObject());
     }
@@ -52,7 +56,7 @@ public abstract class KitBaseListObject<T extends Parcelable> extends BaseObject
      *
      * @param object instance of the {@link Object}
      */
-    public abstract void onPerformInitialize(@Nullable final T object);
+    public abstract void onPerformInitialize(@NonNull final T object);
 
     /**
      * Method which provide the getting of the instance of the {@link Object}
@@ -88,7 +92,9 @@ public abstract class KitBaseListObject<T extends Parcelable> extends BaseObject
     @Override
     public void writeToParcel(Parcel parcel, int flags) {
         super.writeToParcel(parcel, flags);
-        parcel.writeParcelable(object, flags);
+        if ((getClassLoader() == null) && (object instanceof Parcelable)) {
+            parcel.writeParcelable((Parcelable) object, flags);
+        }
         parcel.writeString((type == null) ? "" : type);
     }
 
@@ -116,7 +122,7 @@ public abstract class KitBaseListObject<T extends Parcelable> extends BaseObject
      *
      * @return instance of the {@link ClassLoader}
      */
-    @NonNull
+    @Nullable
     protected abstract ClassLoader getClassLoader();
 
 }

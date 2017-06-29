@@ -65,7 +65,7 @@ public abstract class KitBaseWidgetPresenter implements KitWidgetContract.Presen
      */
     @Override
     @Nullable
-    public KitBaseListObject getObject(@Nullable final Parcelable object) {
+    public KitBaseListObject getObject(@Nullable final Object object) {
         return KitWidgetManager.getViewList(object);
     }
 
@@ -78,7 +78,8 @@ public abstract class KitBaseWidgetPresenter implements KitWidgetContract.Presen
      */
     @Override
     @Nullable
-    public KitBaseListObject getObject(@Nullable final String type, @Nullable final Parcelable object) {
+    public KitBaseListObject getObject(@Nullable final String type,
+                                       @Nullable final Object object) {
         return KitWidgetManager.getViewList(type, object);
     }
 

@@ -4,15 +4,19 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import com.artlite.bslibrary.managers.BSRandomManager;
+import com.artlite.bslibrary.models.BSJsonObject;
+import com.google.gson.annotations.SerializedName;
 
 /**
  * Example for the {@link com.artlite.ckconcept.ui.views.universal.KitUniversalWidgetView}
  */
 
-public final class LabelObject implements Parcelable {
+public final class LabelObject extends BSJsonObject<LabelObject> implements Parcelable {
+
     /**
      * {@link String} value of the description
      */
+    @SerializedName("description")
     public final String description;
 
 
@@ -42,6 +46,16 @@ public final class LabelObject implements Parcelable {
      */
     public LabelObject() {
         this.description = BSRandomManager.generateSentence(20);
+    }
+
+    /**
+     * Method which provide the getting of the JSON {@link Class}
+     *
+     * @return instance of the {@link Class}
+     */
+    @Override
+    protected Class getJsonClass() {
+        return LabelObject.class;
     }
 
     /**

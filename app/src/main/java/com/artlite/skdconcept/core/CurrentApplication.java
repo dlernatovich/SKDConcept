@@ -13,6 +13,7 @@ import com.artlite.ckwidgets.factories.KitCreatorMessageLocation;
 import com.artlite.ckwidgets.factories.KitCreatorMessagePhoto;
 import com.artlite.ckwidgets.factories.KitCreatorMessageText;
 import com.artlite.skdconcept.R;
+import com.artlite.skdconcept.widget.WidgetJSONLabel;
 
 /**
  * Created by dlernatovich on 12.05.2017.
@@ -32,6 +33,8 @@ public class CurrentApplication extends KitApplication {
         KitWidgetManager.register(new KitCreatorMessageLocation());
         //Register the message with type - photo
         KitWidgetManager.register(new KitCreatorMessagePhoto());
+        //Register JSON widget
+        KitWidgetManager.register(new WidgetJSONLabel.Creator());
     }
 
     /**
