@@ -1,7 +1,6 @@
 package com.artlite.ckconcept.models.widget;
 
 import android.content.Context;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -86,12 +85,12 @@ interface KitInterface<T> {
     boolean isNeedHeaders();
 
     /**
-     * Method which provide the getting of the {@link List} of the {@link KitBaseDefiner}
+     * Method which provide the getting of the instance of the {@link KitBaseDefiner}
      *
-     * @return {@link List} of the {@link KitBaseDefiner}
+     * @return instance of the {@link KitBaseDefiner}
      */
     @Nullable
-    List<KitBaseDefiner> getDefiners();
+    KitBaseDefiner getDefiner();
 
     /**
      * Method which provide the getting of the menu header

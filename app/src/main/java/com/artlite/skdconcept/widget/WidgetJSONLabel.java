@@ -16,7 +16,6 @@ import com.artlite.ckconcept.ui.abs.create.KitBaseCreateView;
 import com.artlite.skdconcept.models.LabelObject;
 import com.artlite.skdconcept.ui.views.ListObjectVerticalLabel;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -104,18 +103,14 @@ public class WidgetJSONLabel extends KitWidgetModel<String> {
     }
 
     /**
-     * Method which provide the getting of the {@link List} of the {@link KitBaseDefiner}
+     * Method which provide the getting of the instance of the {@link KitBaseDefiner}
      *
-     * @return {@link List} of the {@link KitBaseDefiner}
+     * @return instance of the {@link KitBaseDefiner}
      */
     @Nullable
     @Override
-    public List<KitBaseDefiner> getDefiners() {
-        return Arrays.asList(
-                new KitBaseDefiner[]{
-                        new JSONDefiner(String.class)
-                }
-        );
+    public KitBaseDefiner getDefiner() {
+        return new JSONDefiner(String.class);
     }
 
     /**

@@ -138,18 +138,14 @@ public final class KitWidgetMessageLocation extends KitWidgetModel<MMXMessage> {
     }
 
     /**
-     * Method which provide the getting of the {@link List} of the {@link KitBaseDefiner}
+     * Method which provide the getting of the instance of the {@link KitBaseDefiner}
      *
-     * @return {@link List} of the {@link KitBaseDefiner}
+     * @return instance of the {@link KitBaseDefiner}
      */
     @Nullable
     @Override
-    public List<KitBaseDefiner> getDefiners() {
-        return Arrays.asList(
-                new KitBaseDefiner[]{
-                        new KitDefinerMessageLocation(MMXMessage.class)
-                }
-        );
+    public KitBaseDefiner getDefiner() {
+        return new KitDefinerMessageLocation(MMXMessage.class);
     }
 
     /**

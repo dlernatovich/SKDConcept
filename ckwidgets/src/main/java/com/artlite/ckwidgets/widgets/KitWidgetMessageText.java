@@ -17,7 +17,6 @@ import com.artlite.ckwidgets.ui.list.KitListMessageTextMy;
 import com.artlite.ckwidgets.ui.list.KitListMessageTextOther;
 import com.magnet.mmx.client.api.MMXMessage;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -103,18 +102,14 @@ public final class KitWidgetMessageText extends KitWidgetModel<MMXMessage> {
     }
 
     /**
-     * Method which provide the getting of the {@link List} of the {@link KitBaseDefiner}
+     * Method which provide the getting of the instance of the {@link KitBaseDefiner}
      *
-     * @return {@link List} of the {@link KitBaseDefiner}
+     * @return instance of the {@link KitBaseDefiner}
      */
     @Nullable
     @Override
-    public List<KitBaseDefiner> getDefiners() {
-        return Arrays.asList(
-                new KitBaseDefiner[]{
-                        new KitDefinerMessageText(MMXMessage.class)
-                }
-        );
+    public KitBaseDefiner getDefiner() {
+        return new KitDefinerMessageText(MMXMessage.class);
     }
 
     /**

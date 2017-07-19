@@ -163,7 +163,7 @@
 //     */
 //    @Nullable
 //    @Override
-//    public List<KitBaseDefiner> getDefiners() {
+//    public List<KitBaseDefiner> getDefiner() {
 //        return Arrays.asList(
 //                new KitBaseDefiner[]{
 //                        new KitChannelDefiner(KitChannelsView.class)

@@ -1,7 +1,6 @@
 package com.artlite.ckconcept.managers.widget;
 
 import android.content.Context;
-import android.os.Parcelable;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -248,11 +247,9 @@ public final class KitWidgetManager extends BSBaseManager {
         if (BSValidationHelper.validateEmpty(type, creator)) {
             final KitWidgetModel widget = creator.createForRegistration();
             if (widget != null) {
-                final List<KitBaseDefiner> items = widget.getDefiners();
-                if (items != null) {
-                    for (KitBaseDefiner item : items) {
-                        addDefiner(item);
-                    }
+                final KitBaseDefiner definer = widget.getDefiner();
+                if (definer != null) {
+                    addDefiner(definer);
                 }
             }
         }

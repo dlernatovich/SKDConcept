@@ -97,7 +97,8 @@ public class KitChatView extends KitBaseWidgetView {
      */
     @Override
     protected void onLinkInterface() {
-
+        this.recycleView = (AdapteredView) findViewById(R.id.view_ck_recycle_chat);
+        this.inputMsgView = (KitInputMessageView) findViewById(R.id.view_ck_input);
     }
 
     /**
@@ -105,8 +106,6 @@ public class KitChatView extends KitBaseWidgetView {
      */
     @Override
     protected void onCreateView() {
-        this.recycleView = (AdapteredView) findViewById(R.id.view_ck_recycle_chat);
-        this.inputMsgView = (KitInputMessageView) findViewById(R.id.view_ck_input);
         this.inputMsgView.setOnActionItemClickedListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem menuItem) {
